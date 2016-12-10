@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ext` mod in crate `supercow`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ext">
+
+    <title>supercow::ext - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>supercow</a></p><script>window.sidebarCurrent = {name: 'ext', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>supercow</a>::<wbr><a class='mod' href=''>ext</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-4' class='srclink' href='../../src/supercow/src/ext.rs.html#9-548' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Miscelaneous things used to integrate other code with Supercow, but which
+are not of interest to most client developers.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.BoxedStorage.html'
+                                  title='supercow::ext::BoxedStorage'>BoxedStorage</a></td>
+                           <td class='docblock-short'>
+                                <p>Causes the <code>OWNED</code> or <code>SHARED</code> value of a <code>Supercow</code> to be stored in a
+<code>Box</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.InlineStorage.html'
+                                  title='supercow::ext::InlineStorage'>InlineStorage</a></td>
+                           <td class='docblock-short'>
+                                <p>Causes the <code>OWNED</code> or <code>SHARED</code> value of a <code>Supercow</code> to be stored inline.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.TwoStepArc.html'
+                                  title='supercow::ext::TwoStepArc'>TwoStepArc</a></td>
+                           <td class='docblock-short'>
+                                <p>Wrapper providing a <code>TwoStepShared</code> implementation.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.TwoStepRc.html'
+                                  title='supercow::ext::TwoStepRc'>TwoStepRc</a></td>
+                           <td class='docblock-short'>
+                                <p>Wrapper providing a <code>TwoStepShared</code> implementation.</p>
+                           </td>
+                       </tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='constant' href='constant.MAX_INTERNAL_BORROW_DISPLACEMENT.html'
+                                  title='supercow::ext::MAX_INTERNAL_BORROW_DISPLACEMENT'>MAX_INTERNAL_BORROW_DISPLACEMENT</a></td>
+                           <td class='docblock-short'>
+                                <p>The maximum displacement (relative to the start of the object) that a
+reference pointing into <code>self</code> from an instance of <code>SafeBorrow</code> may have.</p>
+                           </td>
+                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.ConstDeref.html'
+                                  title='supercow::ext::ConstDeref'>ConstDeref</a></td>
+                           <td class='docblock-short'>
+                                <p>Marker trait indicating a <code>Deref</code>-like which always returns the same
+reference.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.OwnedStorage.html'
+                                  title='supercow::ext::OwnedStorage'>OwnedStorage</a></td>
+                           <td class='docblock-short'>
+                                <p>Describes how an <code>OWNED</code> or <code>SHARED</code> value is stored in a <code>Supercow</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.PointerFirstRef.html'
+                                  title='supercow::ext::PointerFirstRef'>PointerFirstRef</a></td>
+                           <td class='docblock-short'>
+                                <p>Marker trait identifying a reference type which begins with an absolute
+address and contains no other address-dependent information.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.PtrRead.html'
+                                  title='supercow::ext::PtrRead'>PtrRead</a></td>
+                           <td class='docblock-short'>
+                                <p>Read trait corresponding to <code>PtrWrite</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.PtrWrite.html'
+                                  title='supercow::ext::PtrWrite'>PtrWrite</a></td>
+                           <td class='docblock-short'>
+                                <p>Optionally stores a pointer to a value.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.SafeBorrow.html'
+                                  title='supercow::ext::SafeBorrow'>SafeBorrow</a></td>
+                           <td class='docblock-short'>
+                                <p>Extension of <code>Borrow</code> used to allow <code>Supercow::to_mut()</code> to work safely.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.SharedFrom.html'
+                                  title='supercow::ext::SharedFrom'>SharedFrom</a></td>
+                           <td class='docblock-short'>
+                                <p>Like <code>std::convert::From</code>, but without the blanket implementations that
+cause problems for <code>supercow_features!</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='trait' href='trait.TwoStepShared.html'
+                                  title='supercow::ext::TwoStepShared'>TwoStepShared</a></td>
+                           <td class='docblock-short'>
+                                <p>Trait for <code>ConstDeref</code> implementations which can be constructed in a
+two-step process.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "supercow";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

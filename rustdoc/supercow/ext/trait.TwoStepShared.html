@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `TwoStepShared` trait in crate `supercow`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, TwoStepShared">
+
+    <title>supercow::ext::TwoStepShared - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>supercow</a>::<wbr><a href='index.html'>ext</a></p><script>window.sidebarCurrent = {name: 'TwoStepShared', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>supercow</a>::<wbr><a href='index.html'>ext</a>::<wbr><a class='trait' href=''>TwoStepShared</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-33' class='srclink' href='../../src/supercow/src/ext.rs.html#70-84' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait TwoStepShared&lt;OWNED,&nbsp;BORROWED:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt; {
+    fn <a href='#tymethod.new_two_step' class='fnname'>new_two_step</a>() -&gt; Self;
+    unsafe fn <a href='#tymethod.deref_holder' class='fnname'>deref_holder</a>(&amp;mut self) -&gt; &amp;mut <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;OWNED&gt;;
+}</pre><div class='docblock'><p>Trait for <code>ConstDeref</code> implementations which can be constructed in a
+two-step process.</p>
+
+<p>This is used by <code>Supercow</code> to safely promote owned values to shared values.
+A two-step process is necessary because the implementation must atomically
+transfer ownership of the value and so must set everything up first in case
+setup panics.</p>
+
+<p>Essentially, such shared references actaully hold an <code>Option&lt;Target&gt;</code> which
+defaults to <code>None</code>, and panic if dereffed before the value is set.</p>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.new_two_step' class='method stab '><span id='new_two_step.v' class='invisible'><code>fn <a href='#tymethod.new_two_step' class='fnname'>new_two_step</a>() -&gt; Self</code></span></h3><div class='docblock'><p>Returns a new, empty instance of <code>Self</code>.</p>
+</div><h3 id='tymethod.deref_holder' class='method stab '><span id='deref_holder.v' class='invisible'><code>unsafe fn <a href='#tymethod.deref_holder' class='fnname'>deref_holder</a>(&amp;mut self) -&gt; &amp;mut <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;OWNED&gt;</code></span></h3><div class='docblock'><p>Returns the internal <code>Option&lt;T&gt;</code> backing this value.</p>
+
+<h2 id='unsafety' class='section-header'><a href='#unsafety'>Unsafety</a></h2>
+<p>This call may assume that <code>self</code> was produced by a call to
+<code>new_two_step</code> on the same trait. (This is to allow downcasting without
+requiring <code>Any</code> which in turn requires <code>&#39;static</code>.)</p>
+
+<p>The address of the value inside <code>Some</code> may not be altered by the
+implementation.</p>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl&lt;T,&nbsp;B:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt; TwoStepShared&lt;T,&nbsp;B&gt; for <a class='struct' href='../../supercow/ext/struct.TwoStepRc.html' title='supercow::ext::TwoStepRc'>TwoStepRc</a>&lt;T,&nbsp;B&gt; <span class='where'>where T: <a class='trait' href='../../supercow/ext/trait.SafeBorrow.html' title='supercow::ext::SafeBorrow'>SafeBorrow</a>&lt;B&gt;</span></code></li>
+<li><code>impl&lt;T,&nbsp;B:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt; TwoStepShared&lt;T,&nbsp;B&gt; for <a class='struct' href='../../supercow/ext/struct.TwoStepArc.html' title='supercow::ext::TwoStepArc'>TwoStepArc</a>&lt;T,&nbsp;B&gt; <span class='where'>where T: <a class='trait' href='../../supercow/ext/trait.SafeBorrow.html' title='supercow::ext::SafeBorrow'>SafeBorrow</a>&lt;B&gt;</span></code></li>
+<li><code>impl&lt;'a,&nbsp;S:&nbsp;'a + ?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>,&nbsp;T:&nbsp;'a&gt; TwoStepShared&lt;T,&nbsp;S&gt; for <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../../supercow/trait.DefaultFeatures.html' title='supercow::DefaultFeatures'>DefaultFeatures</a>&lt;'a&gt; + 'a&gt; <span class='where'>where T: <a class='trait' href='../../supercow/ext/trait.SafeBorrow.html' title='supercow::ext::SafeBorrow'>SafeBorrow</a>&lt;S&gt;, <a class='struct' href='../../supercow/ext/struct.TwoStepArc.html' title='supercow::ext::TwoStepArc'>TwoStepArc</a>&lt;T,&nbsp;S&gt;: <a class='trait' href='../../supercow/trait.DefaultFeatures.html' title='supercow::DefaultFeatures'>DefaultFeatures</a>&lt;'a&gt;</span></code></li>
+<li><code>impl&lt;'a,&nbsp;S:&nbsp;'a + ?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>,&nbsp;T:&nbsp;'a&gt; TwoStepShared&lt;T,&nbsp;S&gt; for <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../../supercow/trait.NonSyncFeatures.html' title='supercow::NonSyncFeatures'>NonSyncFeatures</a>&lt;'a&gt; + 'a&gt; <span class='where'>where T: <a class='trait' href='../../supercow/ext/trait.SafeBorrow.html' title='supercow::ext::SafeBorrow'>SafeBorrow</a>&lt;S&gt;, <a class='struct' href='../../supercow/ext/struct.TwoStepRc.html' title='supercow::ext::TwoStepRc'>TwoStepRc</a>&lt;T,&nbsp;S&gt;: <a class='trait' href='../../supercow/trait.NonSyncFeatures.html' title='supercow::NonSyncFeatures'>NonSyncFeatures</a>&lt;'a&gt;</span></code></li>
+</ul><script type="text/javascript" async
+                         src="../../implementors/supercow/ext/trait.TwoStepShared.js">
+                 </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "supercow";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
