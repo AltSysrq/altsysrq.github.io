@@ -54,14 +54,14 @@
 }</pre><div class='docblock'><p>Marker trait indicating a <code>Deref</code>-like which always returns the same
 reference.</p>
 
-<p>This is not indended for general use outside Supercow. Notably, mundane
+<p>This is not intended for general use outside Supercow. Notably, mundane
 references satisfy this trait&#39;s requirements, but deliberately do not
 implement it. It is also not a subtrait of <code>Deref</code> due to some additional
 special logic around boxes.</p>
 
 <h2 id='unsafety' class='section-header'><a href='#unsafety'>Unsafety</a></h2>
 <p>Behaviour is undefined if the implementation does not always return the
-same reference from <code>deref()</code> for any particular implementing value
+same reference from <code>const_deref()</code> for any particular implementing value
 (including if that value is moved or cloned).</p>
 </div>
             <h2 id='associated-types'>Associated Types</h2>

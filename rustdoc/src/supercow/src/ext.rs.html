@@ -599,7 +599,7 @@
 <span class='comment'>// option. This file may not be copied, modified, or distributed</span>
 <span class='comment'>// except according to those terms.</span>
 
-<span class='doccomment'>//! Miscelaneous things used to integrate other code with Supercow, but which</span>
+<span class='doccomment'>//! Miscellaneous things used to integrate other code with Supercow, but which</span>
 <span class='doccomment'>//! are not of interest to most client developers.</span>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>borrow</span>::<span class='ident'>Borrow</span>;
@@ -615,7 +615,7 @@
 <span class='doccomment'>/// Marker trait indicating a `Deref`-like which always returns the same</span>
 <span class='doccomment'>/// reference.</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// This is not indended for general use outside Supercow. Notably, mundane</span>
+<span class='doccomment'>/// This is not intended for general use outside Supercow. Notably, mundane</span>
 <span class='doccomment'>/// references satisfy this trait&#39;s requirements, but deliberately do not</span>
 <span class='doccomment'>/// implement it. It is also not a subtrait of `Deref` due to some additional</span>
 <span class='doccomment'>/// special logic around boxes.</span>
@@ -623,7 +623,7 @@
 <span class='doccomment'>/// ## Unsafety</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// Behaviour is undefined if the implementation does not always return the</span>
-<span class='doccomment'>/// same reference from `deref()` for any particular implementing value</span>
+<span class='doccomment'>/// same reference from `const_deref()` for any particular implementing value</span>
 <span class='doccomment'>/// (including if that value is moved or cloned).</span>
 <span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>ConstDeref</span> {
     <span class='doccomment'>/// The type this value dereferences to.</span>
@@ -658,8 +658,8 @@
 <span class='doccomment'>/// transfer ownership of the value and so must set everything up first in case</span>
 <span class='doccomment'>/// setup panics.</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// Essentially, such shared references actaully hold an `Option&lt;Target&gt;` which</span>
-<span class='doccomment'>/// defaults to `None`, and panic if dereffed before the value is set.</span>
+<span class='doccomment'>/// Essentially, such shared references actually hold an `Option&lt;Target&gt;` which</span>
+<span class='doccomment'>/// defaults to `None`, and panic if dereferenced before the value is set.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>TwoStepShared</span><span class='op'>&lt;</span><span class='ident'>OWNED</span>, <span class='ident'>BORROWED</span> : ?<span class='ident'>Sized</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// Returns a new, empty instance of `Self`.</span>
     <span class='kw'>fn</span> <span class='ident'>new_two_step</span>() <span class='op'>-&gt;</span> <span class='self'>Self</span>;
@@ -744,10 +744,7 @@
 <span class='kw'>unsafe</span> <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>SafeBorrow</span><span class='op'>&lt;</span><span class='ident'>CStr</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>T</span>
 <span class='kw'>where</span> <span class='ident'>T</span> : <span class='ident'>Borrow</span><span class='op'>&lt;</span><span class='ident'>CStr</span><span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>borrow_replacement</span>(_: <span class='kw-2'>&amp;</span><span class='ident'>CStr</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='ident'>CStr</span> {
-        <span class='kw'>static</span> <span class='ident'>EMPTY_CSTR</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='ident'>u8</span>] <span class='op'>=</span> <span class='kw-2'>&amp;</span>[<span class='number'>0</span>];
-        <span class='kw'>unsafe</span> {
-            <span class='ident'>CStr</span>::<span class='ident'>from_bytes_with_nul_unchecked</span>(<span class='ident'>EMPTY_CSTR</span>)
-        }
+        <span class='ident'>Default</span>::<span class='ident'>default</span>()
     }
 }
 <span class='kw'>unsafe</span> <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>SafeBorrow</span><span class='op'>&lt;</span><span class='ident'>OsStr</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>T</span>
@@ -763,14 +760,14 @@
     }
 }
 
-<span class='doccomment'>/// Marker trait identifying a reference type which begins with an absolute</span>
+<span class='doccomment'>/// Marker trait identifying a pointer type which begins with an absolute</span>
 <span class='doccomment'>/// address and contains no other address-dependent information.</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// `Supercow` expects to be able to read the first pointer-sized value of such</span>
-<span class='doccomment'>/// a reference and perform address arithmetic upon it.</span>
+<span class='doccomment'>/// `Supercow` expects to be able to read the first machine-pointer-sized value</span>
+<span class='doccomment'>/// of such a pointer and perform address arithmetic upon it.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// There is no utility of applying this trait to anything other than a const</span>
-<span class='doccomment'>/// reference.</span>
+<span class='doccomment'>/// pointer.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// ## Unsafety</span>
 <span class='doccomment'>///</span>
@@ -779,9 +776,10 @@
 <span class='doccomment'>/// need to point to anything in particular) or if other parts of the type</span>
 <span class='doccomment'>/// contain address-dependent information.</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// Behaviour is undefined if the reference has any `Drop` implementation,</span>
+<span class='doccomment'>/// Behaviour is undefined if the pointer has any `Drop` implementation,</span>
 <span class='doccomment'>/// should a future Rust version make such things possible.</span>
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>PointerFirstRef</span> { }
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>PointerFirstRef</span> : <span class='ident'>Copy</span> { }
+
 <span class='kw'>unsafe</span> <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Sized</span><span class='op'>&gt;</span> <span class='ident'>PointerFirstRef</span> <span class='kw'>for</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>T</span> { }
 <span class='kw'>unsafe</span> <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>PointerFirstRef</span> <span class='kw'>for</span> <span class='op'>*</span><span class='kw'>const</span> [<span class='ident'>T</span>] { }
 <span class='kw'>unsafe</span> <span class='kw'>impl</span> <span class='ident'>PointerFirstRef</span> <span class='kw'>for</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>str</span> { }
@@ -816,6 +814,8 @@
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// `Supercow` relies strongly on the contracts of the functions in this trait</span>
 <span class='doccomment'>/// being implemented correctly.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// No function may mutate the `A` or `B` values.</span>
 <span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>OwnedStorage</span><span class='op'>&lt;</span><span class='ident'>A</span>, <span class='ident'>B</span><span class='op'>&gt;</span> : <span class='ident'>Default</span> {
     <span class='doccomment'>/// Allocates the given owned value.</span>
     <span class='doccomment'>///</span>
@@ -1078,11 +1078,11 @@
     <span class='doccomment'>/// Returns an instance of `Self` with no particular value.</span>
     <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='self'>Self</span>;
 
-    <span class='doccomment'>/// Writes the given reference into `self`.</span>
+    <span class='doccomment'>/// Writes the given pointer into `self`.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// ## Unsafety</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// The implementation must not inspect the given reference. This call must</span>
+    <span class='doccomment'>/// The implementation must not inspect the given pointer. This call must</span>
     <span class='doccomment'>/// not panic.</span>
     <span class='kw'>fn</span> <span class='ident'>store_ptr</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>t</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>T</span>);
 }

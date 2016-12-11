@@ -47,15 +47,15 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-100' class='srclink' href='../../src/supercow/src/ext.rs.html#191' title='goto source code'>[src]</a></span></h1>
-<pre class='rust trait'>pub unsafe trait PointerFirstRef { }</pre><div class='docblock'><p>Marker trait identifying a reference type which begins with an absolute
+               </span><a id='src-99' class='srclink' href='../../src/supercow/src/ext.rs.html#188' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub unsafe trait PointerFirstRef: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> { }</pre><div class='docblock'><p>Marker trait identifying a pointer type which begins with an absolute
 address and contains no other address-dependent information.</p>
 
-<p><code>Supercow</code> expects to be able to read the first pointer-sized value of such
-a reference and perform address arithmetic upon it.</p>
+<p><code>Supercow</code> expects to be able to read the first machine-pointer-sized value
+of such a pointer and perform address arithmetic upon it.</p>
 
 <p>There is no utility of applying this trait to anything other than a const
-reference.</p>
+pointer.</p>
 
 <h2 id='unsafety' class='section-header'><a href='#unsafety'>Unsafety</a></h2>
 <p>Behaviour is undefined if a marked type does not begin with a real pointer
@@ -63,7 +63,7 @@ to a value (with the usual exception of ZSTs, where the pointer does not
 need to point to anything in particular) or if other parts of the type
 contain address-dependent information.</p>
 
-<p>Behaviour is undefined if the reference has any <code>Drop</code> implementation,
+<p>Behaviour is undefined if the pointer has any <code>Drop</code> implementation,
 should a future Rust version make such things possible.</p>
 </div>
         <h2 id='implementors'>Implementors</h2>

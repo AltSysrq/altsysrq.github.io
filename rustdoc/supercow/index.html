@@ -47,21 +47,32 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-0' class='srclink' href='../src/supercow/src/lib.rs.html#9-2124' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-0' class='srclink' href='../src/supercow/src/lib.rs.html#9-2350' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p><code>Supercow</code> is <code>Cow</code> on steroids.</p>
 
-<p><code>Supercow</code> provides a mechanism for making APIs that accept very general
-references while maintaining very low overhead for usages not involving
-heavy-weight references (eg, <code>Arc</code>). Though nominally similar to <code>Cow</code> in
-structure (and being named after it), <code>Supercow</code> does not require the
-containee to be <code>Clone</code> or <code>ToOwned</code> unless operations inherently depending
-on either are invoked.</p>
+<p><code>Supercow</code> provides a mechanism for making APIs that accept or return very
+general references while maintaining very low overhead for usages not
+involving heavy-weight references (e.g, <code>Arc</code>). Though nominally similar to
+<code>Cow</code> in structure (and being named after it), <code>Supercow</code> does not require
+the containee to be <code>Clone</code> or <code>ToOwned</code> unless operations inherently
+depending on either are invoked.</p>
+
+<p><code>Supercow</code> allows you to</p>
+
+<ul>
+<li><p>Return values with ownership semantics decided at run-time;</p></li>
+<li><p>Write APIs that allow client code to manage its resources however it
+wants;</p></li>
+<li><p>Perform efficient copy-on-write and data sharing;</p></li>
+<li><p>Avoid cloning until absolutely necessary, even if the point at which it
+becomes necessary is determined dynamically.</p></li>
+</ul>
 
 <h1 id='quick-start' class='section-header'><a href='#quick-start'>Quick Start</a></h1>
 <h2 id='simple-types' class='section-header'><a href='#simple-types'>Simple Types</a></h2>
 <p>In many cases, you can think of a <code>Supercow</code> as having only one lifetime
 parameter and one type parameter, corresponding to the lifetime and type of
-an immutable reference.</p>
+an immutable reference, i.e., <code>Supercow&lt;&#39;a, Type&gt;</code> ⇒ <code>&amp;&#39;a Type</code>.</p>
 
 <pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>supercow</span>;
@@ -69,41 +80,55 @@ an immutable reference.</p>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>Arc</span>;
 <span class='kw'>use</span> <span class='ident'>supercow</span>::<span class='ident'>Supercow</span>;
 
-<span class='comment'>// Declare some data we want to reference.</span>
-<span class='kw'>let</span> <span class='ident'>fourty_two</span> <span class='op'>=</span> <span class='number'>42u32</span>;
-<span class='comment'>// Make a Supercow referencing the above.</span>
-<span class='comment'>// N.B. Type inference doesn&#39;t work reliably if there is nothing explicitly</span>
-<span class='comment'>// typed to which the Supercow is passed, so we declare the type of this</span>
-<span class='comment'>// variable explicitly.</span>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>a</span>: <span class='ident'>Supercow</span><span class='op'>&lt;</span><span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>Supercow</span>::<span class='ident'>borrowed</span>(<span class='kw-2'>&amp;</span><span class='ident'>fourty_two</span>);
-<span class='comment'>// We can deref `a` to a `u32`, and also see that it does</span>
-<span class='comment'>// indeed reference `fourty_two`.</span>
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='op'>*</span><span class='ident'>a</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>fourty_two</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>a</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>);
+<span class='comment'>// This takes a `Supercow`, so it can accept owned, borrowed, or shared</span>
+<span class='comment'>// values with the same API. The calls to it are annotated below.</span>
+<span class='comment'>//</span>
+<span class='comment'>// Normally a function like this would elide the lifetime and/or use an</span>
+<span class='comment'>// `Into` conversion, but here it is written out for clarity.</span>
+<span class='kw'>fn</span> <span class='ident'>assert_is_forty_two</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='ident'>s</span>: <span class='ident'>Supercow</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span>, <span class='ident'>u32</span><span class='op'>&gt;</span>) {
+  <span class='comment'>// `Supercow` can be dereferenced just like a normal reference.</span>
+  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='op'>*</span><span class='ident'>s</span>);
+}
 
-<span class='comment'>// Clone `a` so that it also points to `fourty_two`.</span>
+<span class='comment'>// Declare some data we want to reference.</span>
+<span class='kw'>let</span> <span class='ident'>forty_two</span> <span class='op'>=</span> <span class='number'>42u32</span>;
+<span class='comment'>// Make a Supercow referencing the above.</span>
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='ident'>Supercow</span>::<span class='ident'>borrowed</span>(<span class='kw-2'>&amp;</span><span class='ident'>forty_two</span>);
+<span class='comment'>// It dereferences to the value of `forty_two`.</span>
+<span class='ident'>assert_is_forty_two</span>(<span class='ident'>a</span>.<span class='ident'>clone</span>());             <span class='comment'>// borrowed</span>
+<span class='comment'>// And we can see that it actually still *points* to forty_two as well.</span>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>forty_two</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>a</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>);
+
+<span class='comment'>// Clone `a` so that `b` also points to `forty_two`.</span>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>a</span>.<span class='ident'>clone</span>();
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='op'>*</span><span class='ident'>b</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>fourty_two</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>b</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>);
+<span class='ident'>assert_is_forty_two</span>(<span class='ident'>b</span>.<span class='ident'>clone</span>());             <span class='comment'>// borrowed</span>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>forty_two</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>b</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>);
 
 <span class='comment'>// `to_mut()` can be used to mutate `a` and `b` independently, taking</span>
 <span class='comment'>// ownership as needed.</span>
 <span class='op'>*</span><span class='ident'>a</span>.<span class='ident'>to_mut</span>() <span class='op'>+=</span> <span class='number'>2</span>;
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='ident'>fourty_two</span>);
+<span class='comment'>// Our immutable variable hasn&#39;t been changed...</span>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='ident'>forty_two</span>);
+<span class='comment'>// ...but `a` now stores the new value...</span>
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>44</span>, <span class='op'>*</span><span class='ident'>a</span>);
+<span class='comment'>// ...and `b` still points to the unmodified variable.</span>
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='op'>*</span><span class='ident'>b</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>fourty_two</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>b</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>);
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>forty_two</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>, <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>b</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u32</span>);
 
+<span class='comment'>// And now we modify `b` as well, which as before affects nothing else.</span>
 <span class='op'>*</span><span class='ident'>b</span>.<span class='ident'>to_mut</span>() <span class='op'>=</span> <span class='number'>56</span>;
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>44</span>, <span class='op'>*</span><span class='ident'>a</span>);
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>56</span>, <span class='op'>*</span><span class='ident'>b</span>);
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='ident'>fourty_two</span>);
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='ident'>forty_two</span>);
+
+<span class='comment'>// We can call `assert_is_forty_two` with an owned value as well.</span>
+<span class='ident'>assert_is_forty_two</span>(<span class='ident'>Supercow</span>::<span class='ident'>owned</span>(<span class='number'>42</span>));   <span class='comment'>// owned</span>
 
 <span class='comment'>// We can also use `Arc` transparently.</span>
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>c</span>: <span class='ident'>Supercow</span><span class='op'>&lt;</span><span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>Supercow</span>::<span class='ident'>shared</span>(<span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='number'>99</span>));
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>99</span>, <span class='op'>*</span><span class='ident'>c</span>);
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>Supercow</span>::<span class='ident'>shared</span>(<span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='number'>42</span>));
+<span class='ident'>assert_is_forty_two</span>(<span class='ident'>c</span>.<span class='ident'>clone</span>());             <span class='comment'>// shared</span>
 <span class='op'>*</span><span class='ident'>c</span>.<span class='ident'>to_mut</span>() <span class='op'>+=</span> <span class='number'>1</span>;
-<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>100</span>, <span class='op'>*</span><span class='ident'>c</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>43</span>, <span class='op'>*</span><span class='ident'>c</span>);<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
 <h2 id='ownedborrowed-types' class='section-header'><a href='#ownedborrowed-types'>Owned/Borrowed Types</a></h2>
 <p><code>Supercow</code> can have different owned and borrowed types, for example
@@ -149,7 +174,7 @@ well.</p>
   <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='op'>*</span><span class='ident'>some_api_function</span>(<span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='number'>21</span>)));
 }<a class='test-arrow' target='_blank' href=''>Run</a></pre>
 
-<h2 id='chosing-the-right-variant' class='section-header'><a href='#chosing-the-right-variant'>Chosing the right variant</a></h2>
+<h2 id='choosing-the-right-variant' class='section-header'><a href='#choosing-the-right-variant'>Choosing the right variant</a></h2>
 <p><code>Supercow</code> is extremely flexible as to how it internally stores and manages
 data. There are four variants provided by default: <code>Supercow</code>,
 <code>NonSyncSupercow</code>, <code>InlineSupercow</code>, and <code>InlineNonSyncSupercow</code>. Here is a
@@ -208,12 +233,11 @@ shared reference. Supercows constructed with mundane references always
 construct extremely quickly.</p>
 
 <p>The only difference between the <code>NonSync</code> variant and the default is that
-the default is to require the shared pointer type (eg, <code>Arc</code>) to be <code>Send</code>
-and <code>Sync</code> (which thus prohibits using <code>Rc</code>), whereas <code>NonSync</code> does not
-and so allows <code>Rc</code>. Note that a side-effect of the default <code>Send + Sync</code>
-requirement is that the type of <code>BORROWED</code> also needs to be <code>Send</code> and
-<code>Sync</code> when using <code>Arc</code> as the shared reference type; if it is not <code>Send</code>
-and <code>Sync</code>, use <code>NonSyncSupercow</code> instead.</p>
+the default is to require the shared pointer type (e.g., <code>Arc</code>) to be
+<code>Send</code> and <code>Sync</code> (which thus prohibits using <code>Rc</code>), whereas <code>NonSync</code> does
+not and so allows <code>Rc</code>. Note that a side-effect of the default <code>Send + Sync</code> requirement is that the type of <code>BORROWED</code> also needs to be <code>Send</code>
+and <code>Sync</code> when using <code>Arc</code> as the shared reference type; if it is not
+<code>Send</code> and <code>Sync</code>, use <code>NonSyncSupercow</code> instead.</p>
 
 <p>By default, <code>Supercow</code> boxes any owned value or shared reference. This
 makes the <code>Deref</code> implementation faster since it does not need to account
@@ -290,7 +314,7 @@ the database handle.</p>
     <span class='ident'>Database</span>
   }
   <span class='kw'>fn</span> <span class='ident'>close</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-    <span class='comment'>// Eg, it returns an error on failure or something</span>
+    <span class='comment'>// E.g., it returns an error on failure or something</span>
     <span class='bool-val'>true</span>
   }
 }
@@ -372,7 +396,7 @@ levels deep.</p></li>
     <span class='ident'>Database</span>
   }
   <span class='kw'>fn</span> <span class='ident'>close</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-    <span class='comment'>// Eg, it returns an error on failure or something</span>
+    <span class='comment'>// E.g., it returns an error on failure or something</span>
     <span class='bool-val'>true</span>
   }
 }
@@ -456,7 +480,7 @@ available conversions are:</p>
 <li><p>The <code>OWNED</code> type into an owned <code>Supercow</code>. This applies without
 restriction.</p></li>
 <li><p>A reference to the <code>OWNED</code> type. References to a different <code>BORROWED</code>
-type are currently not convertable; <code>Supercow::borrowed()</code> will be needed
+type are currently not convertible; <code>Supercow::borrowed()</code> will be needed
 to construct the <code>Supercow</code> explicitly.</p></li>
 <li><p><code>Rc&lt;OWNED&gt;</code> and <code>Arc&lt;OWNED&gt;</code> for <code>Supercow</code>s where <code>OWNED</code> and <code>BORROWED</code>
 are the exact same type, and where the <code>Rc</code> or <code>Arc</code> can be converted into
@@ -575,7 +599,7 @@ owned value directly or a reference directly.</p>
 only requiring a bit of internal memory initialisation besides setting the
 reference itself.</p>
 
-<p>The defual <code>Supercow</code> type boxes the owned type and double-boxes the shared
+<p>The default <code>Supercow</code> type boxes the owned type and double-boxes the shared
 type. This obviously dominates construction cost in those cases.</p>
 
 <p><code>InlineSupercow</code> eliminates one box layer. This means that constructing an
@@ -598,7 +622,7 @@ dereferencing an <code>&amp;&amp;BORROWED</code>.</p>
 <p>In all cases, the <code>Deref</code> implementation is not dependent on the ownership
 mode of the <code>Supercow</code>, and so is not affected by the shared reference
 type, most importantly, making no virtual function calls even under the
-default boxed shared reference type. However, the way it works colud
+default boxed shared reference type. However, the way it works could
 prevent LLVM optimisations from applying in particular circumstances.</p>
 
 <p>For those wanting specifics, the function</p>
@@ -722,7 +746,7 @@ Powers.</p>
                            <td><a class='mod' href='ext/index.html'
                                   title='supercow::ext'>ext</a></td>
                            <td class='docblock-short'>
-                                <p>Miscelaneous things used to integrate other code with Supercow, but which
+                                <p>Miscellaneous things used to integrate other code with Supercow, but which
 are not of interest to most client developers.</p>
                            </td>
                        </tr></table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>

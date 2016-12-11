@@ -59,8 +59,8 @@ A two-step process is necessary because the implementation must atomically
 transfer ownership of the value and so must set everything up first in case
 setup panics.</p>
 
-<p>Essentially, such shared references actaully hold an <code>Option&lt;Target&gt;</code> which
-defaults to <code>None</code>, and panic if dereffed before the value is set.</p>
+<p>Essentially, such shared references actually hold an <code>Option&lt;Target&gt;</code> which
+defaults to <code>None</code>, and panic if dereferenced before the value is set.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>

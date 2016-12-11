@@ -47,11 +47,11 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-416' class='srclink' href='../src/supercow/src/lib.rs.html#930-932' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-415' class='srclink' href='../src/supercow/src/lib.rs.html#956-958' title='goto source code'>[src]</a></span></h1>
 <pre class='rust typedef'>type InlineSupercow&lt;'a,&nbsp;OWNED,&nbsp;BORROWED&nbsp;=&nbsp;OWNED,&nbsp;SHARED&nbsp;=&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../supercow/trait.DefaultFeatures.html' title='supercow::DefaultFeatures'>DefaultFeatures</a>&lt;'static&gt; + 'static&gt;&gt; = <a class='struct' href='../supercow/struct.Supercow.html' title='supercow::Supercow'>Supercow</a>&lt;'a,&nbsp;OWNED,&nbsp;BORROWED,&nbsp;SHARED,&nbsp;<a class='struct' href='../supercow/ext/struct.InlineStorage.html' title='supercow::ext::InlineStorage'>InlineStorage</a>&lt;OWNED,&nbsp;SHARED&gt;&gt;;</pre><div class='docblock'><p><code>Supercow</code> with the default <code>STORAGE</code> changed to <code>InlineStorage</code>.</p>
 
 <p>This reduces the number of allocations needed to construct an owned or
-shared <code>Superow</code> (down to zero for owned, but note that the default
+shared <code>Supercow</code> (down to zero for owned, but note that the default
 <code>SHARED</code> still has its own <code>Box</code>) at the cost of bloating the <code>Supercow</code>
 itself, as it now needs to be able to fit a whole <code>OWNED</code> instance.</p>
 </div></section>
