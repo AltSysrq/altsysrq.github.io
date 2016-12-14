@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-108' class='srclink' href='../../src/supercow/src/ext.rs.html#204-207' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-107' class='srclink' href='../../src/supercow/src/ext.rs.html#202-205' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub unsafe trait SharedFrom&lt;T&gt; {
     fn <a href='#tymethod.shared_from' class='fnname'>shared_from</a>(t: T) -&gt; Self;
 }</pre><div class='docblock'><p>Like <code>std::convert::From</code>, but without the blanket implementations that
@@ -55,7 +55,7 @@ cause problems for <code>supercow_features!</code>.</p>
 
 <h2 id='unsafety' class='section-header'><a href='#unsafety'>Unsafety</a></h2>
 <p>The conversion may not invalidate the address returned by
-<code>T::const_deref()</code>.</p>
+<code>T::const_deref()</code> if <code>T</code> is <code>ConstDeref</code>.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>

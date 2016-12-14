@@ -590,6 +590,21 @@
 <span id="546">546</span>
 <span id="547">547</span>
 <span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2016 Jason Lingle</span>
 <span class='comment'>//</span>
@@ -609,7 +624,6 @@
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>rc</span>::<span class='ident'>Rc</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>slice</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>Arc</span>;
 
 <span class='doccomment'>/// Marker trait indicating a `Deref`-like which always returns the same</span>
@@ -668,8 +682,8 @@
     <span class='doccomment'>/// ## Unsafety</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// This call may assume that `self` was produced by a call to</span>
-    <span class='doccomment'>/// `new_two_step` on the same trait. (This is to allow downcasting without</span>
-    <span class='doccomment'>/// requiring `Any` which in turn requires `&#39;static`.)</span>
+    <span class='doccomment'>/// `new_two_step` on the same implementation. (This is to allow</span>
+    <span class='doccomment'>/// downcasting without requiring `Any` which in turn requires `&#39;static`.)</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// The address of the value inside `Some` may not be altered by the</span>
     <span class='doccomment'>/// implementation.</span>
@@ -691,6 +705,7 @@
             <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>outer</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>inner</span>::<span class='ident'>new</span>(<span class='prelude-val'>None</span>), <span class='ident'>PhantomData</span>)
         }
         <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>deref_holder</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+            <span class='comment'>// Safety: No operation here is actually unsafe.</span>
             <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>inner</span>::<span class='ident'>get_mut</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>.<span class='number'>0</span>)
                 .<span class='ident'>expect</span>(<span class='string'>&quot;Two-step wrapper already cloned&quot;</span>)
         }
@@ -733,9 +748,7 @@
 }
 <span class='kw'>unsafe</span> <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>B</span>, <span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>SafeBorrow</span><span class='op'>&lt;</span>[<span class='ident'>B</span>]<span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>T</span> <span class='kw'>where</span> <span class='ident'>T</span> : <span class='ident'>Borrow</span><span class='op'>&lt;</span>[<span class='ident'>B</span>]<span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>borrow_replacement</span>(_: <span class='kw-2'>&amp;</span>[<span class='ident'>B</span>]) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span>[<span class='ident'>B</span>] {
-        <span class='kw'>unsafe</span> {
-            <span class='ident'>slice</span>::<span class='ident'>from_raw_parts</span>(<span class='number'>1</span> <span class='kw'>as</span> <span class='ident'>usize</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>B</span>, <span class='number'>0</span>)
-        }
+        <span class='kw-2'>&amp;</span>[]
     }
 }
 <span class='kw'>unsafe</span> <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>SafeBorrow</span><span class='op'>&lt;</span><span class='ident'>str</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>T</span> <span class='kw'>where</span> <span class='ident'>T</span> : <span class='ident'>Borrow</span><span class='op'>&lt;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
@@ -793,7 +806,7 @@
 <span class='doccomment'>/// ## Unsafety</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// The conversion may not invalidate the address returned by</span>
-<span class='doccomment'>/// `T::const_deref()`.</span>
+<span class='doccomment'>/// `T::const_deref()` if `T` is `ConstDeref`.</span>
 <span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>trait</span> <span class='ident'>SharedFrom</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// Converts the given `T` to `Self`.</span>
     <span class='kw'>fn</span> <span class='ident'>shared_from</span>(<span class='ident'>t</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='self'>Self</span>;
@@ -979,6 +992,13 @@
     <span class='kw'>fn</span> <span class='ident'>is_internal_storage</span>() <span class='op'>-&gt;</span> <span class='ident'>bool</span> { <span class='bool-val'>true</span> }
 }
 
+<span class='doccomment'>/// Used to give arbitrary values at least pointer alignment without making</span>
+<span class='doccomment'>/// them otherwise bigger.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// This likely isn&#39;t strictly necessary, since any allocator has an inherent</span>
+<span class='doccomment'>/// alignment anyway, but it doesn&#39;t hurt to be explicit.</span>
+<span class='kw'>type</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='op'>=</span> ([<span class='op'>*</span><span class='kw'>const</span>();<span class='number'>0</span>], <span class='ident'>T</span>);
+
 <span class='doccomment'>/// Causes the `OWNED` or `SHARED` value of a `Supercow` to be stored in a</span>
 <span class='doccomment'>/// `Box`.</span>
 <span class='doccomment'>///</span>
@@ -991,9 +1011,9 @@
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>allocate_a</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>value</span>: <span class='ident'>A</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> () {
         <span class='kw'>if</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
-            <span class='kw'>let</span> <span class='ident'>boxed</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>value</span>);
+            <span class='kw'>let</span> <span class='ident'>boxed</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;&gt;</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>new</span>(([], <span class='ident'>value</span>));
             <span class='kw'>let</span> <span class='ident'>address</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>into_raw</span>(<span class='ident'>boxed</span>);
-            <span class='ident'>address</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> ()
+            <span class='kw'>unsafe</span> { <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> (<span class='op'>*</span><span class='ident'>address</span>).<span class='number'>1</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>A</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> () }
         } <span class='kw'>else</span> {
             <span class='comment'>// Handle ZSTs specially, since `Box` &quot;allocates&quot; them at address</span>
             <span class='comment'>// 1.</span>
@@ -1004,9 +1024,9 @@
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>allocate_b</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>value</span>: <span class='ident'>B</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> () {
         <span class='kw'>if</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
-            <span class='kw'>let</span> <span class='ident'>boxed</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>value</span>);
+            <span class='kw'>let</span> <span class='ident'>boxed</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;&gt;</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>new</span>(([], <span class='ident'>value</span>));
             <span class='kw'>let</span> <span class='ident'>address</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>into_raw</span>(<span class='ident'>boxed</span>);
-            <span class='ident'>address</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> ()
+            <span class='kw'>unsafe</span> { <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> (<span class='op'>*</span><span class='ident'>address</span>).<span class='number'>1</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>B</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> () }
         } <span class='kw'>else</span> {
             <span class='comment'>// Handle ZSTs specially, since `Box` &quot;allocates&quot; them at address</span>
             <span class='comment'>// 1.</span>
@@ -1016,28 +1036,28 @@
 
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>get_ptr_a</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='self'>self</span>, <span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> ()) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>A</span> {
-        <span class='kw-2'>&amp;</span><span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>A</span>)
+        <span class='kw-2'>&amp;</span>(<span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>)).<span class='number'>1</span>
     }
 
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>get_ptr_b</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='self'>self</span>, <span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> ()) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>B</span> {
-        <span class='kw-2'>&amp;</span><span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>B</span>)
+        <span class='kw-2'>&amp;</span>(<span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;</span>)).<span class='number'>1</span>
     }
 
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>get_mut_a</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> ()) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='ident'>A</span> {
-        <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span><span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>A</span>)
+        <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span>(<span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>)).<span class='number'>1</span>
     }
 
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>get_mut_b</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> ()) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='ident'>B</span> {
-        <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span><span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>B</span>)
+        <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span>(<span class='op'>*</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;</span>)).<span class='number'>1</span>
     }
 
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>deallocate_a</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> ()) {
         <span class='kw'>if</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
-            <span class='ident'>drop</span>(<span class='ident'>Box</span>::<span class='ident'>from_raw</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>A</span>))
+            <span class='ident'>drop</span>(<span class='ident'>Box</span>::<span class='ident'>from_raw</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>))
         }
     }
 
@@ -1051,7 +1071,8 @@
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>deallocate_into_a</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> ()) <span class='op'>-&gt;</span> <span class='ident'>A</span> {
         <span class='kw'>if</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
-            <span class='op'>*</span><span class='ident'>Box</span>::<span class='ident'>from_raw</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>A</span>)
+            <span class='kw'>let</span> <span class='ident'>t</span> <span class='op'>=</span> <span class='op'>*</span><span class='ident'>Box</span>::<span class='ident'>from_raw</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>);
+            <span class='ident'>t</span>.<span class='number'>1</span>
         } <span class='kw'>else</span> {
             <span class='ident'>ptr</span>::<span class='ident'>read</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>A</span>)
         }
@@ -1060,7 +1081,8 @@
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>deallocate_into_b</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> ()) <span class='op'>-&gt;</span> <span class='ident'>B</span> {
         <span class='kw'>if</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
-            <span class='op'>*</span><span class='ident'>Box</span>::<span class='ident'>from_raw</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>B</span>)
+            <span class='kw'>let</span> <span class='ident'>t</span> <span class='op'>=</span> <span class='op'>*</span><span class='ident'>Box</span>::<span class='ident'>from_raw</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>Aligned</span><span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;</span>);
+            <span class='ident'>t</span>.<span class='number'>1</span>
         } <span class='kw'>else</span> {
             <span class='ident'>ptr</span>::<span class='ident'>read</span>(<span class='ident'>ptr</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>B</span>)
         }
@@ -1137,6 +1159,14 @@
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>RefParent</span> {
     <span class='kw'>type</span> <span class='ident'>Owned</span> : ?<span class='ident'>Sized</span>;
 
+    <span class='doccomment'>/// Notifies `self` that a `Ref` has been dropped.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// ## Unsafety</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Behaviour is undefined if `self` is not in owned mode.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Behaviour is undefined if a mutable reference to the owned value in</span>
+    <span class='doccomment'>/// `self` is still live.</span>
     <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>supercow_ref_drop</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>);
 }
 </pre>

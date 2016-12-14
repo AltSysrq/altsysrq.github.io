@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-74' class='srclink' href='../../src/supercow/src/ext.rs.html#123-137' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-73' class='srclink' href='../../src/supercow/src/ext.rs.html#123-137' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub unsafe trait SafeBorrow&lt;T:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt;: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;T&gt; {
     fn <a href='#tymethod.borrow_replacement' class='fnname'>borrow_replacement</a>&lt;'a&gt;(ptr: &amp;'a T) -&gt; &amp;'a T;
 }</pre><div class='docblock'><p>Extension of <code>Borrow</code> used to allow <code>Supercow::to_mut()</code> to work safely.</p>

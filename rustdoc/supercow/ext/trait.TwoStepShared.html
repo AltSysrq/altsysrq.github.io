@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-33' class='srclink' href='../../src/supercow/src/ext.rs.html#70-84' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-32' class='srclink' href='../../src/supercow/src/ext.rs.html#69-83' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait TwoStepShared&lt;OWNED,&nbsp;BORROWED:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt; {
     fn <a href='#tymethod.new_two_step' class='fnname'>new_two_step</a>() -&gt; Self;
     unsafe fn <a href='#tymethod.deref_holder' class='fnname'>deref_holder</a>(&amp;mut self) -&gt; &amp;mut <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;OWNED&gt;;
@@ -69,8 +69,8 @@ defaults to <code>None</code>, and panic if dereferenced before the value is set
 
 <h2 id='unsafety' class='section-header'><a href='#unsafety'>Unsafety</a></h2>
 <p>This call may assume that <code>self</code> was produced by a call to
-<code>new_two_step</code> on the same trait. (This is to allow downcasting without
-requiring <code>Any</code> which in turn requires <code>&#39;static</code>.)</p>
+<code>new_two_step</code> on the same implementation. (This is to allow
+downcasting without requiring <code>Any</code> which in turn requires <code>&#39;static</code>.)</p>
 
 <p>The address of the value inside <code>Some</code> may not be altered by the
 implementation.</p>
