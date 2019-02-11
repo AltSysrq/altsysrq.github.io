@@ -207,7 +207,7 @@ and people are upset that you moved Christmas to February. Maybe we need to
 be a bit more thorough.</p>
 <p>In <code>Cargo.toml</code>, add</p>
 <pre><code class="language-toml">[dev-dependencies]
-proptest = &quot;0.9.0&quot;
+proptest = &quot;0.9.1&quot;
 </code></pre>
 <p>Now we can add some property tests to our date parser. But how do we test
 the date parser for arbitrary inputs, without making another date parser in
@@ -221,7 +221,7 @@ use proptest::prelude::*;
 proptest! {
     #[test]
     fn doesnt_crash(s in &quot;\\PC*&quot;) {
-        parse_date(s);
+        parse_date(&amp;s);
     }
 }
 </code></pre>
@@ -289,7 +289,7 @@ We can add another test to the <code>proptest!</code> section:</p>
 
     #[test]
     fn parses_all_valid_dates(s in &quot;[0-9]{4}-[0-9]{2}-[0-9]{2}&quot;) {
-        parse_date(s).unwrap();
+        parse_date(&amp;s).unwrap();
     }
 }
 </code></pre>
@@ -377,7 +377,7 @@ file, and we should add this as its own unit test:</p>
 </code></pre>
 <pre><code class="language-rust ignore">#[test]
 fn test_october_first() {
-    assert_eq!(Some(0, 10, 1), parse_date(&quot;0000-10-01&quot;));
+    assert_eq!(Some((0, 10, 1)), parse_date(&quot;0000-10-01&quot;));
 }
 </code></pre>
 <p>Now to figure out what’s broken in the code. Even without the intermediate
@@ -430,7 +430,7 @@ to the <code>new_tree()</code> method of the <code>Strategy</code>; this returns
 which we’ll look at in more detail momentarily. Calling the <code>current()</code>
 method on the <code>ValueTree</code> produces the actual value. Knowing that, we can
 put the pieces together and generate values. The below is the
-<code>tutoral-strategy-play.rs</code> example:</p>
+<code>tutorial-strategy-play.rs</code> example:</p>
 <pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
@@ -602,10 +602,10 @@ fn main() {
 </code></pre></pre>
 <p>This code reliably finds the boundary of the failure, 501.</p>
 <a class="header" href="#using-the-test-runner" id="using-the-test-runner"><h1>Using the Test Runner</h1></a>
-<p>The above is quite a bit of code though, and it can’t handle things like
-panics. Fortunately, proptest’s
+<p>Rather than manually shrinking, proptest’s
 <a href="test_runner/struct.TestRunner.html"><code>TestRunner</code></a> provides this
-functionality for us. The method we’re interested in is <code>run</code>. We simply
+functionality for us and additionally handles things like panics. The
+method we’re interested in is <code>run</code>. We simply
 give it the strategy and a function to test inputs and it takes care of the
 rest.</p>
 <pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::{Config, FileFailurePersistence,
@@ -1444,6 +1444,12 @@ features = [&quot;alloc&quot;, &quot;unstable&quot;]
 which necessarily needs <code>std</code> such as failure persistence and forking, as well
 as features depending on other crates which do not support <code>no_std</code> usage, such
 as regex support.</p>
+<p>The <code>no_std</code> build does not have access to an entropy source. As a result,
+every <code>TestRunner</code> (i.e., every <code>#[test]</code> when using the <code>proptest!</code> macro)
+uses a single hard-coded seed. For complex inputs, it may be a good idea to
+increase the number of test cases to compensate. The hard-coded seed is not
+contractually guaranteed and may change between Proptest releases without
+notice.</p>
 <p>To see an accurate representation of what APIs are available in a <code>no_std</code>
 environment, refer to <a href="https://altsysrq.github.io/rustdoc/proptest-nostd/latest/proptest/">the rustdocs for the <code>no_std</code>
 build</a>

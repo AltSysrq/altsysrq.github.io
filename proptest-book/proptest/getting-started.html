@@ -170,7 +170,7 @@ and people are upset that you moved Christmas to February. Maybe we need to
 be a bit more thorough.</p>
 <p>In <code>Cargo.toml</code>, add</p>
 <pre><code class="language-toml">[dev-dependencies]
-proptest = &quot;0.9.0&quot;
+proptest = &quot;0.9.1&quot;
 </code></pre>
 <p>Now we can add some property tests to our date parser. But how do we test
 the date parser for arbitrary inputs, without making another date parser in
@@ -184,7 +184,7 @@ use proptest::prelude::*;
 proptest! {
     #[test]
     fn doesnt_crash(s in &quot;\\PC*&quot;) {
-        parse_date(s);
+        parse_date(&amp;s);
     }
 }
 </code></pre>
@@ -252,7 +252,7 @@ We can add another test to the <code>proptest!</code> section:</p>
 
     #[test]
     fn parses_all_valid_dates(s in &quot;[0-9]{4}-[0-9]{2}-[0-9]{2}&quot;) {
-        parse_date(s).unwrap();
+        parse_date(&amp;s).unwrap();
     }
 }
 </code></pre>
@@ -340,7 +340,7 @@ file, and we should add this as its own unit test:</p>
 </code></pre>
 <pre><code class="language-rust ignore">#[test]
 fn test_october_first() {
-    assert_eq!(Some(0, 10, 1), parse_date(&quot;0000-10-01&quot;));
+    assert_eq!(Some((0, 10, 1)), parse_date(&quot;0000-10-01&quot;));
 }
 </code></pre>
 <p>Now to figure out what’s broken in the code. Even without the intermediate

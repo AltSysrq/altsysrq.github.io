@@ -153,6 +153,12 @@ features = [&quot;alloc&quot;, &quot;unstable&quot;]
 which necessarily needs <code>std</code> such as failure persistence and forking, as well
 as features depending on other crates which do not support <code>no_std</code> usage, such
 as regex support.</p>
+<p>The <code>no_std</code> build does not have access to an entropy source. As a result,
+every <code>TestRunner</code> (i.e., every <code>#[test]</code> when using the <code>proptest!</code> macro)
+uses a single hard-coded seed. For complex inputs, it may be a good idea to
+increase the number of test cases to compensate. The hard-coded seed is not
+contractually guaranteed and may change between Proptest releases without
+notice.</p>
 <p>To see an accurate representation of what APIs are available in a <code>no_std</code>
 environment, refer to <a href="https://altsysrq.github.io/rustdoc/proptest-nostd/latest/proptest/">the rustdocs for the <code>no_std</code>
 build</a>

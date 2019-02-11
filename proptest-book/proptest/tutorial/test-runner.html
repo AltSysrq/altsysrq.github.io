@@ -135,10 +135,10 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#using-the-test-runner" id="using-the-test-runner"><h1>Using the Test Runner</h1></a>
-<p>The above is quite a bit of code though, and it can’t handle things like
-panics. Fortunately, proptest’s
+<p>Rather than manually shrinking, proptest’s
 <a href="test_runner/struct.TestRunner.html"><code>TestRunner</code></a> provides this
-functionality for us. The method we’re interested in is <code>run</code>. We simply
+functionality for us and additionally handles things like panics. The
+method we’re interested in is <code>run</code>. We simply
 give it the strategy and a function to test inputs and it takes care of the
 rest.</p>
 <pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::{Config, FileFailurePersistence,
