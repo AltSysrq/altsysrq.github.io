@@ -137,9 +137,7 @@
                         <a class="header" href="#generating-recursive-data" id="generating-recursive-data"><h1>Generating Recursive Data</h1></a>
 <p>Randomly generating recursive data structures is trickier than it sounds. For
 example, the below is a naïve attempt at generating a JSON AST by using
-recursion. This also uses the
-<a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.prop_oneof.html"><code>prop_oneof!</code></a>,
-which we haven’t seen yet but should be self-explanatory.</p>
+recursion.</p>
 <pre><pre class="playpen"><code class="language-rust no_run">use std::collections::HashMap;
 use proptest::prelude::*;
 

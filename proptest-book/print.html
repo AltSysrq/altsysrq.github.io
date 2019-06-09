@@ -146,9 +146,8 @@ makes it more flexible and simplifies composition.</p>
 <p>The majority of the functionality offered by proptest is in active use and
 is known to work well.</p>
 <p>The API is unlikely to see drastic breaking changes, but there may still be
-minor breaking changes here and there, particularly when “impl Trait”
-becomes stable and after the upcoming redesign of the <code>rand</code> crate.</p>
-<p>See the <a href="https://github.com/AltSysrq/proptest/blob/master/CHANGELOG.md">changelog</a>
+minor breaking changes here and there, though this is becoming less common.</p>
+<p>See the <a href="https://github.com/AltSysrq/proptest/blob/master/proptest/CHANGELOG.md">changelog</a>
 for a full list of substantial historical changes, breaking and otherwise.</p>
 <a class="header" href="#what-is-property-testing" id="what-is-property-testing"><h2>What is property testing?</h2></a>
 <p><em>Property testing</em> is a system of testing code by checking that certain
@@ -203,7 +202,7 @@ and people are upset that you moved Christmas to February. Maybe we need to
 be a bit more thorough.</p>
 <p>In <code>Cargo.toml</code>, add</p>
 <pre><code class="language-toml">[dev-dependencies]
-proptest = &quot;0.9.3&quot;
+proptest = &quot;0.9.4&quot;
 </code></pre>
 <p>Now we can add some property tests to our date parser. But how do we test
 the date parser for arbitrary inputs, without making another date parser in
@@ -1136,9 +1135,7 @@ values, even if there are some that would be accepted by the filter.</p>
 <a class="header" href="#generating-recursive-data" id="generating-recursive-data"><h1>Generating Recursive Data</h1></a>
 <p>Randomly generating recursive data structures is trickier than it sounds. For
 example, the below is a naïve attempt at generating a JSON AST by using
-recursion. This also uses the
-<a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.prop_oneof.html"><code>prop_oneof!</code></a>,
-which we haven’t seen yet but should be self-explanatory.</p>
+recursion.</p>
 <pre><pre class="playpen"><code class="language-rust no_run">use std::collections::HashMap;
 use proptest::prelude::*;
 
