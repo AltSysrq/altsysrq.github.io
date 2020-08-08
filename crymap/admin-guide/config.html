@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Configuration - Crymap</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Usage documentation for the Crymap IMAP server">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "../";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'visible';
+            if (document.body.clientWidth < 500) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html" class="active"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Crymap</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#configuration-reference" id="configuration-reference">Configuration Reference</a></h1>
+<h2><a class="header" href="#crymaptoml" id="crymaptoml">crymap.toml</a></h2>
+<p>Below is an example <code>crymap.toml</code> with every option explicitly set to the
+default and comments explaining what each one does.</p>
+<pre><code class="language-toml">[tls]
+# The path to your X509 private key.
+private_key = &quot;&lt;no default&gt;&quot;
+# The path to the full X509 certificate chain.
+certificate_chain = &quot;&lt;no default&gt;&quot;
+
+# Additional identification information to send to clients.
+# This is a free-form map. Refer to RFC 2971 § 3.3 to see what standard
+# identification names exist. You do not need to set all the values.
+# `support_url` is probably the most important one since some mail clients
+# can use it to help the user get assistance.
+# Underscores in key names are replaced with hyphens.
+[identification]
+vendor = &quot;Example Company&quot;
+support_url = &quot;mailto:it@example.com&quot;
+address = &quot;1313 Dead End Dr&quot;
+
+# The [security] section applies any time any of the `crymap server ...`
+# commands is run.
+[security]
+# If this is set to true and Crymap is run as `root`, it will chroot into the
+# `users` path under the Crymap root once it has accessed all system files it needs
+# which are outside that directory.
+#
+# This can be set for any style of deployment where Crymap is started as
+# `root`, but note that if this is set, user directories inside `users` may not
+# be absolute symlinks or symlinks to anywhere outside `users`.
+chroot_system = false
+
+# If this is set to a non-empty value and Crymap is run as `root`, it will drop
+# privileges to this UNIX user once it has accessed all system files it needs
+# which are outside the Crymap root. This occurs before any interaction with the
+# incoming connection occurs. This makes it possible to run Crymap in a
+# configuration where it does not normally have access to SSL certificates, for
+# example.
+#
+# This setting is the main difference between a &quot;simple&quot; black box deployment,
+# where Crymap is started as the desired non-root user, and a &quot;two-step&quot; black
+# box deployment, where Crymap is started as root and then drops to the user
+# given here.
+system_user = &quot;&quot;
+
+# The [lmtp] section applies when Crymap is run with `crymap server serve-lmtp`.
+[lmtp]
+# If non-empty, Crymap will report this value as its hostname.
+# By default, Crymap reports the system host name.
+host_name = &quot;&quot;
+
+# By default, Crymap will strip everything after the `@` in destination
+# addresses to determine the name of the Crymap user (so an email addressed
+# to &quot;foo@bar.com&quot; gets delivered to Crymap user &quot;foo&quot;). Setting this to true
+# suppresses this behaviour. Note that your SMTP daemon may also do this
+# stripping, in which case you must configure both Crymap and the SMTP daemon
+# to retain the domain.
+#
+# Set to true if your users log in as `user@domain.com` instead of `user`.
+keep_recipient_domain = false
+
+# By default, Crymap will make the recipient user name lower case, remove all
+# periods, and strip everything including and after the first `+`. (If
+# `keep_recipient_domain` is `true`, the `@` and domain part are not affected
+# by these rules, but the local part is.) Setting this to true prevents all
+# these normalisations, which may be useful if you want something different to
+# happen. Note that this means that your SMTP daemon must make the
+# normalisations you want. Most importantly, enabling this option will make
+# Crymap mail delivery CASE SENSITIVE TO USER NAMES.
+verbatim_user_names = false
+</code></pre>
+<h2><a class="header" href="#logging" id="logging">Logging</a></h2>
+<p>By default, Crymap logs to syslog under the “mail” facility.</p>
+<p>If you want to do something else, you can create a file named <code>logging.toml</code>
+next to <code>crymap.toml</code>. This file is a <a href="https://docs.rs/log4rs">log4rs</a>
+configuration file. The exact format of this file is not extensively
+documented, so if you want to do this, you’re unfortunately on your own for
+now. Note that there is not currently a way to log to syslog <em>and</em> a separate
+logging system simultaneously at this time.</p>
+<p>Here is a basic example of a <code>logging.toml</code> file:</p>
+<pre><code class="language-toml">[appenders.file]
+kind = &quot;rolling_file&quot;
+path = &quot;/var/log/crymap/crymap.log&quot;
+append = true
+
+[appenders.file.policy.trigger]
+kind = &quot;size&quot;
+limit = &quot;10 MB&quot;
+
+[appenders.file.policy.roller]
+kind = &quot;delete&quot;
+
+[appenders.file.encoder]
+kind = &quot;pattern&quot;
+pattern = &quot;{d(%Y-%m-%dT%H:%M:%S)} [{l}][{t}] {m}{n}&quot;
+
+[root]
+level = &quot;info&quot;
+appenders = [&quot;file&quot;]
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../admin-guide/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../admin-guide/users.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../admin-guide/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../admin-guide/users.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

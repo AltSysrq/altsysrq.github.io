@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>How Crymap's Encryption Works - Crymap</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Usage documentation for the Crymap IMAP server">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'visible';
+            if (document.body.clientWidth < 500) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html" class="active"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Crymap</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#how-crymap-encryption-works" id="how-crymap-encryption-works">How Crymap Encryption Works</a></h1>
+<p>Crymap uses a number of modern, well-understood cryptographic primitives to
+securely store email data.</p>
+<h2><a class="header" href="#encrypting-message-data" id="encrypting-message-data">Encrypting Message Data</a></h2>
+<p>Messages must be stored in a way that ensures two properties:</p>
+<ul>
+<li>
+<p>Only the owner can read mail.</p>
+</li>
+<li>
+<p>Anyone with file system access (e.g., the mail daemon) can add mail to the
+user’s mailbox.</p>
+</li>
+</ul>
+<p>This is a natural fit for asymmetric encryption. Currently, Crymap exclusively
+uses 4096-bit RSA for this purpose.</p>
+<p>Each account has, at any given time, a single active public key. When mail is
+received, an encryption key (the “session key”) for the message is randomly
+generated, and the message data is stored encrypted with that session key. The
+session key itself is first encrypted with the active public key. This lets the
+user (who has access to the corresponding private key) decrypt the session key
+and then decrypt the message content.</p>
+<p>The message content itself is encrypted with 128-bit AES-GCM. Besides making it
+impossible for others to read the message, it also ensures that if the data is
+corrupted, Crymap will signal an error instead of returning the corrupt data.</p>
+<p>A Crymap account typically has more than one RSA private key, though only one
+at a time corresponds to the active public key. By default, keys are rotated
+once per month. (The old keys are retained though, so old messages are still
+readable.) By default, there is also a distinction between “internal” keys,
+which never have their public key exposed and are used for all encryptions done
+by the user while logged in, and “external” keys, whose public keys are made
+available as the primary public key as each key is introduced.</p>
+<p>RSA private keys are stored in standard PEM format with a passphrase. The
+passphrase is <em>not</em> the user’s passphrase, but one autogenerated from the
+user’s login data (see next section).</p>
+<h2><a class="header" href="#user-credentials" id="user-credentials">User Credentials</a></h2>
+<p>Handling of each user’s passphrase is performed with a combination of two
+cryptographic primitives:</p>
+<ul>
+<li>
+<p>The Argon2 password hashing function, which makes password brute-force
+attacks extremely costly.</p>
+</li>
+<li>
+<p>The KMAC function (essentially an HMAC based on Keccak, i.e., SHA-3), which
+is used to generate secondary keys from an input secret.</p>
+</li>
+</ul>
+<p>The user configuration stores three pieces of information about the user’s
+credentials:</p>
+<ul>
+<li>A password salt</li>
+<li>A password hash</li>
+<li>The “master key XOR”</li>
+</ul>
+<p>When the user inputs their password, it is first hashed using Argon2 with the
+given salt, giving what we’ll call the “argon hash”. A KMAC value is generated
+from the argon hash. If that KMAC is not equal to the user’s password hash, we
+know the password is wrong and can reject the log in. Otherwise, we know the
+password is right, and take a different KMAC value from the argon hash to
+produce an “intermediate hash”. Finally, every byte of the intermediate hash is
+XORed with the corresponding byte of the master key XOR to output the <em>master
+key</em>.</p>
+<p>The “master key XOR” is functionally a one-time pad between the intermediate
+hash and the master key. Its significance is that it makes it possible for the
+user to change their password: there is no way to control what the intermediate
+hash of the new password will be, but whatever it is, a master key XOR can be
+chosen which still outputs the same master key for the new password as the
+previous set of parameters did for the old password.</p>
+<p>The master key is the primary credential used for all further key derivation in
+Crymap. Currently, the only derived keys are the PEM passphrases for the RSA
+private keys, which are each generated from different KMACs of the master key.</p>
+<h2><a class="header" href="#protection-crymap-provides" id="protection-crymap-provides">Protection Crymap Provides</a></h2>
+<p>There are a number of different approaches one can take with encrypting mail.
+None is a perfect solution, and Crymap fills what is currently a unique niche.</p>
+<table><thead><tr><th>Protection from...</th><th>Disk</th><th>End-to-end</th><th>PGPipe</th><th>Crymap</th></tr></thead><tbody>
+<tr><td>Theft of storage medium</td><td>Yes</td><td>Partial</td><td>Partial</td><td>Yes</td></tr>
+<tr><td>File exfiltration</td><td>No</td><td>Partial</td><td>Partial</td><td>Yes</td></tr>
+<tr><td>Metadata exposure</td><td>No</td><td>No</td><td>No</td><td>Partial</td></tr>
+<tr><td>Eavesdropping in-transit</td><td>No</td><td>Partial</td><td>No</td><td>No</td></tr>
+<tr><td>Connection compromise</td><td>No</td><td>Partial</td><td>Partial</td><td>No</td></tr>
+</tbody></table>
+<h3><a class="header" href="#disk-encryption" id="disk-encryption">Disk encryption</a></h3>
+<p>Disk encryption is a simple, effective way of protecting data in case someone
+walks away with the physical storage medium. It does not protect against
+attackers gaining shell access to the server or any form of file exfiltration
+since all the encrypted files are available in cleartext to anyone who can
+access that part of the file system. Disk encryption also poses challenges with
+respect to booting the server up without human intervention.</p>
+<ul>
+<li>
+<p>Protects from theft of storage medium.</p>
+</li>
+<li>
+<p>No protection from file exfiltration.</p>
+</li>
+<li>
+<p>No protection of message metadata.</p>
+</li>
+<li>
+<p>No protection from eavesdropping on message in-transit.</p>
+</li>
+<li>
+<p>No protection from IMAP connection compromise.</p>
+</li>
+</ul>
+<h3><a class="header" href="#end-to-end-encryption" id="end-to-end-encryption">End-to-End Encryption</a></h3>
+<p>PGP and S/MIME provide ways for a sender to encrypt a message so that only the
+receiver can read it. Unlike the other solutions in this list, the message is
+also secure in-transit. The only way to compromise email content is to
+compromise the end email client itself. Unfortunately, not many people send
+encrypted messages this way. End-to-end encryption also typically reduces the
+quality of the mail experience. There is no protection of message metadata
+which is outside the message itself. Finally, PGP fails to encrypt any of the
+message headers.</p>
+<ul>
+<li>
+<p>Protects from theft of storage medium, except for parts of the message that
+can’t be encrypted.</p>
+</li>
+<li>
+<p>Protects from file exfiltration, except for parts of the message that can’t
+be encrypted.</p>
+</li>
+<li>
+<p>No protection of message metadata.</p>
+</li>
+<li>
+<p>Protects from eavesdropping on message in-transit, except for parts of the
+message that can’t be encrypted.</p>
+</li>
+<li>
+<p>Protects from IMAP connection compromise, except for parts of the message
+that can’t be encrypted.</p>
+</li>
+</ul>
+<h3><a class="header" href="#better-late-than-never-encryption" id="better-late-than-never-encryption">Better-late-than-never encryption</a></h3>
+<p>This means using a solution like <a href="https://github.com/AltSysrq/pgpipe">PGPipe</a>
+to apply PGP encryption to unencrypted messages right before delivered. This
+protects the message after it has been delivered, but comes with the other
+downsides of PGP.</p>
+<ul>
+<li>
+<p>Protects from theft of storage medium, except for parts of the message that
+can’t be encrypted.</p>
+</li>
+<li>
+<p>Protects from file exfiltration, except for parts of the message that can’t
+be encrypted.</p>
+</li>
+<li>
+<p>No protection of message metadata.</p>
+</li>
+<li>
+<p>No protection from eavesdropping on message in-transit.</p>
+</li>
+<li>
+<p>Protects from IMAP connection compromise, except for parts of the message
+that can’t be encrypted.</p>
+</li>
+</ul>
+<h3><a class="header" href="#crymap" id="crymap">Crymap</a></h3>
+<p>Since Crymap encrypts <em>all</em> message data at rest and has per-user isolation, it
+provides full defence against theft of storage medium and file exfiltration. It
+is also able to protect <em>most</em> message metadata, such as message flags. An
+attacker with file system access can still use that access to form educated
+guesses about when certain messages were delivered, whether they have been
+read, and their approximate size. Also note that the user folder structure is
+fully exposed. On the other hand, since Crymap transparently decrypts data
+before sending it over IMAP, compromising an IMAP connection reveals all data
+going over the wire.</p>
+<ul>
+<li>
+<p>Protects from theft of storage medium.</p>
+</li>
+<li>
+<p>Protects from file exfiltration.</p>
+</li>
+<li>
+<p>Partial protection of message metadata.</p>
+</li>
+<li>
+<p>No protection from eavesdropping on message in-transit.</p>
+</li>
+<li>
+<p>No protection from IMAP connection compromise.</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="installation-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="installation-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
