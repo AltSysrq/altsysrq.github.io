@@ -192,6 +192,9 @@ destroying the user’s data. It would be technologically feasible to make,
 e.g., a PAM module that delegates to Crymap, but this is not implemented nor
 are there any plans to ever do so.</p>
 </li>
+<li>
+<p>The maximum size of an email is currently hard-coded to 64MB.</p>
+</li>
 </ul>
 <h1><a class="header" href="#how-crymap-encryption-works" id="how-crymap-encryption-works">How Crymap Encryption Works</a></h1>
 <p>Crymap uses a number of modern, well-understood cryptographic primitives to
@@ -405,7 +408,7 @@ the base distribution. (There is a way to cause OpenSSL to be built along with
 Crymap and statically linked, but this is not recommended since you won’t be
 able to get OpenSSL updates with your OS and this process is not described in
 this manual.)</p>
-<p>Each [https://github.com/AltSysrq/crymap/releases/] release of Crymap has
+<p>Each [https://github.com/AltSysrq/crymap/releases/](release of Crymap) has
 pre-built binaries for AMD64 Debian and FreeBSD. Simply download the
 appropriate one of these and save it in a place you consider appropriate; for
 example (<code>#</code> means “as root”):</p>
