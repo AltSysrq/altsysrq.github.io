@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="shortcut icon" href="../">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
@@ -158,8 +158,8 @@ See the documentation for <a href="https://altsysrq.github.io/rustdoc/proptest/l
 <p>The argument to the modifier must be a valid argument for the second parameter
 of <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/strategy/trait.Strategy.html#method.prop_filter"><code>prop_filter</code></a>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(filter = &quot;|segment| segment.start != segment.end&quot;)]
@@ -183,8 +183,8 @@ struct NonEmptySegment {
 </span></code></pre></pre>
 <p>As mentioned above, filtering should be avoided when it is reasonably possible
 to express a non-filtering strategy that achieves the same effect. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct BadExample {
@@ -209,24 +209,24 @@ struct GoodExample {
 <p>Normally, when <code>#[derive(Arbitrary)]</code> is applied to an item with generic type
 parameter, every type parameter which is “used” (see below) is required to
 <code>impl Arbitrary</code>. For example, given a declaration like the following:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Arbitrary)]
 struct MyStruct&lt;T&gt; { /* ... */ }
 <span class="boring">}
 </span></code></pre></pre>
 <p>Something like this will be generated:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T&gt; Arbitrary for MyStruct&lt;T&gt; where T: Arbitrary { /* ... */ }
 <span class="boring">}
 </span></code></pre></pre>
 <p>Placing <code>#[proptest(no_bound)]</code> on a generic type parameter suppresses this. For
 example, the following removes the extra <code>where T: Arbitrary</code>:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Arbitrary)]
 struct MyStruct&lt;#[proptest(no_bound)] T&gt; { /* ... */ }
@@ -234,8 +234,8 @@ struct MyStruct&lt;#[proptest(no_bound)] T&gt; { /* ... */ }
 </span></code></pre></pre>
 <p>Placing <code>#[proptest(no_bound)]</code> on a generic type definition is equivalent to
 placing the same attribute on every type parameter.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Arbitrary)]
 #[proptest(no_bound)]
@@ -299,8 +299,8 @@ modifiers) underneath an item with the <code>params</code> modifier has access t
 variable named <code>params</code> which is of the type passed in
 <code>#[proptest(params = ..)]</code>.</p>
 <p>Examples:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug)]
 struct WidgetRange(usize, usize);
@@ -339,8 +339,8 @@ match a particular regular expression.</p>
 enclosing the string in <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/string/fn.string_regex.html"><code>string_regex</code></a> or <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/string/fn.bytes_regex.html"><code>bytes_regex</code></a>. It can only be
 applied to fields of type <code>String</code> or <code>Vec&lt;u8&gt;</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct FileContent {
@@ -359,8 +359,8 @@ generating that particular variant. This is useful when there is no sensible
 way to generate the variant or when you want to temporarily stop generating
 some variant during development.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum DataSource {
@@ -390,8 +390,8 @@ allows to manually provide a custom strategy directly.</p>
 that field. For enum variants, it must produce values of the enum type itself
 and these values ought to be of the variant in question.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Token {
@@ -436,8 +436,8 @@ bare identifier, it is called as a no-argument function to produce the value.</p
 <p>Using <code>value</code> is equivalent to using <a href="#strategy"><code>strategy</code></a> and enclosing the
 value in <code>LazyJust</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct EventCounter {
@@ -465,8 +465,8 @@ variant and three times as likely to be generated as a <code>weight = 1</code> v
 <p>Variants with no <code>weight</code> modifier are equivalent to being annotated
 <code>#[proptest(weight = 1)]</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum FilterOption {

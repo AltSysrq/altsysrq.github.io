@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="shortcut icon" href="../">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
@@ -149,8 +149,8 @@ more stable, it will be versioned in lock-step with the main <code>proptest</cod
 <h2><a class="header" href="#using-derive" id="using-derive">Using derive</a></h2>
 <p>Inside any of your test modules, you can simply add <code>#[derive(Arbitrary)]</code> to a
 struct or enum declaration.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(test)]
 mod test {
@@ -180,8 +180,8 @@ mod test {
 depending on proptest for your main build, you must currently manually gate off
 the related annotations. This is something we plan to <a href="https://github.com/AltSysrq/proptest/pull/106">improve in the
 future</a>.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(test)] use proptest_derive::Arbitrary;
 

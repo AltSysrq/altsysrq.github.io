@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -144,7 +144,7 @@ variable is now the new default.</p>
 <p>Another way is to use <code>#![proptest_config(expr)]</code> inside <code>proptest!</code> where
 <code>expr : Config</code>. To only change the number of test cases, you can simply
 write:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn add(a: i32, b: i32) -&gt; i32 { a + b }
 

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="shortcut icon" href="../">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
@@ -138,8 +138,8 @@
 <p>Let’s say we want to make a function that parses dates of the form
 <code>YYYY-MM-DD</code>. We’re not going to worry about <em>validating</em> the date, any
 triple of integers is fine. So let’s bang something out real quick.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn parse_date(s: &amp;str) -&gt; Option&lt;(u32, u32, u32)&gt; {
     if 10 != s.len() { return None; }
@@ -171,7 +171,7 @@ and people are upset that you moved Christmas to February. Maybe we need to
 be a bit more thorough.</p>
 <p>In <code>Cargo.toml</code>, add</p>
 <pre><code class="language-toml">[dev-dependencies]
-proptest = &quot;0.10.0&quot;
+proptest = &quot;0.10.1&quot;
 </code></pre>
 <p>Now we can add some property tests to our date parser. But how do we test
 the date parser for arbitrary inputs, without making another date parser in
@@ -221,8 +221,8 @@ blindly slice strings since you could split a character, in this case that
 Tamil diacritic placed atop other characters in the string.</p>
 <p>In the interest of making the code changes as small as possible, we’ll just
 check that the string is ASCII and reject anything that isn’t.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span><span class="boring">use std::ascii::AsciiExt; //NOREADME
 </span><span class="boring">// NOREADME

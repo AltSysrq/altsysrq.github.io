@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -141,7 +141,7 @@ functionality for us and additionally handles things like panics. The
 method we’re interested in is <code>run</code>. We simply
 give it the strategy and a function to test inputs and it takes care of the
 rest.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::{Config, FileFailurePersistence,
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::{Config, FileFailurePersistence,
                             TestError, TestRunner};
 
 fn some_function(v: i32) {

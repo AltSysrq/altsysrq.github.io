@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -161,7 +161,7 @@ randomly choose a small <code>index</code> at the same time.</p>
 <p>The solution is the <code>prop_flat_map</code> combinator. This is sort of like
 <code>prop_map</code>, except that the transform returns a <em>strategy</em> instead of a
 value. This is more easily understood by implementing our example:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn some_function(stuff: Vec&lt;String&gt;, index: usize) {
     let _ = &amp;stuff[index];
@@ -197,7 +197,7 @@ be a valid index into <code>vec</code>.</p>
 simply providing three argument lists instead of two. The below desugars to
 something much like what we wrote by hand above, except that the index and
 vector’s positions are internally reversed due to borrowing limitations.</p>
-<pre><pre class="playpen"><code class="language-rust no_run"><span class="boring">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use proptest::prelude::*;
 </span>prop_compose! {
     fn vec_and_index()(vec in prop::collection::vec(&quot;.*&quot;, 1..100))
                     (index in 0..vec.len(), vec in Just(vec))

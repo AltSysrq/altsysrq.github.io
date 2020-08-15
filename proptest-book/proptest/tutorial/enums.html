@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -145,7 +145,7 @@ which have no data, the strategy for each case is
 <code>Just(YourEnum::TheCase)</code>. Enum cases with data generally require putting
 the data in a tuple and then using <code>prop_map</code> to map it into the enum case.</p>
 <p>Here is a simple example:</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::prelude::*;
 
 #[derive(Debug, Clone)]
 enum MyEnum {
@@ -177,7 +177,7 @@ the list.</p>
 for that case to a separate strategy. Here,
 <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.prop_compose.html"><code>prop_compose!</code></a>
 can be of use.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::prelude::*;
 
 #[derive(Debug, Clone)]
 enum MyComplexEnum {

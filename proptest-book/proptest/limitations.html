@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="shortcut icon" href="../">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
@@ -140,7 +140,7 @@ input space to a test. However, time is not infinite, so only a randomly
 sampled portion of the input space can be explored. This means that
 property testing is extremely unlikely to find single-value edge cases in a
 large space. For example, the following test will virtually always pass:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 proptest! {
     #[test]

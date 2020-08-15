@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -138,7 +138,7 @@
 <p>Randomly generating recursive data structures is trickier than it sounds. For
 example, the below is a naïve attempt at generating a JSON AST by using
 recursion.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use std::collections::HashMap;
+<pre><pre class="playground"><code class="language-rust no_run">use std::collections::HashMap;
 use proptest::prelude::*;
 
 #[derive(Clone, Debug)]
@@ -175,7 +175,7 @@ nodes; by eight levels, we get to tens of <em>millions</em>.</p>
 non-recursive case, then give the combinator that strategy, some size
 parameters, and a function to transform a nested strategy into a recursive
 strategy.</p>
-<pre><pre class="playpen"><code class="language-rust">use std::collections::HashMap;
+<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
 use proptest::prelude::*;
 
 #[derive(Clone, Debug)]

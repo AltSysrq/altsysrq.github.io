@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -159,7 +159,7 @@ which we’ll look at in more detail momentarily. Calling the <code>current()</c
 method on the <code>ValueTree</code> produces the actual value. Knowing that, we can
 put the pieces together and generate values. The below is the
 <code>tutorial-strategy-play.rs</code> example:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn main() {
@@ -180,7 +180,7 @@ $ target/debug/examples/tutorial-strategy-play
 int_val = 5, str_val = oegiᴫᵸӈᵸὛΉ
 </code></pre>
 <p>This knowledge is sufficient to build an extremely primitive fuzzing test.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn some_function(v: i32) {

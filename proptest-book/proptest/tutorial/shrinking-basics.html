@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -142,7 +142,7 @@ Besides <code>current()</code>, it provides two methods — <code>simplify()</co
 space. The <code>tutorial-simplify-play.rs</code> example shows how repeated calls to
 <code>simplify()</code> produce incrementally “simpler” outputs, both in terms of size
 and in characters used.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn main() {
@@ -214,7 +214,7 @@ the regular expression even in the end. An integer drawn from
 the minimum value.</p>
 <p><code>simplify()</code> and <code>complicate()</code> can be used to adapt our primitive fuzz
 test to actually find the boundary condition.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn some_function(v: i32) -&gt; bool {

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -138,7 +138,7 @@
 <p>Suppose you have a function that takes a string which needs to be the
 <code>Display</code> format of an arbitrary <code>u32</code>. A first attempt to providing this
 argument might be to use a regular expression, like so:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn do_stuff(v: String) {
     let i: u32 = v.parse().unwrap();
@@ -166,7 +166,7 @@ works fine, but isn’t reusable or composable. Ideally, we could get a
 <em>strategy</em> that does this.</p>
 <p>The thing we’re looking for is the first strategy <em>combinator</em>, <code>prop_map</code>.
 We need to ensure <code>Strategy</code> is in scope to use it.</p>
-<pre><pre class="playpen"><code class="language-rust">// Grab `Strategy`, shorter namespace prefix, and the macros
+<pre><pre class="playground"><code class="language-rust">// Grab `Strategy`, shorter namespace prefix, and the macros
 use proptest::prelude::*;
 
 fn do_stuff(v: String) {
@@ -191,7 +191,7 @@ result, shrinking occurs in terms of <code>u32</code>, even though we’re gener
 <p><code>prop_map</code> is also the principal way to define strategies for new types,
 since most types are simply composed of other, simpler values.</p>
 <p>Let’s update our code so it takes a more interesting structure.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 #[derive(Clone, Debug)]
 struct Order {
@@ -224,7 +224,7 @@ proptest! {
 tuple, then call <code>prop_map</code> on <em>that</em> tuple to produce yet another value.</p>
 <p>But that’s quite a mouthful in the argument list. Fortunately, strategies
 are normal values, so we can extract it to a function.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 // snip
 <span class="boring">
@@ -271,7 +271,7 @@ new strategy.</p>
 <p>We can also use <code>-&gt; impl Strategy&lt;Value = Order&gt;</code> instead to avoid the
 overhead as in the following example. You should use <code>-&gt; impl Strategy&lt;..&gt;</code>
 unless you need the dynamic dispatch.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 // snip
 <span class="boring">

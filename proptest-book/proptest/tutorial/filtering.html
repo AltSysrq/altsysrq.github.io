@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -141,7 +141,7 @@ or two values needing to be non-equal.</p>
 <p>In general, the ideal solution is to find a way to take a seed value and
 then use <code>prop_map</code> to transform it into the desired, irregular domain. For
 example, to generate even integers, use something like</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::prelude::*;
 prop_compose! {
     // Generate arbitrary integers up to half the maximum desired value,
     // then multiply them by 2, thus producing only even integers in the
@@ -170,7 +170,7 @@ the rejection.</p>
 function indicating whether to accept the value, it also takes a value of
 type <code>&amp;'static str</code>, <code>String</code>, .., which it uses to record where/why the
 rejection happened.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 proptest! {
     #[test]
@@ -188,7 +188,7 @@ proptest! {
 <code>Err(TestCaseError::Reject)</code>. The
 <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.prop_assume.html"><code>prop_assume!</code></a>
 macro provides an easy way to do this.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn frob(a: i32, b: i32) -&gt; (i32, i32) {
     let d = (a - b).abs();

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
+        <link rel="shortcut icon" href="">
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
@@ -170,8 +170,8 @@ documentation</a>.</p>
 <p>Let’s say we want to make a function that parses dates of the form
 <code>YYYY-MM-DD</code>. We’re not going to worry about <em>validating</em> the date, any
 triple of integers is fine. So let’s bang something out real quick.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn parse_date(s: &amp;str) -&gt; Option&lt;(u32, u32, u32)&gt; {
     if 10 != s.len() { return None; }
@@ -203,7 +203,7 @@ and people are upset that you moved Christmas to February. Maybe we need to
 be a bit more thorough.</p>
 <p>In <code>Cargo.toml</code>, add</p>
 <pre><code class="language-toml">[dev-dependencies]
-proptest = &quot;0.10.0&quot;
+proptest = &quot;0.10.1&quot;
 </code></pre>
 <p>Now we can add some property tests to our date parser. But how do we test
 the date parser for arbitrary inputs, without making another date parser in
@@ -253,8 +253,8 @@ blindly slice strings since you could split a character, in this case that
 Tamil diacritic placed atop other characters in the string.</p>
 <p>In the interest of making the code changes as small as possible, we’ll just
 check that the string is ASCII and reject anything that isn’t.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span><span class="boring">use std::ascii::AsciiExt; //NOREADME
 </span><span class="boring">// NOREADME
@@ -428,7 +428,7 @@ which we’ll look at in more detail momentarily. Calling the <code>current()</c
 method on the <code>ValueTree</code> produces the actual value. Knowing that, we can
 put the pieces together and generate values. The below is the
 <code>tutorial-strategy-play.rs</code> example:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn main() {
@@ -449,7 +449,7 @@ $ target/debug/examples/tutorial-strategy-play
 int_val = 5, str_val = oegiᴫᵸӈᵸὛΉ
 </code></pre>
 <p>This knowledge is sufficient to build an extremely primitive fuzzing test.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn some_function(v: i32) {
@@ -481,7 +481,7 @@ Besides <code>current()</code>, it provides two methods — <code>simplify()</co
 space. The <code>tutorial-simplify-play.rs</code> example shows how repeated calls to
 <code>simplify()</code> produce incrementally “simpler” outputs, both in terms of size
 and in characters used.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn main() {
@@ -553,7 +553,7 @@ the regular expression even in the end. An integer drawn from
 the minimum value.</p>
 <p><code>simplify()</code> and <code>complicate()</code> can be used to adapt our primitive fuzz
 test to actually find the boundary condition.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 use proptest::strategy::{Strategy, ValueTree};
 
 fn some_function(v: i32) -&gt; bool {
@@ -605,7 +605,7 @@ functionality for us and additionally handles things like panics. The
 method we’re interested in is <code>run</code>. We simply
 give it the strategy and a function to test inputs and it takes care of the
 rest.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::{Config, FileFailurePersistence,
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::{Config, FileFailurePersistence,
                             TestError, TestRunner};
 
 fn some_function(v: i32) {
@@ -668,7 +668,7 @@ example, <code>(0..100i32,100..1000i32)</code> is a strategy for pairs of intege
 where the first value is between 0 and 100 and the second is between 100
 and 1000.</p>
 <p>So for our two-argument function, our strategy is simply a tuple of ranges.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 
 fn add(a: i32, b: i32) -&gt; i32 {
     a + b
@@ -699,7 +699,7 @@ the strategy collection), as well as the various strategies provided in the
 <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.proptest.html"><code>proptest!</code></a>
 macro works. Our example from the prior section can be rewritten using that
 macro like so:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn add(a: i32, b: i32) -&gt; i32 {
     a + b
@@ -729,7 +729,7 @@ output easier to read and to overcome the 10-tuple limit.</p>
 <p>Suppose you have a function that takes a string which needs to be the
 <code>Display</code> format of an arbitrary <code>u32</code>. A first attempt to providing this
 argument might be to use a regular expression, like so:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn do_stuff(v: String) {
     let i: u32 = v.parse().unwrap();
@@ -757,7 +757,7 @@ works fine, but isn’t reusable or composable. Ideally, we could get a
 <em>strategy</em> that does this.</p>
 <p>The thing we’re looking for is the first strategy <em>combinator</em>, <code>prop_map</code>.
 We need to ensure <code>Strategy</code> is in scope to use it.</p>
-<pre><pre class="playpen"><code class="language-rust">// Grab `Strategy`, shorter namespace prefix, and the macros
+<pre><pre class="playground"><code class="language-rust">// Grab `Strategy`, shorter namespace prefix, and the macros
 use proptest::prelude::*;
 
 fn do_stuff(v: String) {
@@ -782,7 +782,7 @@ result, shrinking occurs in terms of <code>u32</code>, even though we’re gener
 <p><code>prop_map</code> is also the principal way to define strategies for new types,
 since most types are simply composed of other, simpler values.</p>
 <p>Let’s update our code so it takes a more interesting structure.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 #[derive(Clone, Debug)]
 struct Order {
@@ -815,7 +815,7 @@ proptest! {
 tuple, then call <code>prop_map</code> on <em>that</em> tuple to produce yet another value.</p>
 <p>But that’s quite a mouthful in the argument list. Fortunately, strategies
 are normal values, so we can extract it to a function.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 // snip
 <span class="boring">
@@ -862,7 +862,7 @@ new strategy.</p>
 <p>We can also use <code>-&gt; impl Strategy&lt;Value = Order&gt;</code> instead to avoid the
 overhead as in the following example. You should use <code>-&gt; impl Strategy&lt;..&gt;</code>
 unless you need the dynamic dispatch.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 // snip
 <span class="boring">
@@ -904,7 +904,7 @@ reasons to writing test functions by hand.</p>
 <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.prop_compose.html"><code>prop_compose!</code></a>
 macro. Before going into details, here’s our code from above rewritten to use
 it.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 // snip
 <span class="boring">
@@ -964,7 +964,7 @@ which have no data, the strategy for each case is
 <code>Just(YourEnum::TheCase)</code>. Enum cases with data generally require putting
 the data in a tuple and then using <code>prop_map</code> to map it into the enum case.</p>
 <p>Here is a simple example:</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::prelude::*;
 
 #[derive(Debug, Clone)]
 enum MyEnum {
@@ -996,7 +996,7 @@ the list.</p>
 for that case to a separate strategy. Here,
 <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.prop_compose.html"><code>prop_compose!</code></a>
 can be of use.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::prelude::*;
 
 #[derive(Debug, Clone)]
 enum MyComplexEnum {
@@ -1036,7 +1036,7 @@ or two values needing to be non-equal.</p>
 <p>In general, the ideal solution is to find a way to take a seed value and
 then use <code>prop_map</code> to transform it into the desired, irregular domain. For
 example, to generate even integers, use something like</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run">use proptest::prelude::*;
 prop_compose! {
     // Generate arbitrary integers up to half the maximum desired value,
     // then multiply them by 2, thus producing only even integers in the
@@ -1065,7 +1065,7 @@ the rejection.</p>
 function indicating whether to accept the value, it also takes a value of
 type <code>&amp;'static str</code>, <code>String</code>, .., which it uses to record where/why the
 rejection happened.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 proptest! {
     #[test]
@@ -1083,7 +1083,7 @@ proptest! {
 <code>Err(TestCaseError::Reject)</code>. The
 <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/macro.prop_assume.html"><code>prop_assume!</code></a>
 macro provides an easy way to do this.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn frob(a: i32, b: i32) -&gt; (i32, i32) {
     let d = (a - b).abs();
@@ -1138,7 +1138,7 @@ values, even if there are some that would be accepted by the filter.</p>
 <p>Randomly generating recursive data structures is trickier than it sounds. For
 example, the below is a naïve attempt at generating a JSON AST by using
 recursion.</p>
-<pre><pre class="playpen"><code class="language-rust no_run">use std::collections::HashMap;
+<pre><pre class="playground"><code class="language-rust no_run">use std::collections::HashMap;
 use proptest::prelude::*;
 
 #[derive(Clone, Debug)]
@@ -1175,7 +1175,7 @@ nodes; by eight levels, we get to tens of <em>millions</em>.</p>
 non-recursive case, then give the combinator that strategy, some size
 parameters, and a function to transform a nested strategy into a recursive
 strategy.</p>
-<pre><pre class="playpen"><code class="language-rust">use std::collections::HashMap;
+<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
 use proptest::prelude::*;
 
 #[derive(Clone, Debug)]
@@ -1236,7 +1236,7 @@ randomly choose a small <code>index</code> at the same time.</p>
 <p>The solution is the <code>prop_flat_map</code> combinator. This is sort of like
 <code>prop_map</code>, except that the transform returns a <em>strategy</em> instead of a
 value. This is more easily understood by implementing our example:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn some_function(stuff: Vec&lt;String&gt;, index: usize) {
     let _ = &amp;stuff[index];
@@ -1272,7 +1272,7 @@ be a valid index into <code>vec</code>.</p>
 simply providing three argument lists instead of two. The below desugars to
 something much like what we wrote by hand above, except that the index and
 vector’s positions are internally reversed due to borrowing limitations.</p>
-<pre><pre class="playpen"><code class="language-rust no_run"><span class="boring">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use proptest::prelude::*;
 </span>prop_compose! {
     fn vec_and_index()(vec in prop::collection::vec(&quot;.*&quot;, 1..100))
                     (index in 0..vec.len(), vec in Just(vec))
@@ -1303,7 +1303,7 @@ variable is now the new default.</p>
 <p>Another way is to use <code>#![proptest_config(expr)]</code> inside <code>proptest!</code> where
 <code>expr : Config</code>. To only change the number of test cases, you can simply
 write:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 fn add(a: i32, b: i32) -&gt; i32 { a + b }
 
@@ -1372,7 +1372,7 @@ situations as well.</p>
 <p>To use these features, simply set the <code>fork</code> and/or <code>timeout</code> fields on the
 <code>Config</code>. (Setting <code>timeout</code> implies <code>fork</code>.)</p>
 <p>Here is a simple example of using both features:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 // The worst possible way to calculate Fibonacci numbers
 fn fib(n: u64) -&gt; u64 {
@@ -1480,7 +1480,7 @@ input space to a test. However, time is not infinite, so only a randomly
 sampled portion of the input space can be explored. This means that
 property testing is extremely unlikely to find single-value edge cases in a
 large space. For example, the following test will virtually always pass:</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::prelude::*;
+<pre><pre class="playground"><code class="language-rust">use proptest::prelude::*;
 
 proptest! {
     #[test]
@@ -1576,8 +1576,8 @@ more stable, it will be versioned in lock-step with the main <code>proptest</cod
 <h2><a class="header" href="#using-derive" id="using-derive">Using derive</a></h2>
 <p>Inside any of your test modules, you can simply add <code>#[derive(Arbitrary)]</code> to a
 struct or enum declaration.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(test)]
 mod test {
@@ -1607,8 +1607,8 @@ mod test {
 depending on proptest for your main build, you must currently manually gate off
 the related annotations. This is something we plan to <a href="https://github.com/AltSysrq/proptest/pull/106">improve in the
 future</a>.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(test)] use proptest_derive::Arbitrary;
 
@@ -1648,8 +1648,8 @@ See the documentation for <a href="https://altsysrq.github.io/rustdoc/proptest/l
 <p>The argument to the modifier must be a valid argument for the second parameter
 of <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/strategy/trait.Strategy.html#method.prop_filter"><code>prop_filter</code></a>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(filter = &quot;|segment| segment.start != segment.end&quot;)]
@@ -1673,8 +1673,8 @@ struct NonEmptySegment {
 </span></code></pre></pre>
 <p>As mentioned above, filtering should be avoided when it is reasonably possible
 to express a non-filtering strategy that achieves the same effect. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct BadExample {
@@ -1699,24 +1699,24 @@ struct GoodExample {
 <p>Normally, when <code>#[derive(Arbitrary)]</code> is applied to an item with generic type
 parameter, every type parameter which is “used” (see below) is required to
 <code>impl Arbitrary</code>. For example, given a declaration like the following:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Arbitrary)]
 struct MyStruct&lt;T&gt; { /* ... */ }
 <span class="boring">}
 </span></code></pre></pre>
 <p>Something like this will be generated:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T&gt; Arbitrary for MyStruct&lt;T&gt; where T: Arbitrary { /* ... */ }
 <span class="boring">}
 </span></code></pre></pre>
 <p>Placing <code>#[proptest(no_bound)]</code> on a generic type parameter suppresses this. For
 example, the following removes the extra <code>where T: Arbitrary</code>:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Arbitrary)]
 struct MyStruct&lt;#[proptest(no_bound)] T&gt; { /* ... */ }
@@ -1724,8 +1724,8 @@ struct MyStruct&lt;#[proptest(no_bound)] T&gt; { /* ... */ }
 </span></code></pre></pre>
 <p>Placing <code>#[proptest(no_bound)]</code> on a generic type definition is equivalent to
 placing the same attribute on every type parameter.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Arbitrary)]
 #[proptest(no_bound)]
@@ -1789,8 +1789,8 @@ modifiers) underneath an item with the <code>params</code> modifier has access t
 variable named <code>params</code> which is of the type passed in
 <code>#[proptest(params = ..)]</code>.</p>
 <p>Examples:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug)]
 struct WidgetRange(usize, usize);
@@ -1829,8 +1829,8 @@ match a particular regular expression.</p>
 enclosing the string in <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/string/fn.string_regex.html"><code>string_regex</code></a> or <a href="https://altsysrq.github.io/rustdoc/proptest/latest/proptest/string/fn.bytes_regex.html"><code>bytes_regex</code></a>. It can only be
 applied to fields of type <code>String</code> or <code>Vec&lt;u8&gt;</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct FileContent {
@@ -1849,8 +1849,8 @@ generating that particular variant. This is useful when there is no sensible
 way to generate the variant or when you want to temporarily stop generating
 some variant during development.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum DataSource {
@@ -1880,8 +1880,8 @@ allows to manually provide a custom strategy directly.</p>
 that field. For enum variants, it must produce values of the enum type itself
 and these values ought to be of the variant in question.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Token {
@@ -1926,8 +1926,8 @@ bare identifier, it is called as a no-argument function to produce the value.</p
 <p>Using <code>value</code> is equivalent to using <a href="proptest-derive/modifiers.html#strategy"><code>strategy</code></a> and enclosing the
 value in <code>LazyJust</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct EventCounter {
@@ -1955,8 +1955,8 @@ variant and three times as likely to be generated as a <code>weight = 1</code> v
 <p>Variants with no <code>weight</code> modifier are equivalent to being annotated
 <code>#[proptest(weight = 1)]</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum FilterOption {
@@ -1974,8 +1974,8 @@ enum FilterOption {
 <h2><a class="header" href="#e0001" id="e0001">E0001</a></h2>
 <p>This error occurs when <code>#[derive(Arbitrary)]</code> is used on a type which has any
 <a href="https://doc.rust-lang.org/stable/book/second-edition/ch10-03-lifetime-syntax.html#lifetime-annotations-in-struct-definitions">lifetime parameters</a>. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo&lt;'a&gt; {
@@ -1992,8 +1992,8 @@ To follow the progress, consult the <a href="https://github.com/AltSysrq/proptes
 <h2><a class="header" href="#e0002" id="e0002">E0002</a></h2>
 <p>This error occurs when <code>#[derive(Arbitrary)]</code> is used on a <code>union</code> type.
 An example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 union IU32 {
@@ -2025,8 +2025,8 @@ types</a>. This
 in turn means the struct itself is uninhabited and so it there is no sensible
 <code>Arbitrary</code> implementation since values of the struct cannot be produced.</p>
 <p>A trivial example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Uninhabited {
@@ -2044,8 +2044,8 @@ be inhabited and you will instead get an error about the type not implementing
 <h2><a class="header" href="#e0004" id="e0004">E0004</a></h2>
 <p>This error occurs when <code>#[derive(Arbitrary)]</code> is used on an enum with no
 variants at all. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Uninhabited {}
@@ -2058,8 +2058,8 @@ enum Uninhabited {}
 are all uninhabited, using the same logic as described for <a href="proptest-derive/errors.html#e0003"><code>E0003</code></a>.
 As a result, the enum itself is totally uninhabited.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Uninhabited {
@@ -2074,8 +2074,8 @@ inhabited variants are marked with [<code>#[proptest(skip)]</code>]. In other wo
 proptest is forbidden from generating any of the enum’s variants, and thus the
 enum itself cannot be generated.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum MyEnum {
@@ -2097,8 +2097,8 @@ enum MyEnum {
 [<code>#[proptest(value = &quot;expr&quot;)]</code>] is applied to the same item that has
 <code>#[derive(Arbitrary)]</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(value = &quot;MyStruct(42)&quot;)]
@@ -2112,8 +2112,8 @@ implementation of <code>Arbitrary</code> should be used instead.</p>
 For example, struct fields cannot be skipped because Rust requires every field
 of a struct to have a value.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct WidgetContainer {
@@ -2126,8 +2126,8 @@ struct WidgetContainer {
 <p>In general, the appropriate way to request proptest to not generate a field
 value is to use [<code>#[proptest(value = &quot;expr&quot;)]</code>] to provide a fixed value
 yourself. For example, the above code could be properly written as follows:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct WidgetContainer {
@@ -2140,8 +2140,8 @@ struct WidgetContainer {
 <h2><a class="header" href="#e0009" id="e0009">E0009</a></h2>
 <p>This error happens if [<code>#[proptest(weight = &lt;integer&gt;)]</code>] is applied to an item
 where this does not make sense, such as a struct field. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Point {
@@ -2158,8 +2158,8 @@ must provide a value for <em>every</em> field so there is no “this-or-that” 
 <p>This error occurs if [<code>#[proptest(params = &quot;type&quot;)]</code>] and/or
 [<code>#[proptest(no_params)]</code>] are set on both an item and its parent.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(params = &quot;String&quot;)]
@@ -2176,8 +2176,8 @@ must work with that and cannot specify their own parameters.</p>
 <p>This error occurs if [<code>#[proptest(params = &quot;type&quot;)]</code>] is set on a field but no
 explicit strategy is configured with [<code>#[proptest(strategy = &quot;expr&quot;)]</code>] or
 another such modifier. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2198,8 +2198,8 @@ forbidden.</p>
 item containing it specifies a direct way to generate the whole value, which
 would thus occur without consulting the filter.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -2224,8 +2224,8 @@ compiler will reject the attribute first.</p>
 <p>This error occurs if a bare <code>#[proptest]</code> attribute is applied to anything,
 since it has no meaningful content.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2239,8 +2239,8 @@ struct Foo {
 <p>This error occurs if an attribute of the form <code>#[proptest = value]</code> is
 encountered in any context.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2253,8 +2253,8 @@ struct Foo {
 <p>This error occurs if a literal (as opposed to <code>key = value</code>) is passed inside
 <code>#[proptest(..)]</code> in any context.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2267,8 +2267,8 @@ struct Foo {
 <p>This error occurs if any modifier of <code>#[proptest(..)]</code> is set more than once on
 the same item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(no_params, no_params)]
@@ -2278,8 +2278,8 @@ struct Foo(u32);
 <h2><a class="header" href="#e0018" id="e0018">E0018</a></h2>
 <p>This error occurs if an unknown modifier is passed in <code>#[proptest(..)]</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(frobnicate = &quot;true&quot;)]
@@ -2291,8 +2291,8 @@ available.</p>
 <h2><a class="header" href="#e0019" id="e0019">E0019</a></h2>
 <p>This error happens if anything extra is passed to [<code>#[proptest(no_params)]</code>].</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(no_params = &quot;true&quot;)]
@@ -2304,8 +2304,8 @@ struct Foo(u32);
 <h2><a class="header" href="#e0020" id="e0020">E0020</a></h2>
 <p>This error happens if anything extra is passed to [<code>#[proptest(skip)]</code>].</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -2320,8 +2320,8 @@ enum Foo {
 <p>This error happens if [<code>#[proptest(weight = &lt;integer&gt;)]</code>] is passed an invalid
 integer or passed nothing at all.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -2339,8 +2339,8 @@ enclosed in quotation marks.</p>
 <p>This error occurs if more than one of [<code>#[proptest(no_params)]</code>] and
 [<code>#[proptest(params = &quot;type&quot;)]</code>] are applied to the same item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(no_params, params = &quot;u8&quot;)]
@@ -2352,8 +2352,8 @@ struct Foo(u32);
 <p>This error happens if an invalid [<code>#[proptest(params = &quot;type&quot;)]</code>] attribute is
 applied to an item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(params = &quot;Vec&lt;u8&quot;)] // Note missing '&gt;'
@@ -2383,8 +2383,8 @@ syntax the <code>proptest-derive</code> crate is not prepared to handle.</p>
 [<code>#[proptest(value = &quot;expr&quot;)]</code>], or [<code>#[proptest(regex = &quot;string&quot;)]</code>] are applied
 to the same item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2400,8 +2400,8 @@ depending on the desired effect.</p>
 <p>This error happens if an invalid form of [<code>#[proptest(strategy = &quot;expr&quot;)]</code>] or
 [<code>#[proptest(value = &quot;expr&quot;)]</code>] is used.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2427,8 +2427,8 @@ example. (See also <a href="proptest-derive/errors.html#valid-rust-syntax">cavea
 <p>This error happens if an invalid form of [<code>#[proptest(filter = &quot;expr&quot;)]</code>] is
 used.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2454,8 +2454,8 @@ example. (See also <a href="proptest-derive/errors.html#valid-rust-syntax">cavea
 <p>This error occurs if a modifier which implies a value is to be generated is
 applied to an enum variant which is also marked [<code>#[proptest(skip)]</code>].</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Enum {
@@ -2472,8 +2472,8 @@ some value to be generated for the enum variant, but at the same time
 <p>This error happens if a modifier which would constrain or control how the value
 of an enum variant is to be generated is applied to a unit variant.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -2490,8 +2490,8 @@ or to filter such variants.</p>
 <p>This error happens if a modifier which would constrain or control how the value
 of a struct is to be generated is applied to a unit struct.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(params = &quot;u8&quot;)]
@@ -2505,8 +2505,8 @@ or to filter such structs.</p>
 <p>This error occurs if [<code>#[proptest(no_bound)]</code>] is applied to something that is
 not a type variable.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -2516,8 +2516,8 @@ struct Foo {
 <span class="boring">}
 </span></code></pre></pre>
 <p>The <code>no_bound</code> modifier only makes sense on generic type variables, as in</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo&lt;#[proptest(no_bound)] T&gt; {
@@ -2529,8 +2529,8 @@ struct Foo&lt;#[proptest(no_bound)] T&gt; {
 <h2><a class="header" href="#e0032" id="e0032">E0032</a></h2>
 <p>This error happens if [<code>#[proptest(no_bound)]</code>] is passed anything.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo&lt;#[proptest(no_bound = &quot;yes&quot;)] T&gt; {
@@ -2543,8 +2543,8 @@ struct Foo&lt;#[proptest(no_bound = &quot;yes&quot;)] T&gt; {
 <p>This error occurs if the sum of the weights on the variants of an enum overflow
 a <code>u32</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -2573,8 +2573,8 @@ modifier would be meaningless.</p>
 by the <code>syn</code> crate. If valid syntax is rejected, you can work around it in a
 couple ways depending on what the syntax is describing:</p>
 <p>For types, simply define a type alias for the type in question. For example,</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>type RetroBox = ~str; // N.B. &quot;~str&quot; is not valid Rust 1.30 syntax
 
@@ -2586,8 +2586,8 @@ struct MyStruct { /* ... */ }
 </span></code></pre></pre>
 <p>For values, you can generally factor the code into a constant or function. For
 example,</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// N.B. Rust 1.30 does not have an exponentiation operator.
 const PI_SQUARED: f64 = PI ** 2.0;

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="shortcut icon" href="../">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
@@ -138,8 +138,8 @@
 <h2><a class="header" href="#e0001" id="e0001">E0001</a></h2>
 <p>This error occurs when <code>#[derive(Arbitrary)]</code> is used on a type which has any
 <a href="https://doc.rust-lang.org/stable/book/second-edition/ch10-03-lifetime-syntax.html#lifetime-annotations-in-struct-definitions">lifetime parameters</a>. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo&lt;'a&gt; {
@@ -156,8 +156,8 @@ To follow the progress, consult the <a href="https://github.com/AltSysrq/proptes
 <h2><a class="header" href="#e0002" id="e0002">E0002</a></h2>
 <p>This error occurs when <code>#[derive(Arbitrary)]</code> is used on a <code>union</code> type.
 An example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 union IU32 {
@@ -189,8 +189,8 @@ types</a>. This
 in turn means the struct itself is uninhabited and so it there is no sensible
 <code>Arbitrary</code> implementation since values of the struct cannot be produced.</p>
 <p>A trivial example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Uninhabited {
@@ -208,8 +208,8 @@ be inhabited and you will instead get an error about the type not implementing
 <h2><a class="header" href="#e0004" id="e0004">E0004</a></h2>
 <p>This error occurs when <code>#[derive(Arbitrary)]</code> is used on an enum with no
 variants at all. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Uninhabited {}
@@ -222,8 +222,8 @@ enum Uninhabited {}
 are all uninhabited, using the same logic as described for <a href="#e0003"><code>E0003</code></a>.
 As a result, the enum itself is totally uninhabited.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Uninhabited {
@@ -238,8 +238,8 @@ inhabited variants are marked with [<code>#[proptest(skip)]</code>]. In other wo
 proptest is forbidden from generating any of the enum’s variants, and thus the
 enum itself cannot be generated.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum MyEnum {
@@ -261,8 +261,8 @@ enum MyEnum {
 [<code>#[proptest(value = &quot;expr&quot;)]</code>] is applied to the same item that has
 <code>#[derive(Arbitrary)]</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(value = &quot;MyStruct(42)&quot;)]
@@ -276,8 +276,8 @@ implementation of <code>Arbitrary</code> should be used instead.</p>
 For example, struct fields cannot be skipped because Rust requires every field
 of a struct to have a value.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct WidgetContainer {
@@ -290,8 +290,8 @@ struct WidgetContainer {
 <p>In general, the appropriate way to request proptest to not generate a field
 value is to use [<code>#[proptest(value = &quot;expr&quot;)]</code>] to provide a fixed value
 yourself. For example, the above code could be properly written as follows:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct WidgetContainer {
@@ -304,8 +304,8 @@ struct WidgetContainer {
 <h2><a class="header" href="#e0009" id="e0009">E0009</a></h2>
 <p>This error happens if [<code>#[proptest(weight = &lt;integer&gt;)]</code>] is applied to an item
 where this does not make sense, such as a struct field. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Point {
@@ -322,8 +322,8 @@ must provide a value for <em>every</em> field so there is no “this-or-that” 
 <p>This error occurs if [<code>#[proptest(params = &quot;type&quot;)]</code>] and/or
 [<code>#[proptest(no_params)]</code>] are set on both an item and its parent.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(params = &quot;String&quot;)]
@@ -340,8 +340,8 @@ must work with that and cannot specify their own parameters.</p>
 <p>This error occurs if [<code>#[proptest(params = &quot;type&quot;)]</code>] is set on a field but no
 explicit strategy is configured with [<code>#[proptest(strategy = &quot;expr&quot;)]</code>] or
 another such modifier. For example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -362,8 +362,8 @@ forbidden.</p>
 item containing it specifies a direct way to generate the whole value, which
 would thus occur without consulting the filter.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -388,8 +388,8 @@ compiler will reject the attribute first.</p>
 <p>This error occurs if a bare <code>#[proptest]</code> attribute is applied to anything,
 since it has no meaningful content.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -403,8 +403,8 @@ struct Foo {
 <p>This error occurs if an attribute of the form <code>#[proptest = value]</code> is
 encountered in any context.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -417,8 +417,8 @@ struct Foo {
 <p>This error occurs if a literal (as opposed to <code>key = value</code>) is passed inside
 <code>#[proptest(..)]</code> in any context.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -431,8 +431,8 @@ struct Foo {
 <p>This error occurs if any modifier of <code>#[proptest(..)]</code> is set more than once on
 the same item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(no_params, no_params)]
@@ -442,8 +442,8 @@ struct Foo(u32);
 <h2><a class="header" href="#e0018" id="e0018">E0018</a></h2>
 <p>This error occurs if an unknown modifier is passed in <code>#[proptest(..)]</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(frobnicate = &quot;true&quot;)]
@@ -455,8 +455,8 @@ available.</p>
 <h2><a class="header" href="#e0019" id="e0019">E0019</a></h2>
 <p>This error happens if anything extra is passed to [<code>#[proptest(no_params)]</code>].</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(no_params = &quot;true&quot;)]
@@ -468,8 +468,8 @@ struct Foo(u32);
 <h2><a class="header" href="#e0020" id="e0020">E0020</a></h2>
 <p>This error happens if anything extra is passed to [<code>#[proptest(skip)]</code>].</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -484,8 +484,8 @@ enum Foo {
 <p>This error happens if [<code>#[proptest(weight = &lt;integer&gt;)]</code>] is passed an invalid
 integer or passed nothing at all.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -503,8 +503,8 @@ enclosed in quotation marks.</p>
 <p>This error occurs if more than one of [<code>#[proptest(no_params)]</code>] and
 [<code>#[proptest(params = &quot;type&quot;)]</code>] are applied to the same item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(no_params, params = &quot;u8&quot;)]
@@ -516,8 +516,8 @@ struct Foo(u32);
 <p>This error happens if an invalid [<code>#[proptest(params = &quot;type&quot;)]</code>] attribute is
 applied to an item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(params = &quot;Vec&lt;u8&quot;)] // Note missing '&gt;'
@@ -547,8 +547,8 @@ syntax the <code>proptest-derive</code> crate is not prepared to handle.</p>
 [<code>#[proptest(value = &quot;expr&quot;)]</code>], or [<code>#[proptest(regex = &quot;string&quot;)]</code>] are applied
 to the same item.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -564,8 +564,8 @@ depending on the desired effect.</p>
 <p>This error happens if an invalid form of [<code>#[proptest(strategy = &quot;expr&quot;)]</code>] or
 [<code>#[proptest(value = &quot;expr&quot;)]</code>] is used.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -591,8 +591,8 @@ example. (See also <a href="#valid-rust-syntax">caveat on syntax</a>.)</p>
 <p>This error happens if an invalid form of [<code>#[proptest(filter = &quot;expr&quot;)]</code>] is
 used.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -618,8 +618,8 @@ example. (See also <a href="#valid-rust-syntax">caveat on syntax</a>.)</p>
 <p>This error occurs if a modifier which implies a value is to be generated is
 applied to an enum variant which is also marked [<code>#[proptest(skip)]</code>].</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Enum {
@@ -636,8 +636,8 @@ some value to be generated for the enum variant, but at the same time
 <p>This error happens if a modifier which would constrain or control how the value
 of an enum variant is to be generated is applied to a unit variant.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -654,8 +654,8 @@ or to filter such variants.</p>
 <p>This error happens if a modifier which would constrain or control how the value
 of a struct is to be generated is applied to a unit struct.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 #[proptest(params = &quot;u8&quot;)]
@@ -669,8 +669,8 @@ or to filter such structs.</p>
 <p>This error occurs if [<code>#[proptest(no_bound)]</code>] is applied to something that is
 not a type variable.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo {
@@ -680,8 +680,8 @@ struct Foo {
 <span class="boring">}
 </span></code></pre></pre>
 <p>The <code>no_bound</code> modifier only makes sense on generic type variables, as in</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo&lt;#[proptest(no_bound)] T&gt; {
@@ -693,8 +693,8 @@ struct Foo&lt;#[proptest(no_bound)] T&gt; {
 <h2><a class="header" href="#e0032" id="e0032">E0032</a></h2>
 <p>This error happens if [<code>#[proptest(no_bound)]</code>] is passed anything.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 struct Foo&lt;#[proptest(no_bound = &quot;yes&quot;)] T&gt; {
@@ -707,8 +707,8 @@ struct Foo&lt;#[proptest(no_bound = &quot;yes&quot;)] T&gt; {
 <p>This error occurs if the sum of the weights on the variants of an enum overflow
 a <code>u32</code>.</p>
 <p>Example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug, Arbitrary)]
 enum Foo {
@@ -737,8 +737,8 @@ modifier would be meaningless.</p>
 by the <code>syn</code> crate. If valid syntax is rejected, you can work around it in a
 couple ways depending on what the syntax is describing:</p>
 <p>For types, simply define a type alias for the type in question. For example,</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>type RetroBox = ~str; // N.B. &quot;~str&quot; is not valid Rust 1.30 syntax
 
@@ -750,8 +750,8 @@ struct MyStruct { /* ... */ }
 </span></code></pre></pre>
 <p>For values, you can generally factor the code into a constant or function. For
 example,</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// N.B. Rust 1.30 does not have an exponentiation operator.
 const PI_SQUARED: f64 = PI ** 2.0;

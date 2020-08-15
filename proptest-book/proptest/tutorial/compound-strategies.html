@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="shortcut icon" href="../../">
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
@@ -163,7 +163,7 @@ example, <code>(0..100i32,100..1000i32)</code> is a strategy for pairs of intege
 where the first value is between 0 and 100 and the second is between 100
 and 1000.</p>
 <p>So for our two-argument function, our strategy is simply a tuple of ranges.</p>
-<pre><pre class="playpen"><code class="language-rust">use proptest::test_runner::TestRunner;
+<pre><pre class="playground"><code class="language-rust">use proptest::test_runner::TestRunner;
 
 fn add(a: i32, b: i32) -&gt; i32 {
     a + b
