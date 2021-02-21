@@ -143,10 +143,9 @@ minimal test case to reproduce the problem. Unlike QuickCheck, generation
 and shrinking is defined on a per-value basis instead of per-type, which
 makes it more flexible and simplifies composition.</p>
 <h2><a class="header" href="#status-of-this-crate" id="status-of-this-crate">Status of this crate</a></h2>
-<p>The majority of the functionality offered by proptest is in active use and
-is known to work well.</p>
-<p>The API is unlikely to see drastic breaking changes, but there may still be
-minor breaking changes here and there, though this is becoming less common.</p>
+<p>The crate is fairly close to being feature-complete and has not seen
+substantial architectural changes in quite some time. At this point, it mainly
+sees passive maintenance.</p>
 <p>See the <a href="https://github.com/AltSysrq/proptest/blob/master/proptest/CHANGELOG.md">changelog</a>
 for a full list of substantial historical changes, breaking and otherwise.</p>
 <h2><a class="header" href="#what-is-property-testing" id="what-is-property-testing">What is property testing?</a></h2>
@@ -203,7 +202,7 @@ and people are upset that you moved Christmas to February. Maybe we need to
 be a bit more thorough.</p>
 <p>In <code>Cargo.toml</code>, add</p>
 <pre><code class="language-toml">[dev-dependencies]
-proptest = &quot;0.10.1&quot;
+proptest = &quot;1.0.0&quot;
 </code></pre>
 <p>Now we can add some property tests to our date parser. But how do we test
 the date parser for arbitrary inputs, without making another date parser in
@@ -234,10 +233,10 @@ with</p>
 '
 </code></pre>
 <p>If we look at the top directory after the test fails, we’ll see a new
-<code>proptest-regressions</code> directory, which contains some files corresponding
-to source files containing failing test cases. These are <a href="proptest/getting-started.html#failure-persistence"><em>failure
-persistence</em></a> files. The first thing we should do is
-add these to source control.</p>
+<code>proptest-regressions</code> directory, which contains some files corresponding to
+source files containing failing test cases. These are <a href="https://altsysrq.github.io/proptest-book/proptest/failure-persistence.html"><em>failure
+persistence</em></a>
+files. The first thing we should do is add these to source control.</p>
 <pre><code class="language-text">$ git add proptest-regressions
 </code></pre>
 <p>The next thing we should do is copy the failing case to a traditional unit
@@ -1564,7 +1563,7 @@ breaking changes than the main <code>proptest</code> crate.</p>
 <h1><a class="header" href="#getting-started-1" id="getting-started-1">Getting started</a></h1>
 <h2><a class="header" href="#cargo" id="cargo">Cargo</a></h2>
 <p>To the <code>[dev-dependencies]</code> section of your <code>Cargo.toml</code>, add</p>
-<pre><code class="language-toml">proptest-derive = &quot;0.1.0&quot;
+<pre><code class="language-toml">proptest-derive = &quot;0.2.0&quot;
 </code></pre>
 <p>In a Rust 2015 crate, you must add</p>
 <pre><code>#[cfg(test)] extern crate proptest;

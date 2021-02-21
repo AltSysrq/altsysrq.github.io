@@ -171,7 +171,7 @@ and people are upset that you moved Christmas to February. Maybe we need to
 be a bit more thorough.</p>
 <p>In <code>Cargo.toml</code>, add</p>
 <pre><code class="language-toml">[dev-dependencies]
-proptest = &quot;0.10.1&quot;
+proptest = &quot;1.0.0&quot;
 </code></pre>
 <p>Now we can add some property tests to our date parser. But how do we test
 the date parser for arbitrary inputs, without making another date parser in
@@ -202,10 +202,10 @@ with</p>
 '
 </code></pre>
 <p>If we look at the top directory after the test fails, we’ll see a new
-<code>proptest-regressions</code> directory, which contains some files corresponding
-to source files containing failing test cases. These are <a href="#failure-persistence"><em>failure
-persistence</em></a> files. The first thing we should do is
-add these to source control.</p>
+<code>proptest-regressions</code> directory, which contains some files corresponding to
+source files containing failing test cases. These are <a href="https://altsysrq.github.io/proptest-book/proptest/failure-persistence.html"><em>failure
+persistence</em></a>
+files. The first thing we should do is add these to source control.</p>
 <pre><code class="language-text">$ git add proptest-regressions
 </code></pre>
 <p>The next thing we should do is copy the failing case to a traditional unit
