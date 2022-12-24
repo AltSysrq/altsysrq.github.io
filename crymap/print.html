@@ -704,6 +704,18 @@ keep_recipient_domain = false
 # normalisations you want. Most importantly, enabling this option will make
 # Crymap mail delivery CASE SENSITIVE TO USER NAMES.
 verbatim_user_names = false
+
+[diagnostic]
+# If set, redirect standard error to this file on startup.
+#
+# This is applied before any part of the security configuration is
+# applied and before any communication with the remote host.
+#
+# This is useful if `inetd` (or equivalent) or your MTA runs Crymap such
+# that standard error goes to a less useful place, such as to the remote
+# host. If anything actually ends up in this file, it represents a bug in
+# Crymap, as actual errors should go through the logging system.
+stderr = null
 </code></pre>
 <h2><a class="header" href="#logging" id="logging">Logging</a></h2>
 <p>By default, Crymap logs to syslog under the “mail” facility.</p>
@@ -1073,9 +1085,9 @@ crymap remote config --external-key-pattern &quot;external-%Y-%W&quot; \
 <p>This section is targeted at client developers or those with an interest in the
 lower-level IMAP details.</p>
 <h2><a class="header" href="#conformance" id="conformance">Conformance</a></h2>
-<p>Crymap fully conforms to the IMAP4rev1 (RFC 3501) standard and has provisional
-conformance to the upcoming IMAP4rev2 standard (as of the 2020-07-29 draft). It
-also conforms to a number of extensions detailed in later sections.</p>
+<p>Crymap fully conforms to the IMAP4rev1 (RFC 3501) and IMAP4rev2 (RFC 9051)
+standards. It also conforms to a number of extensions detailed in later
+sections.</p>
 <p>Crymap passes the full <a href="https://imapwiki.org/ImapTest">Dovecot imaptest compliance
 suite</a> excepting tests for extensions that
 Crymap does not implement.</p>
@@ -1133,6 +1145,7 @@ conforms to the following standards:</p>
 <li>RFC 8438 (STATUS=SIZE)</li>
 <li>RFC 8457 IMAP “$Important” Keyword and “\Important” Special-Use Attribute</li>
 <li>RFC 8474 (OBJECTID)</li>
+<li>RFC 9051 (IMAP4rev2)</li>
 </ul>
 <h2><a class="header" href="#unicode-support" id="unicode-support">Unicode support</a></h2>
 <p>Crymap is inherently a Unicode-aware, UTF-8-based application. All data which
@@ -1190,6 +1203,13 @@ with a <code>/</code> has no effect. Duplicate <code>/</code> characters in a na
 <p>Non-normalised MUTF7 is accepted in mailbox names. Mailbox names are always
 returned in normalised MUTF7. MUTF7 is not returned on output nor transformed
 on input when the client has enabled UTF-8 support.</p>
+<p>When UTF-8 support is enabled, including by way of IMAP4rev2, no normalisation
+of mailbox names occurs other than removal of extraneous path delimiters and
+the special case of <code>INBOX</code> being case-insensitive. IMAP4rev2 has a
+recommendation to send unsolicited <code>LIST</code> responses when a client uses a
+denormalised mailbox name. Due to the extremely limited utility of this feature
+in the context of Crymap’s implementation, Crymap does not implement this
+recommendation.</p>
 <p>The <code>\Marked</code> and <code>\Unmarked</code> attributes are not used.</p>
 <p>If a mailbox is deleted or renamed while a session has it open, the session
 will be terminated as soon as this occurrence is discovered.</p>
