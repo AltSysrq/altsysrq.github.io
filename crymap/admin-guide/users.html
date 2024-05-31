@@ -24,9 +24,7 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
 
-        
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
@@ -70,14 +68,13 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html" class="active"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html" class="active"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="../admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
+                                <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
                         <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,11 +90,9 @@
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                             </ul>
-                            
                             <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                                 <i class="fa fa-search"></i>
                             </button>
-                            
                         </div>
 
                         <h1 class="menu-title">Crymap</h1>
@@ -110,7 +105,6 @@
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
@@ -121,7 +115,6 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
@@ -134,8 +127,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#managing-users" id="managing-users">Managing Users</a></h1>
-<h2><a class="header" href="#crymaps-notion-of-a-user" id="crymaps-notion-of-a-user">Crymap’s notion of a user</a></h2>
+                        <h1 id="managing-users"><a class="header" href="#managing-users">Managing Users</a></h1>
+<h2 id="crymaps-notion-of-a-user"><a class="header" href="#crymaps-notion-of-a-user">Crymap’s notion of a user</a></h2>
 <p>A “user” in Crymap simply refers to an entry within the <code>users</code> directory. Each
 entry may either be a directory, or be a symlink to a directory. Whichever it
 is, that directory is the <em>user data directory</em>.</p>
@@ -144,7 +137,7 @@ directory to determine which UNIX account to assume for operations on that
 user. In black box deployments, the exact ownership of the user data directory
 is less important, but it is still necessarily something that the Crymap user
 has access to and which doesn’t let unauthorised users access it.</p>
-<h2><a class="header" href="#creating-users" id="creating-users">Creating users</a></h2>
+<h2 id="creating-users"><a class="header" href="#creating-users">Creating users</a></h2>
 <p>Creation of a user is (internally) a non-trivial operation since it needs to
 generate a master key for the user and make it derivable from the user’s
 initial password. The process also must set up the user’s basic directory
@@ -164,7 +157,7 @@ data to be stored inside <code>/etc</code> or <code>/usr/local/etc</code>; in th
 explicitly give a path for the user data.</p>
 <p>By default, a password for the user is randomly generated. You can pass
 <code>--prompt-password</code> to input your own.</p>
-<h2><a class="header" href="#renaming-aliasing-and-deleting-users" id="renaming-aliasing-and-deleting-users">Renaming, aliasing, and deleting users</a></h2>
+<h2 id="renaming-aliasing-and-deleting-users"><a class="header" href="#renaming-aliasing-and-deleting-users">Renaming, aliasing, and deleting users</a></h2>
 <p>Crymap does not currently have special commands for these operations. Once
 created, users can be treated as regular file system objects. In particular:</p>
 <ul>
@@ -173,21 +166,24 @@ created, users can be treated as regular file system objects. In particular:</p>
 </li>
 <li>
 <p>User aliases can be created by symlinking the additional alias to the user
-data directory.</p>
+data directory. These symlinks are understood to allow the user to use all of
+them equivalently. For example, if <code>bob</code> is a symlink to <code>robert</code>, the user
+can log in as <code>robert</code> and then send mail as <code>bob</code>.</p>
 </li>
 <li>
 <p>Users can be deleted by removing their entry from <code>users</code>.</p>
 </li>
 <li>
 <p>Users can be disabled by renaming them to an illegal user name. The simplest
-way is to just prefix their name with <code>%</code>.</p>
+way is to just prefix their name with <code>%</code>. You do need to deal with any
+aliases as well, though.</p>
 </li>
 <li>
 <p>A user can be imported from another Crymap installation by simply moving the
 user data directory (or a symlink thereto) into <code>users</code>.</p>
 </li>
 </ul>
-<h2><a class="header" href="#password-resets" id="password-resets">Password Resets</a></h2>
+<h2 id="password-resets"><a class="header" href="#password-resets">Password Resets</a></h2>
 <p>When a user changes their password, a backup of the user configuration is
 created in the <code>tmp</code> directory within the user data directory, with a name of
 the format <code>config-backup-DATETIME.toml</code>. If necessary (for example, because
@@ -204,17 +200,13 @@ them.</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../admin-guide/config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="../admin-guide/backups.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -222,39 +214,29 @@ them.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a href="../admin-guide/config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
                     <a href="../admin-guide/backups.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
 
-        
 
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
 
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
 
-        
 
     </body>
 </html>

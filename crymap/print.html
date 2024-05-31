@@ -24,9 +24,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
 
-        
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
@@ -70,14 +68,13 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
+                                <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
                         <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,11 +90,9 @@
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                             </ul>
-                            
                             <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                                 <i class="fa fa-search"></i>
                             </button>
-                            
                         </div>
 
                         <h1 class="menu-title">Crymap</h1>
@@ -110,7 +105,6 @@
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
@@ -121,7 +115,6 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
@@ -134,24 +127,22 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
-<p>Crymap is an IMAP server implementation for FreeBSD and Linux with a strong
-focus on security and simplicity of administration. Its spotlight feature is
-transparent encryption of data at rest — it is not possible to read any user’s
-mail without knowing their password, while a regular IMAP experience is
-provided and mail can be received while the user is offline.</p>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Crymap is an IMAP and SMTP server implementation for FreeBSD and Linux with a
+strong focus on security and simplicity of administration. Its spotlight
+feature is transparent encryption of data at rest — it is not possible to read
+any user’s mail without knowing their password, while a regular IMAP experience
+is provided and mail can be received while the user is offline.</p>
+<p>If using the Crymap SMTP server, none of any user’s mail will ever be stored on
+disk in the clear (on your server, anyway), though note that Crymap SMTP has
+serious caveats.</p>
 <p>Crymap supports both traditional UNIX-style deployments, where each user
 corresponds to a UNIX account and owns their own mail, and “black box”
 deployments, where users do not have shell access and all mail is owned by a
 single system UNIX account.</p>
-<p>Crymap does not provide an SMTP server; i.e., it does not provide a solution
-for sending or receiving mail from the outside world, and a third party
-application such as OpenSMTPD must be used for this. Crymap can act as a UNIX
-MDA or as an LMTP server to transfer incoming mail from your SMTP server to the
-Crymap mail store.</p>
-<h2><a class="header" href="#features" id="features">Features</a></h2>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
 <ul>
-<li>Fully compliant with the IMAP4rev1 specification.</li>
+<li>Fully compliant with the IMAP4rev1 and IMAP4rev2 specifications.</li>
 <li>Secure by default. IMAPS only.</li>
 <li>Minimal configuration.</li>
 <li>Messages and metadata transparently encrypted at rest.</li>
@@ -164,19 +155,20 @@ Crymap mail store.</p>
 <li>A decent number of additional IMAP extensions.</li>
 <li>Supports messages with 8-bit and binary content.</li>
 <li>Mail delivery as an MDA.</li>
-<li>Mail delivery via LMTP.</li>
-<li>Interoperates properly with filesystem-based backup systems.</li>
+<li>Mail delivery via SMTP or LMTP.</li>
+<li>Simple but secure sending of mail via SMTP with built-in DKIM support.</li>
+<li>Interoperates well with filesystem-based backup systems.</li>
 </ul>
-<h2><a class="header" href="#status-and-support" id="status-and-support">Status and Support</a></h2>
-<p>The author uses Crymap for all personal email. It is known to work well in
-this use case. But this is naturally a fairly small amount of experience; in
-particular, Crymap has only seen day-to-day use in conjunction with OpenSMTPD
-and Thunderbird.</p>
+<h2 id="status-and-support"><a class="header" href="#status-and-support">Status and Support</a></h2>
+<p>The author uses Crymap for all personal email. It is known to work well in this
+use case. But this is naturally a fairly small amount of experience; in
+particular, Crymap has only seen day-to-day use in conjunction with Thunderbird
+and FairEmail.</p>
 <p>Crymap is currently maintained by its author alone. I am motivated to address
 bugs, but feature requests are unlikely to be accepted unless they offer
 substantial benefits to security or very common use cases. I will try to answer
 questions but cannot make commitments.</p>
-<h2><a class="header" href="#caveats" id="caveats">Caveats</a></h2>
+<h2 id="caveats"><a class="header" href="#caveats">Caveats</a></h2>
 <ul>
 <li>
 <p>If a password is forgotten, all data owned by that user is lost forever.
@@ -195,11 +187,20 @@ are there any plans to ever do so.</p>
 <li>
 <p>The maximum size of an email is currently hard-coded to 64MB.</p>
 </li>
+<li>
+<p>Crymap’s outbound SMTP experience is unusual and somewhat cumbersome. If
+sending an email experiences a temporary failure, it cannot be automatically
+retried since all access to messages is cryptographically locked behind user
+authentication. Retrying must be done manually via an IMAP extension, which
+is currently only implemented by the Crymap CLI utility. For a more
+conventional experience, you can use something like OpenSMTPD to handle
+outbound messages instead.</p>
+</li>
 </ul>
-<h1><a class="header" href="#how-crymap-encryption-works" id="how-crymap-encryption-works">How Crymap Encryption Works</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-crymap-encryption-works"><a class="header" href="#how-crymap-encryption-works">How Crymap Encryption Works</a></h1>
 <p>Crymap uses a number of modern, well-understood cryptographic primitives to
 securely store email data.</p>
-<h2><a class="header" href="#encrypting-message-data" id="encrypting-message-data">Encrypting Message Data</a></h2>
+<h2 id="encrypting-message-data"><a class="header" href="#encrypting-message-data">Encrypting Message Data</a></h2>
 <p>Messages must be stored in a way that ensures two properties:</p>
 <ul>
 <li>
@@ -231,7 +232,7 @@ available as the primary public key as each key is introduced.</p>
 <p>RSA private keys are stored in standard PEM format with a passphrase. The
 passphrase is <em>not</em> the user’s passphrase, but one autogenerated from the
 user’s login data (see next section).</p>
-<h2><a class="header" href="#user-credentials" id="user-credentials">User Credentials</a></h2>
+<h2 id="user-credentials"><a class="header" href="#user-credentials">User Credentials</a></h2>
 <p>Handling of each user’s passphrase is performed with a combination of two
 cryptographic primitives:</p>
 <ul>
@@ -268,17 +269,18 @@ previous set of parameters did for the old password.</p>
 <p>The master key is the primary credential used for all further key derivation in
 Crymap. Currently, the only derived keys are the PEM passphrases for the RSA
 private keys, which are each generated from different KMACs of the master key.</p>
-<h2><a class="header" href="#protection-crymap-provides" id="protection-crymap-provides">Protection Crymap Provides</a></h2>
+<h2 id="protection-crymap-provides"><a class="header" href="#protection-crymap-provides">Protection Crymap Provides</a></h2>
 <p>There are a number of different approaches one can take with encrypting mail.
 None is a perfect solution, and Crymap fills what is currently a unique niche.</p>
-<table><thead><tr><th>Protection from...</th><th>Disk</th><th>End-to-end</th><th>PGPipe</th><th>Crymap</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Protection from…</th><th>Disk</th><th>End-to-end</th><th>PGPipe</th><th>Crymap</th></tr></thead><tbody>
 <tr><td>Theft of storage medium</td><td>Yes</td><td>Partial</td><td>Partial</td><td>Yes</td></tr>
 <tr><td>File exfiltration</td><td>No</td><td>Partial</td><td>Partial</td><td>Yes</td></tr>
 <tr><td>Metadata exposure</td><td>No</td><td>No</td><td>No</td><td>Partial</td></tr>
 <tr><td>Eavesdropping in-transit</td><td>No</td><td>Partial</td><td>No</td><td>No</td></tr>
 <tr><td>Connection compromise</td><td>No</td><td>Partial</td><td>Partial</td><td>No</td></tr>
 </tbody></table>
-<h3><a class="header" href="#disk-encryption" id="disk-encryption">Disk encryption</a></h3>
+</div>
+<h3 id="disk-encryption"><a class="header" href="#disk-encryption">Disk encryption</a></h3>
 <p>Disk encryption is a simple, effective way of protecting data in case someone
 walks away with the physical storage medium. It does not protect against
 attackers gaining shell access to the server or any form of file exfiltration
@@ -302,7 +304,7 @@ respect to booting the server up without human intervention.</p>
 <p>No protection from IMAP connection compromise.</p>
 </li>
 </ul>
-<h3><a class="header" href="#end-to-end-encryption" id="end-to-end-encryption">End-to-End Encryption</a></h3>
+<h3 id="end-to-end-encryption"><a class="header" href="#end-to-end-encryption">End-to-End Encryption</a></h3>
 <p>PGP and S/MIME provide ways for a sender to encrypt a message so that only the
 receiver can read it. Unlike the other solutions in this list, the message is
 also secure in-transit. The only way to compromise email content is to
@@ -332,7 +334,7 @@ message that can’t be encrypted.</p>
 that can’t be encrypted.</p>
 </li>
 </ul>
-<h3><a class="header" href="#better-late-than-never-encryption" id="better-late-than-never-encryption">Better-late-than-never encryption</a></h3>
+<h3 id="better-late-than-never-encryption"><a class="header" href="#better-late-than-never-encryption">Better-late-than-never encryption</a></h3>
 <p>This means using a solution like <a href="https://github.com/AltSysrq/pgpipe">PGPipe</a>
 to apply PGP encryption to unencrypted messages right before delivered. This
 protects the message after it has been delivered, but comes with the other
@@ -357,16 +359,15 @@ be encrypted.</p>
 that can’t be encrypted.</p>
 </li>
 </ul>
-<h3><a class="header" href="#crymap" id="crymap">Crymap</a></h3>
+<h3 id="crymap"><a class="header" href="#crymap">Crymap</a></h3>
 <p>Since Crymap encrypts <em>all</em> message data at rest and has per-user isolation, it
 provides full defence against theft of storage medium and file exfiltration. It
 is also able to protect <em>most</em> message metadata, such as message flags. An
 attacker with file system access can still use that access to form educated
-guesses about when certain messages were delivered, whether they have been
-read, and their approximate size. Also note that the user folder structure is
-fully exposed. On the other hand, since Crymap transparently decrypts data
-before sending it over IMAP, compromising an IMAP connection reveals all data
-going over the wire.</p>
+guesses about when certain messages were delivered and their approximate size.
+On the other hand, since Crymap transparently decrypts data before sending it
+over IMAP, compromising an IMAP connection reveals all data going over the
+wire.</p>
 <ul>
 <li>
 <p>Protects from theft of storage medium.</p>
@@ -384,24 +385,23 @@ going over the wire.</p>
 <p>No protection from IMAP connection compromise.</p>
 </li>
 </ul>
-<h1><a class="header" href="#installation-guide" id="installation-guide">Installation Guide</a></h1>
-<h2><a class="header" href="#system-requirements" id="system-requirements">System Requirements</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation-guide"><a class="header" href="#installation-guide">Installation Guide</a></h1>
+<h2 id="system-requirements"><a class="header" href="#system-requirements">System Requirements</a></h2>
 <p>Crymap is designed to run on FreeBSD and Linux. It probably works on the other
 BSDs, but is not tested on them. Windows is not supported and most likely never
 will be since its filesystem is incompatible with Crymap’s requirements on many
 fronts.</p>
-<p>The host file system must support symlinks and hard links, be case-sensitive,
-and either be non-normalising or use NFC normalisation. There must not be mount
-points inside any user directory. Remote file systems like NFS are supported if
-they provide sufficient consistency guarantees, but Crymap is not specifically
-designed to work with them, and IDLE notifications will only work properly if
-all Crymap instances for a given user are run on the same host.</p>
+<p>The host file system must support symlinks and hard links. There must not be
+mount points inside any user directory. Remote file systems like NFS are
+supported if they provide sufficient consistency guarantees, but Crymap is not
+specifically designed to work with them, and IDLE notifications will only work
+properly if all Crymap instances for a given user are run on the same host.</p>
 <p>When run on a single-CPU host or with appropriate tuning on a multi-CPU host,
 each Crymap instance typically only consumes a few MB of RAM. However, do be
 aware that Crymap is a one-process-per-connection system.</p>
 <p>Crymap generally only holds at most a few dozen file handles open at any given
 time.</p>
-<h2><a class="header" href="#installation" id="installation">Installation</a></h2>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>Crymap requires having the OpenSSL libraries installed. On Debian/Ubuntu, you
 can get them with <code>apt install openssl</code>. FreeBSD has the required libraries in
 the base distribution. (There is a way to cause OpenSSL to be built along with
@@ -429,7 +429,7 @@ $ cd crymap
 $ cargo build --release
 # cp target/release/crymap /usr/local/bin/crymap
 </code></pre>
-<h2><a class="header" href="#initial-system-setup" id="initial-system-setup">Initial System Setup</a></h2>
+<h2 id="initial-system-setup"><a class="header" href="#initial-system-setup">Initial System Setup</a></h2>
 <p>First, make sure you have valid SSL certificates for your domain. A full
 explanation of how to do this is beyond the scope of this document, but
 <a href="https://letsencrypt.org/">Let’s Encrypt</a> is a good place to start if you are
@@ -452,9 +452,9 @@ below.</p>
 # The path to your X509 private key. The example here would be correct for
 # a FreeBSD system at `example.org` using Let's Encrypt with the default
 # configuration.
-private_key = &quot;/usr/local/etc/letsencrypt/live/example.org/privkey.pem&quot;
+private_key = "/usr/local/etc/letsencrypt/live/example.org/privkey.pem"
 # The path to the full X509 certificate chain.
-certificate_chain = &quot;/usr/local/etc/letsencrypt/live/example.org/fullchain.pem&quot;
+certificate_chain = "/usr/local/etc/letsencrypt/live/example.org/fullchain.pem"
 </code></pre>
 <p>(Yes, that’s all there is to the required configuration.)</p>
 <p>Before we go further, we need to decide what style of deployment we’re going to
@@ -501,7 +501,7 @@ deployment. If you get the message <code>stdin and stdout must not be a terminal
 it means the configuration is valid and Crymap was ready to serve network
 traffic.</p>
 <p>We won’t create any users just yet.</p>
-<h2><a class="header" href="#running-crymap-in-imaps-mode" id="running-crymap-in-imaps-mode">Running Crymap in IMAPS mode</a></h2>
+<h2 id="running-crymap-in-imaps-mode"><a class="header" href="#running-crymap-in-imaps-mode">Running Crymap in IMAPS mode</a></h2>
 <p>Crymap does not run as a daemon. Instead, it uses a one-process-per-connection
 model in which some other process listens for connections and spawns Crymap
 processes as connections arrive. There are a number of options here, including
@@ -525,7 +525,7 @@ pass the server’s host name to <code>--host</code>.) If successful, you should
 IMAP protocol traces and receive a prompt for a password. Of course, since no
 users have been created yet, it is not possible to log in, so simply cancel
 once it gets that far.</p>
-<h2><a class="header" href="#creating-a-user" id="creating-a-user">Creating a User</a></h2>
+<h2 id="creating-a-user"><a class="header" href="#creating-a-user">Creating a User</a></h2>
 <p>User creation is done with the <code>crymap server user add</code> command. By default, it
 generates a random password for the new user; <code>--prompt-password</code> can be given
 to input a password on the terminal instead. Refer to the <a href="user-guide.html">user
@@ -545,31 +545,81 @@ leave the user directory off to simply store the user data inside <code>users</c
 </code></pre>
 <p>It is also possible at this point to connect your favourite email application
 to Crymap, though you can’t receive email just yet.</p>
-<h2><a class="header" href="#configuring-mail-delivery" id="configuring-mail-delivery">Configuring Mail Delivery</a></h2>
-<p>Since Crymap does not provide an SMTP solution, it must be integrated with a
-third party application to accept incoming mail. Crymap currently offers two
-ways to do this integration:</p>
+<h2 id="configuring-inbound-mail-delivery"><a class="header" href="#configuring-inbound-mail-delivery">Configuring Inbound Mail Delivery</a></h2>
+<p>There are three ways to set up inbound mail delivery.</p>
 <ul>
 <li>
+<p>SMTP. In this setup, Crymap receives messages directly from external servers.
+Having Crymap handle SMTP directly is the simplest setup and ensures no
+message data is written to disk in the clear, but is also the least flexible
+option, as Crymap won’t do anything with inbound messages but deliver them to
+the INBOX without flags.</p>
+</li>
+<li>
 <p>LMTP. LMTP is a variant of SMTP which is suitable for the final step in the
-mail delivery process. LMTP is robust, can correctly handle binary payloads,
+mail delivery process. Compared to having Crymap serve SMTP directly, LMTP is
+more complicated to set up as you need a third-party SMTP solution and may be
+less secure since most SMTP servers spool messages to disk in cleartext, but
+will give you whatever flexibility the SMTP solution offers. Compared to the
+UNIX MDA option below, LMTP is robust, can correctly handle binary payloads,
 and can be more efficient, but is inflexible in that all messages are
 delivered to INBOX and without flags.</p>
 </li>
 <li>
-<p>UNIX MDA. This is more flexible than LMTP as it can be made to deliver to
-arbitrary mailboxes in a user’s account and to set flags on new messages. In
-traditional UNIX setups, users can also invoke Crymap in as an MDA from their
-<code>.forward</code> file. Its main disadvantages are that it is less robust against
-errors, and because UNIX MDAs are typically passed the message with all line
-endings converted to UNIX line endings, Crymap must convert the line endings
-back, which will destroy binary content.</p>
+<p>UNIX MDA. This is more flexible than SMTP LMTP as it can be made to deliver
+to arbitrary mailboxes in a user’s account and to set flags on new messages.
+In traditional UNIX setups, users can also invoke Crymap in as an MDA from
+their <code>.forward</code> file. Its main disadvantages are that it is less robust
+against errors, and because UNIX MDAs are typically passed the message with
+all line endings converted to UNIX line endings, Crymap must convert the line
+endings back, which will destroy binary content. Like LMTP, this also comes
+with the disadvantages of needing an external SMTP solution.</p>
 </li>
 </ul>
-<p>The instructions here are for LMTP. Refer to <code>crymap server deliver --help</code> for
-more information on using Crymap as an MDA. This section also contains concrete
-examples of using OpenSMTPD; if you are using a different SMTP daemon, you will
-need to refer to its documentation.</p>
+<h3 id="smtp"><a class="header" href="#smtp">SMTP</a></h3>
+<p>First, inbound SMTP requires a bit of extra configuration in <code>crymap.toml</code>.
+You’ll need to tell Crymap what its fully-qualified domain name is and what
+domains it is expecting to serve.</p>
+<p>The below example shows what you might add to a server that will be receiving
+email from <code>example.com</code> and <code>example.net</code>.</p>
+<pre><code class="language-toml">[smtp]
+# A DNS lookup for this name should return the IP address of the Crymap server.
+host_name = "mx.example.net"
+
+[smtp.domains."example.com"]
+# No configuration here for now, we just need to make sure the section for
+# "example.com" exists.
+
+[smtp.domains."example.net"]
+# No configuration here for now, we just need to make sure the section for
+# "example.com" exists.
+</code></pre>
+<p>Next, you just need to arrange for Crymap to handle inbound SMTP connections.
+Here is an example inetd configuration for a UNIX-style deployment:</p>
+<pre><code class="language-text">smtp    stream  tcp     nowait  root    /usr/local/bin/crymap   crymap server serve-smtpin
+smtp	stream  tcp6    nowait  root    /usr/local/bin/crymap   crymap server serve-smtpin
+</code></pre>
+<p>Notes:</p>
+<ul>
+<li>
+<p>Notice this uses <code>serve-smtpin</code> instead of <code>serve-imaps</code> at the end.</p>
+</li>
+<li>
+<p>As with IMAPS, for a simple black box deployment, you would configure it to
+run under the Crymap user and not <code>root</code>.</p>
+</li>
+</ul>
+<p>You can use <code>socat</code> to see if SMTP is working:</p>
+<pre><code class="language-text">$ socat STDIO TCP:localhost:25
+220 mx.example.net crymap 2.0.0 ESMTP ready
+^C
+</code></pre>
+<p>At this point, you should also be able to send email from external email
+providers to your server.</p>
+<h3 id="lmtp"><a class="header" href="#lmtp">LMTP</a></h3>
+<p>Besides setting up crymap, this section also contains concrete examples of
+using OpenSMTPD; if you are using a different SMTP daemon, you will need to
+refer to its documentation.</p>
 <p>First, we need to set something up to run Crymap in LMTP mode. This works
 essentially the same as how we set up IMAPS, except here we <em>don’t</em> want the
 server to be accessible to anyone in the world. There’s two ways to do that:</p>
@@ -609,18 +659,100 @@ simple installations, but you may want to have a look at the <a href="config-ref
 reference</a>.</p>
 <p>You can use <code>socat</code> to see if LMTP is working:</p>
 <pre><code class="language-text">$ socat STDIO UNIX:/var/run/lmtp.sock
-220 yourhostname crymap 1.0.0 LMTP ready
+220 yourhostname crymap 2.0.0 LMTP ready
 ^C
 </code></pre>
 <p>Finally, you need to configure your SMTP server to deliver mail through LMTP.
 For OpenSMTPD, your <code>smtpd.conf</code> file might contain something like this:</p>
-<pre><code class="language-text">action &quot;local_mail&quot; lmtp &quot;/var/run/lmtp.sock&quot;
-match from any for domain &quot;lin.gl&quot; action &quot;local_mail&quot;
-match for local action &quot;local_mail&quot;
+<pre><code class="language-text">action "local_mail" lmtp "/var/run/lmtp.sock"
+match from any for domain "lin.gl" action "local_mail"
+match for local action "local_mail"
 </code></pre>
 <p>After that, all that’s left to test is to send the user an email and see if it
 shows up!</p>
-<h2><a class="header" href="#troubleshooting" id="troubleshooting">Troubleshooting</a></h2>
+<h3 id="unix-mda"><a class="header" href="#unix-mda">Unix MDA</a></h3>
+<p>There isn’t anything Crymap-specific to set up for this use case. You will need
+to find out how to get your SMTP solution to run a UNIX MDA command line, which
+in most cases would simply be <code>crymap server deliver</code>. Refer to
+<code>crymap server deliver --help</code> for additional options.</p>
+<h2 id="outbound-smtp"><a class="header" href="#outbound-smtp">Outbound SMTP</a></h2>
+<p>If you want to use a third-party solution for outbound mail, there is nothing
+to configure which is Crymap-specific. Third-party solutions are generally more
+user-friendly, more battle-tested, and more flexible, but are less secure since
+they need to spool messages onto disk in cleartext or another way that allows
+passive recovery of the message content.</p>
+<p>Crymap does have outbound SMTP support. Its advantages are simple
+configuration, built-in DKIM support, unification of the authentication system
+with IMAP, and that messages do not get spooled to disk in the clear. However,
+it has a major downside: Retrying failed messages is <strong>manual</strong>, and currently
+can only be done with the Crymap <strong>command-line application</strong>.</p>
+<p>If you want to use Crymap’s outbound SMTP support, you will first need to add
+the SMTP configuration to <code>crymap.toml</code> if you haven’t done this already. Refer
+to the <a href="installation-guide.html#SMTP">SMTP</a> section for an example.</p>
+<p>If you have existing DKIM keys you wish to continue using, you can add these to
+the domain-specific sections in <code>crymap.toml</code>. Search for “DKIM” in the
+<a href="admin-guide/config.html">Configuration Guide</a> for details on what to add there.
+You can use the <code>openssl</code> and <code>base64</code> command-line utilities to convert the
+private keys you already have into the required format.</p>
+<p>If you do not have existing DKIM keys, the next step will help you generate
+some.</p>
+<p>You can use <code>crymap server smtp-out-sanity-check</code> on your server to check your
+configuration, including external DNS. This tool will generate DKIM keys for
+you if you have none, and will provide additional suggestions to make it more
+likely that major email providers will accept your email.</p>
+<p>Finally, you need to arrange for Crymap to run SMTP submission to receive
+outbound mail from your users. There are two supported options here:</p>
+<ul>
+<li>
+<p>SMTP+TLS on port 465, called variously <code>submissions</code>, <code>smtps</code>, or <code>ssmtp</code> in
+<code>/etc/services</code>, is preferred. Use only this one if you can. This is the
+<code>serve-smtpssub</code> subcommand (note the double “s”).</p>
+</li>
+<li>
+<p>SMTP submission on port 587, usually called <code>submission</code> in <code>/etc/services</code>.
+This variant relies on the client performing <code>STARTTLS</code> and may be vulnerable
+to the “strip TLS” attack depending on the client. This is the
+<code>serve-smtpsub</code> (note no double “s”).</p>
+</li>
+</ul>
+<p>Here is an example inetd configuration for a UNIX-style deployment with both protocols:</p>
+<pre><code class="language-text"># The preferred "implicit TLS" variant
+submissions stream  tcp     nowait  root    /usr/local/bin/crymap   crymap server serve-smtpssub
+submissions stream  tcp6    nowait  root    /usr/local/bin/crymap   crymap server serve-smtpssub
+# The legacy STARTTLS variant
+submission  stream  tcp     nowait  root    /usr/local/bin/crymap   crymap server serve-smtpsub
+submission  stream  tcp6    nowait  root    /usr/local/bin/crymap   crymap server serve-smtpsub
+</code></pre>
+<p>Notes:</p>
+<ul>
+<li>
+<p>Sotice this uses <code>serve-smtpssub</code> and <code>serve-smtpsub</code> instead of
+<code>serve-imaps</code> at the end.</p>
+</li>
+<li>
+<p>As with IMAPS, for a simple black box deployment, you would configure it to
+run under the Crymap user and not <code>root</code>.</p>
+</li>
+</ul>
+<p>You can use <code>socat</code> to see if it is working:</p>
+<pre><code class="language-text"># Implicit TLS protocol
+# You could also use your server's fully-qualified domain name instead of
+# "localhost" and then exclude ",verify=0" instead.
+$ socat STDIO SSL:localhost:465,verify=0
+220 mx.example.net crymap 2.0.0 ESMTPS ready
+^C
+# Legacy STARTTLS protocol
+$ socat STDIO TCP:localhost:587
+220 mx.example.net crymap 2.0.0 ESMTP ready
+^C
+</code></pre>
+<p>You are now ready to test sending mail. You should start by emailing yourself
+so that bad configuration does not impact your reputation on the big providers,
+then move on to various third parties.</p>
+<p>If sending a message fails at the SMTP level, the failure receipt will be
+delivered to your account’s inbox, which you can use to debug why the remote
+server rejected your message.</p>
+<h2 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h2>
 <p>By default, Crymap logs to syslog under the “mail” utility. When Crymap is not
 run from a terminal, this means its logs should end up someplace like
 <code>/var/log/maillog</code> or <code>/var/log/mail.log</code>.</p>
@@ -630,18 +762,19 @@ error and exit. Where these messages end up depends on what you are using to
 run Crymap. The output might be in a system log like <code>/var/log/messages</code>, or it
 could be getting sent over the socket. To check for the latter case, you can
 run a command like <code>socat STDIO TCP:localhost:993</code> to see if anything shows up.</p>
-<h1><a class="header" href="#administration-guide" id="administration-guide">Administration Guide</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="administration-guide"><a class="header" href="#administration-guide">Administration Guide</a></h1>
 <p>These sections cover (hopefully) everything you need to know about operating
 and maintaining a Crymap installation beyond the initial setup.</p>
-<h1><a class="header" href="#configuration-reference" id="configuration-reference">Configuration Reference</a></h1>
-<h2><a class="header" href="#crymaptoml" id="crymaptoml">crymap.toml</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="configuration-reference"><a class="header" href="#configuration-reference">Configuration Reference</a></h1>
+<h2 id="crymaptoml"><a class="header" href="#crymaptoml">crymap.toml</a></h2>
 <p>Below is an example <code>crymap.toml</code> with every option explicitly set to the
-default and comments explaining what each one does.</p>
+default (or an example value if there is no default) and comments explaining
+what each one does.</p>
 <pre><code class="language-toml">[tls]
 # The path to your X509 private key.
-private_key = &quot;&lt;no default&gt;&quot;
+private_key = "&lt;no default&gt;"
 # The path to the full X509 certificate chain.
-certificate_chain = &quot;&lt;no default&gt;&quot;
+certificate_chain = "&lt;no default&gt;"
 
 # Additional identification information to send to clients.
 # This is a free-form map. Refer to RFC 2971 § 3.3 to see what standard
@@ -649,10 +782,12 @@ certificate_chain = &quot;&lt;no default&gt;&quot;
 # `support_url` is probably the most important one since some mail clients
 # can use it to help the user get assistance.
 # Underscores in key names are replaced with hyphens.
+# The contents of this section is examples and not defaults, as the default
+# configuration is empty.
 [identification]
-vendor = &quot;Example Company&quot;
-support_url = &quot;mailto:it@example.com&quot;
-address = &quot;1313 Dead End Dr&quot;
+vendor = "Example Company"
+support_url = "mailto:it@example.com"
+address = "1313 Dead End Dr"
 
 # The [security] section applies any time any of the `crymap server ...`
 # commands is run.
@@ -673,21 +808,28 @@ chroot_system = false
 # configuration where it does not normally have access to SSL certificates, for
 # example.
 #
-# This setting is the main difference between a &quot;simple&quot; black box deployment,
-# where Crymap is started as the desired non-root user, and a &quot;two-step&quot; black
+# This setting is the main difference between a "simple" black box deployment,
+# where Crymap is started as the desired non-root user, and a "two-step" black
 # box deployment, where Crymap is started as root and then drops to the user
 # given here.
-system_user = &quot;&quot;
+system_user = ""
 
-# The [lmtp] section applies when Crymap is run with `crymap server serve-lmtp`.
-[lmtp]
+# The [smtp] section applies when Crymap is run with `crymap server serve-lmtp`,
+# `crymap server serve-smtpin`, `crymap server serve-smtpsub`, and
+# `crymap server serve-smtpssub`.
+#
+# In Crymap 1.x, this section was called `[lmtp]`, and that name is still
+# supported for backwards-compatibility.
+[smtp]
 # If non-empty, Crymap will report this value as its hostname.
 # By default, Crymap reports the system host name.
-host_name = &quot;&quot;
+# Explicit configuration of this value is required for outbound SMTP support
+# as a fully-qualified domain is required in that case.
+host_name = ""
 
 # By default, Crymap will strip everything after the `@` in destination
 # addresses to determine the name of the Crymap user (so an email addressed
-# to &quot;foo@bar.com&quot; gets delivered to Crymap user &quot;foo&quot;). Setting this to true
+# to "foo@bar.com" gets delivered to Crymap user "foo"). Setting this to true
 # suppresses this behaviour. Note that your SMTP daemon may also do this
 # stripping, in which case you must configure both Crymap and the SMTP daemon
 # to retain the domain.
@@ -703,7 +845,46 @@ keep_recipient_domain = false
 # happen. Note that this means that your SMTP daemon must make the
 # normalisations you want. Most importantly, enabling this option will make
 # Crymap mail delivery CASE SENSITIVE TO USER NAMES.
+#
+# You probably shouldn't set this to true if Crymap is fronting SMTP itself.
 verbatim_user_names = false
+
+# By default, Crymap evaluates DMARC for inbound SMTP but does not take any
+# action on DMARC failures.
+# If set to true, Crymap will reject inbound SMTP transactions if the DMARC
+# evaluation fails and the DMARC record requests to reject such failures.
+#
+# This has no effect on LMTP or SMTP submission.
+reject_dmarc_failures = false
+
+# If enabled, receipts produced for outbound SMTP transactions will include
+# very verbose details about TLS handshakes.
+verbose_outbound_tls = false
+
+# Each entry under `smtp.domains` describes an SMTP domain the Crymap server
+# will support. You only need to configure this if Crymap is handling SMTP
+# itself.
+# Simply defining a table, even if empty, is sufficient to make Crymap consider
+# the domain usable.
+[smtp.domains."example.com"]
+# Each value under `dkim` defines a DKIM key which will be used to sign
+# messages originating from this domain. They have no effect on inbound
+# messages.
+#
+# The part after `dkim.` is the DKIM selector. The value is either `rsa:DATA`,
+# where DATA is a base64-encoded RSA private key in DER format, or
+# `ed25519:DATA`, where DATA is a base64-encoded ED25519 private key in raw
+# format.
+#
+# If there are multiple keys for one domain, they will all be used to sign the
+# message, in lexicographical order. Note that Microsoft Exchange only examines
+# the first DKIM header on a message, and fails the message if it does not know
+# about the signature algorithm. As of 2024-05, it does not understand ED25519,
+# so you should ensure that the first key (in lexicographical order, not
+# necessarily the written in the configuration) is a reasonably-sized RSA key
+# if you care about talking to people on Exchange/Outlook.com/Hotmail/etc.
+dkim.selector1 = "rsa:MIQU2whmZwg&lt;VERY LONG STRING...&gt;"
+dkim.selector2 = "ed25519:13SSM&lt;LONG STRING...&gt;"
 
 [diagnostic]
 # If set, redirect standard error to this file on startup.
@@ -717,7 +898,7 @@ verbatim_user_names = false
 # Crymap, as actual errors should go through the logging system.
 stderr = null
 </code></pre>
-<h2><a class="header" href="#logging" id="logging">Logging</a></h2>
+<h2 id="logging"><a class="header" href="#logging">Logging</a></h2>
 <p>By default, Crymap logs to syslog under the “mail” facility.</p>
 <p>If you want to do something else, you can create a file named <code>logging.toml</code>
 next to <code>crymap.toml</code>. This file is a <a href="https://docs.rs/log4rs">log4rs</a>
@@ -727,27 +908,27 @@ now. Note that there is not currently a way to log to syslog <em>and</em> a sepa
 logging system simultaneously at this time.</p>
 <p>Here is a basic example of a <code>logging.toml</code> file:</p>
 <pre><code class="language-toml">[appenders.file]
-kind = &quot;rolling_file&quot;
-path = &quot;/var/log/crymap/crymap.log&quot;
+kind = "rolling_file"
+path = "/var/log/crymap/crymap.log"
 append = true
 
 [appenders.file.policy.trigger]
-kind = &quot;size&quot;
-limit = &quot;10 MB&quot;
+kind = "size"
+limit = "10 MB"
 
 [appenders.file.policy.roller]
-kind = &quot;delete&quot;
+kind = "delete"
 
 [appenders.file.encoder]
-kind = &quot;pattern&quot;
-pattern = &quot;{d(%Y-%m-%dT%H:%M:%S)} [{l}][{t}] {m}{n}&quot;
+kind = "pattern"
+pattern = "{d(%Y-%m-%dT%H:%M:%S)} [{l}][{t}] {m}{n}"
 
 [root]
-level = &quot;info&quot;
-appenders = [&quot;file&quot;]
+level = "info"
+appenders = ["file"]
 </code></pre>
-<h1><a class="header" href="#managing-users" id="managing-users">Managing Users</a></h1>
-<h2><a class="header" href="#crymaps-notion-of-a-user" id="crymaps-notion-of-a-user">Crymap’s notion of a user</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="managing-users"><a class="header" href="#managing-users">Managing Users</a></h1>
+<h2 id="crymaps-notion-of-a-user"><a class="header" href="#crymaps-notion-of-a-user">Crymap’s notion of a user</a></h2>
 <p>A “user” in Crymap simply refers to an entry within the <code>users</code> directory. Each
 entry may either be a directory, or be a symlink to a directory. Whichever it
 is, that directory is the <em>user data directory</em>.</p>
@@ -756,7 +937,7 @@ directory to determine which UNIX account to assume for operations on that
 user. In black box deployments, the exact ownership of the user data directory
 is less important, but it is still necessarily something that the Crymap user
 has access to and which doesn’t let unauthorised users access it.</p>
-<h2><a class="header" href="#creating-users" id="creating-users">Creating users</a></h2>
+<h2 id="creating-users"><a class="header" href="#creating-users">Creating users</a></h2>
 <p>Creation of a user is (internally) a non-trivial operation since it needs to
 generate a master key for the user and make it derivable from the user’s
 initial password. The process also must set up the user’s basic directory
@@ -776,7 +957,7 @@ data to be stored inside <code>/etc</code> or <code>/usr/local/etc</code>; in th
 explicitly give a path for the user data.</p>
 <p>By default, a password for the user is randomly generated. You can pass
 <code>--prompt-password</code> to input your own.</p>
-<h2><a class="header" href="#renaming-aliasing-and-deleting-users" id="renaming-aliasing-and-deleting-users">Renaming, aliasing, and deleting users</a></h2>
+<h2 id="renaming-aliasing-and-deleting-users"><a class="header" href="#renaming-aliasing-and-deleting-users">Renaming, aliasing, and deleting users</a></h2>
 <p>Crymap does not currently have special commands for these operations. Once
 created, users can be treated as regular file system objects. In particular:</p>
 <ul>
@@ -785,21 +966,24 @@ created, users can be treated as regular file system objects. In particular:</p>
 </li>
 <li>
 <p>User aliases can be created by symlinking the additional alias to the user
-data directory.</p>
+data directory. These symlinks are understood to allow the user to use all of
+them equivalently. For example, if <code>bob</code> is a symlink to <code>robert</code>, the user
+can log in as <code>robert</code> and then send mail as <code>bob</code>.</p>
 </li>
 <li>
 <p>Users can be deleted by removing their entry from <code>users</code>.</p>
 </li>
 <li>
 <p>Users can be disabled by renaming them to an illegal user name. The simplest
-way is to just prefix their name with <code>%</code>.</p>
+way is to just prefix their name with <code>%</code>. You do need to deal with any
+aliases as well, though.</p>
 </li>
 <li>
 <p>A user can be imported from another Crymap installation by simply moving the
 user data directory (or a symlink thereto) into <code>users</code>.</p>
 </li>
 </ul>
-<h2><a class="header" href="#password-resets" id="password-resets">Password Resets</a></h2>
+<h2 id="password-resets"><a class="header" href="#password-resets">Password Resets</a></h2>
 <p>When a user changes their password, a backup of the user configuration is
 created in the <code>tmp</code> directory within the user data directory, with a name of
 the format <code>config-backup-DATETIME.toml</code>. If necessary (for example, because
@@ -811,87 +995,47 @@ successful login 24 hours after the change was made.</p>
 forever. The best thing to do is to move their user data directory to somewhere
 else in case they remember the password later and create a new account for
 them.</p>
-<h1><a class="header" href="#backups-and-recovery" id="backups-and-recovery">Backups and Recovery</a></h1>
-<h2><a class="header" href="#backups" id="backups">Backups</a></h2>
-<p>Crymap uses a “filesystem as a database” model for its storage. This means that
-no exotic tooling is required to back the Crymap data up. Even simple tools
-such as <code>rsync</code> are sufficient.</p>
-<p>A proper backup system should be able to handle the following:</p>
-<ul>
-<li>Binary file content</li>
-<li>Unicode file names</li>
-<li>Symlinks must be backed up as symlinks, not copies of what they point to, and
-must retain their exact target</li>
-<li>Cyclic and dangling symlinks must be tolerated</li>
-</ul>
-<p>Exact file modes and owners do not need to be preserved, but it is better if
-they are. While Crymap creates hard links, it does not require them to be
-preserved, and a backup will function properly if the hard-linked files are
-reconstructed as separate files. Crymap does not use file timestamps or
-extended attributes for anything important.</p>
-<p>Crymap is designed to be tolerant of anomalies resulting from the backup
-process not capturing an atomic snapshot of the user data directory. There is
-one requirement: the backup system must be able to process the a user’s whole
-data directory in less than 24 hours. If this requirement is met, no data which
-existed before the backup started will be lost, with one corner case.</p>
-<p>The corner case is has to do with mailbox renaming, since Crymap uses
-filesystem directories to model the mailbox hierarchy. Consider a user with the
-below mailbox hierarchy.</p>
-<pre><code class="language-text">|-+ INBOX
-|
-|-+ In Progress
-| |
-| \-+ TPS Reports
-|
-\-+ Archive
-</code></pre>
-<p>It might happen that the backup system happens to process these directories in
-this order: <code>Archive</code>, <code>INBOX</code>, <code>In Progress</code>. When it goes through <code>Archive</code>,
-it makes a backup in which <code>Archive</code> has no child mailboxes. Now, suppose that
-when it is working on <code>INBOX</code>, the user moves <code>TPS Reports</code> into <code>Archive</code>:</p>
-<pre><code class="language-text">|-+ INBOX
-|
-|-+ In Progress
-|
-\-+ Archive
-  |
-  \-+ TPS Reports
-</code></pre>
-<p>Now, when the backup system finishes <code>INBOX</code> and moves on to <code>In Progress</code>, it
-makes a backup of <code>In Progress</code> which has no child mailboxes. Now we have a
-backup which does not contain <code>TPS Reports</code> anywhere, even though that mailbox
-always existed somewhere!</p>
-<p>This is a problem inherent in any filesystem-based backup system, and means it
-is important to have multiple backups available in case one backup runs at just
-the wrong time.</p>
-<p>This corner case does not affect moving individual messages between mailboxes
-because Crymap is able to retain the messages in their old location for the
-24hr grace period.</p>
-<h2><a class="header" href="#restoring-from-backup" id="restoring-from-backup">Restoring from Backup</a></h2>
-<p>Due to the “filesystem as a database” model, restoring from backup is usually
-just a matter of recovering the files and putting them back in the correct
-place, possibly after fixing permissions if the backup system does not preserve
-them.</p>
-<p>If the backup is not a fully consistent state, mail applications may have
-difficulty resynchronising. It may be necessary to do a “repair” or fully
-reconfigure the application.</p>
-<p>It is also possible to retrieve parts of a user’s account (i.e. mailboxes) and
-insert them into the current account by placing the directories in an
-appropriate place under the <code>mail</code> directory within the user data directory. If
-there are missing RSA keys, they can also be retrieved from the <code>keys</code>
-directory in the backup and added to the current filesystem. No special
-configuration or notification to Crymap is needed for these operations; simply
-putting the files/directories into place is sufficient.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="backups-and-recovery"><a class="header" href="#backups-and-recovery">Backups and Recovery</a></h1>
+<h2 id="backups"><a class="header" href="#backups">Backups</a></h2>
+<p>Starting with Crymap 2.0.0, each message and private key is stored in its own
+file, with all other data tracked in a couple SQLite databases.</p>
+<p>Backup tooling does not need to support any exotic filesystem features, and
+even Windows filesystems will be able to carry the backup in tact.</p>
+<h2 id="restoring-from-backup"><a class="header" href="#restoring-from-backup">Restoring from Backup</a></h2>
+<p>In most cases, simply restoring from backup should do the trick.</p>
+<p>There are a few cases where a backup could be torn across an update:</p>
+<ol>
+<li>
+<p>Messages on the filesystem but not in the database. At least once a day,
+Crymap automatically checks for such messages. They will automatically
+appear in the user’s inbox.</p>
+</li>
+<li>
+<p>Messages in the database but not in the filesystem. These will appear to the
+user as stub messages indicating the problem. The user must delete the
+entries themselves.</p>
+</li>
+<li>
+<p>Corrupt SQLite database. You can remove <code>delivery.sqlite*</code> and
+<code>meta.sqlite.xex*</code> (<strong>important</strong>: ensure you remove the <code>-journal</code> file
+too!), then copy one of the <code>meta.sqlite.xex.*</code> backups from the user’s
+<code>backup</code> directory to <code>meta.sqlite.xex</code> in the user’s directory. In the
+worst case, if you can’t get anything to work, you can remove
+<code>meta.sqlite.xex*</code> entirely, which will result in all the user’s messages
+being in unread, in <code>INBOX</code>, and in no particular order, but at least their
+mail will be there.</p>
+</li>
+</ol>
 <p>Objects from a user account are readable from only that user account. For
 example, in case of a system failure, you cannot set up a new system, create
 user accounts in it, and then expect to be able to drop data from the backups
 into those new user accounts. The user accounts themselves must be restored
 from backup.</p>
-<h1><a class="header" href="#understanding-the-filesystem" id="understanding-the-filesystem">Understanding the Filesystem</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="understanding-the-filesystem"><a class="header" href="#understanding-the-filesystem">Understanding the Filesystem</a></h1>
 <p>This section only covers what is useful to know when inspecting a Crymap
 installation with regular shell tools. For the nitty-gritty details, you’ll
 need to look at the Crymap source code’s internal documentation.</p>
-<h2><a class="header" href="#crymap-root" id="crymap-root">Crymap root</a></h2>
+<h2 id="crymap-root"><a class="header" href="#crymap-root">Crymap root</a></h2>
 <p>There are three files of significance at the <em>Crymap root</em>:</p>
 <ul>
 <li>
@@ -910,21 +1054,37 @@ entry for each Crymap user.</p>
 </ul>
 <p>Refer to the <a href="admin-guide/config.html">configuration reference</a> for the two configuration
 files, and <a href="admin-guide/users.html">user management</a> for the <code>users</code> directory.</p>
-<h2><a class="header" href="#user-data-directory" id="user-data-directory">User data directory</a></h2>
+<h2 id="user-data-directory"><a class="header" href="#user-data-directory">User data directory</a></h2>
 <p>The user data directory contains the following files:</p>
 <ul>
 <li>
-<p><code>garbage</code>. This is used internally for deleting directories. It is safe to
-fully delete all its contents at any time. Crymap itself aggressively cleans
-it.</p>
+<p><code>backups</code>. This contains routine database backups produced atomically by
+Crymap.</p>
+</li>
+<li>
+<p><code>crymap-v1-files</code>. This contains the file trees that were present when the
+user was migrated from Crymap 1.x to Crymap 2.x. It will not be present for
+users that were created on Crymap 2.x, nor will it be recreated if removed.
+It is safe to remove entirely once you are sure you don’t need to roll back
+to Crymap 1.x.</p>
+</li>
+<li>
+<p><code>delivery.sqlite</code> and <code>delivery.sqlite-journal</code>. This is a cleartext SQLite
+database used for message delivery. Message delivery occurs without the user
+being logged in, and information about how such messages are to be added to
+the user’s account are written here. When the user is logged in, the database
+is processed and the messages are deposited into their final positions. If
+this database is removed, and pending messages will eventually show up in the
+inbox once Crymap determines that they have been orphaned.</p>
+</li>
+<li>
+<p><code>garbage</code>. This is a holdover from Crymap 1.x, and was used internally for
+deleting directories. It is safe to fully delete all its contents at any
+time. Crymap itself aggressively cleans it.</p>
 </li>
 <li>
 <p><code>keys</code>. A directory containing the user’s RSA keys. It is a critical part the
 user data needed for accessing the user’s mail.</p>
-</li>
-<li>
-<p><code>mail</code>. The root of the user’s mailbox hierarchy. All the user’s mail is
-stored inside this directory. Each directory inside is a single mailbox.</p>
 </li>
 <li>
 <p><code>maintenance-run</code>. This is a marker file used to track the last time that a
@@ -932,9 +1092,14 @@ full maintenance pass was run on the account. This can be deleted safely,
 which will cause the next login to trigger a full maintenance pass.</p>
 </li>
 <li>
-<p><code>shadow</code>. This is a “shadow” of the <code>mail</code> hierarchy used to track mailbox
-attributes that operate independently of the mailboxes themselves. Currently,
-this is only for IMAP subscriptions.</p>
+<p><code>messages</code>. This contains the user’s actual email, one file per message.</p>
+</li>
+<li>
+<p><code>meta.sqlite.xex</code> and <code>meta.sqlite.xex-journal</code>. This is an encrypted SQLite
+database containing all information about the user’s messages and mailboxes.
+Atomic backups of <code>meta.sqlite.xex</code> are routinely created under <code>backups</code>. If
+you restore <code>meta.sqlite.xex</code> from backup, you <strong>MUST</strong> also remove
+<code>meta.sqlite.xex-journal</code> at the same time.</p>
 </li>
 <li>
 <p><code>tmp</code>. Used for temporary files and temporary markers. Crymap will
@@ -950,71 +1115,22 @@ with an earlier backup version (either a backup created under <code>tmp</code> o
 some external backup system) to revert a password change.</p>
 </li>
 </ul>
-<h2><a class="header" href="#mailboxes" id="mailboxes">Mailboxes</a></h2>
-<p>A mailbox is a directory named after the IMAP mailbox of the same name. The
-<code>INBOX</code> mailbox is quite special (and must be all upper case); other mailboxes
-can be named freely.</p>
-<p>Inside a mailbox, all subdirectories not prefixed with <code>%</code> are child mailboxes.</p>
-<p>Normally, each mailbox will have a directory named <code>%$hexcode</code> and a symlink
-pointing to it named <code>%</code>. If neither exists, it means the user at some point
-attempted to delete the mailbox while it had child mailboxes. This manifests as
-a “non selectable” mailbox in IMAP. The <code>%$hexcode</code> directory contains the
-actual mailbox data.</p>
-<p>A mailbox data directory may contain the following:</p>
-<ul>
-<li>
-<p><code>c0</code>, <code>c1</code>, <code>c2</code>, <code>c3</code>. These contain metadata transactions for the mailbox,
-such as changing flags on messages.</p>
-</li>
-<li>
-<p><code>c-guess</code>. Used in the metadata transaction process. Safe to delete or
-corrupt.</p>
-</li>
-<li>
-<p><code>mailbox.toml</code>. Contains immutable metadata about the mailbox.</p>
-</li>
-<li>
-<p><code>recent</code>. Contains a marker file used to track the “recent” IMAP flag. Safe
-to delete.</p>
-</li>
-<li>
-<p><code>rollups</code>. Contains rollups of the mailbox state.</p>
-</li>
-<li>
-<p><code>socks</code>. Contains marker symlinks used to locate sockets used to notify
-idling Crymap processes of changes. Safe to delete.</p>
-</li>
-<li>
-<p><code>u0</code>, <code>u1</code>, <code>u2</code>, <code>u3</code>. These contain the actual messages in the mailbox.</p>
-</li>
-<li>
-<p><code>u-guess</code>. Used to accelerate working with the <code>u*</code> directories. Safe to
-delete or corrupt.</p>
-</li>
-</ul>
-<p>It is normal for the <code>c*</code> and <code>u*</code> directory trees to contain broken or cyclic
-symlinks. These symlinks play an important role in how Crymap manages its data.</p>
-<p>If you think a mailbox has been corrupted somehow, it is a reasonable
-last-resort step to remove the <code>c*</code> and <code>rollups</code> directories. <strong>This will
-destroy all the user’s message metadata</strong> and may undelete some messages. The
-next time the mailbox is opened, it may take a very long time. However, Crymap
-should be able to recover the messages themselves.</p>
-<h1><a class="header" href="#tuning" id="tuning">Tuning</a></h1>
-<p>Crymap’s tuning options are very limited; in fact, Crymap itself directly
-provides only one.</p>
-<h2><a class="header" href="#thread-count" id="thread-count">Thread Count</a></h2>
-<p>When certain operations across multiple items, such as fetches or searching,
-take too long, Crymap will spin up extra threads to parallelise the work and
-reduce latency. By default, it will create up to as many threads as there are
-CPU cores.</p>
-<p>The environment variable <code>CRYMAP_MAX_THREADS</code> can be set to any integer to
-override this. Setting it to <code>1</code> will completely prevent Crymap from trying to
-parallelise work.</p>
-<p>Note that you cannot make Crymap fully single-threaded for this operation. Even
-if it is set to <code>1</code>, Crymap will still spawn extra threads for background
-cleanups and idling, which are sufficient to cause the memory allocator to
-switch to multi-threaded mode on multi-core systems.</p>
-<h2><a class="header" href="#memory-allocator" id="memory-allocator">Memory Allocator</a></h2>
+<h2 id="openssl-mirrors"><a class="header" href="#openssl-mirrors">OpenSSL mirrors</a></h2>
+<p>If Crymap is set up in a way that causes it to chroot, it will maintain a copy
+of the system OpenSSL certificate store within each chroot. This will usually
+manifest as an <code>etc</code> or <code>usr</code> directory within the <code>users</code> directory or within
+each user directory. This is needed so that certificates of external servers
+can be validated when using outbound SMTP, as they must access these files
+after Crymap has moved into the chroot and rendered the normal location of
+these files inaccessible.</p>
+<p>If possible, Crymap will create hard links, but will copy the files if the
+destination directory is on a different file system.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tuning"><a class="header" href="#tuning">Tuning</a></h1>
+<p>Crymap’s performance tuning options are very limited; in fact, Crymap itself
+does not provide any at all.</p>
+<h2 id="thread-count"><a class="header" href="#thread-count">Thread Count</a></h2>
+<p>As of Crymap 2.0.0, Crymap is always entirely single-threaded.</p>
+<h2 id="memory-allocator"><a class="header" href="#memory-allocator">Memory Allocator</a></h2>
 <p>Crymap uses the host system’s <code>malloc()</code>, so exactly how it gets tuned depends
 on your system. Often, you can refer to <code>malloc(3)</code> for information on how to
 configure the allocator.</p>
@@ -1030,8 +1146,58 @@ it is useful to disable the multi-core allocation strategies.</p>
 <code>M_ARENA_MAX</code> to <code>1</code>.</p>
 <p>With jemalloc, a similar thing can be done by setting <code>MALLOC_CONF</code> to
 <code>narenas:1</code>.</p>
-<h1><a class="header" href="#user-guide" id="user-guide">User Guide</a></h1>
-<h2><a class="header" href="#mail-server-settings" id="mail-server-settings">Mail server settings</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="migration-from-crymap-1x"><a class="header" href="#migration-from-crymap-1x">Migration from Crymap 1.x</a></h1>
+<h2 id="system"><a class="header" href="#system">System</a></h2>
+<p>To upgrade from Crymap 1.x to 2.x, no configuration changes or user action is
+required. The recommended upgrade procedure is as follows:</p>
+<ol>
+<li>Disable all ways for Crymap server processes to be created.</li>
+<li>Terminate any remaining Crymap server processes.</li>
+<li>Upgrade the Crymap binary to 2.x.</li>
+<li>Reenable Crymap.</li>
+</ol>
+<h2 id="user"><a class="header" href="#user">User</a></h2>
+<p>Crymap 2.x uses an entirely different data model than 1.x. When a user next
+logs in, they will automatically be migrated from the 1.x data model to the 2.x
+data model. This can take a few seconds to a few minutes, depending on the size
+of the account and the speed of the server.</p>
+<p>The data migration process preserves all messages, message flags, and the
+mailbox hierarchy. It does not preserve message IDs of any kind or
+synchronisation states. The user’s email client will thus effectively start
+from a blank slate once migration completes and will need to
+resynchronise/redownload everything it wants to keep local.</p>
+<p>There is no way to migrate users in advance, as the migration process requires
+the user’s credentials to proceed.</p>
+<p>A user whose account is still on the 1.x data model can still receive mail from
+Crymap 2.x, though this mail will be added to the account under the 2.x data
+model.</p>
+<h2 id="rollback"><a class="header" href="#rollback">Rollback</a></h2>
+<p>If you decide you need to roll back, the recommended procedure is as follows:</p>
+<ol>
+<li>Disable all ways for Crymap server processes to be created.</li>
+<li>Terminate any remaining Crymap server processes.</li>
+<li>Manually roll back any user accounts that had been upgraded.</li>
+<li>Downgrade the Crymap binary to 1.x.</li>
+<li>Reenable Crymap.</li>
+</ol>
+<p>A user account that was migrated from the 1.x data model to the 2.x data model
+can be identified by the presence of a <code>crymap-v1-files</code> directory under the
+user directory. A user can be rolled back to the 1.x model by running the
+following commands in the user directory:</p>
+<pre><code class="language-sh">mv crymap-v1-files/* .
+rmdir crymap-v1-files
+rm -rf messages delivery.sqlite* meta.sqlite.xex*
+</code></pre>
+<p>This will reset the account to the state it was in before the migration, except
+for changes to the <code>user.toml</code> file (which would include password changes). If
+the <code>user.toml</code> file now has an <code>[smtp_out]</code> section, you will need to remove
+that manually with a text editor, or restore the <code>user.toml</code> file from a backup
+in <code>tmp</code> if there is one or from another backup you had made.</p>
+<h2 id="finishing-touches"><a class="header" href="#finishing-touches">Finishing touches</a></h2>
+<p>Once you are sure you won’t need to roll back, you can entirely remove the
+<code>crymap-v1-files</code> within each user directory.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="user-guide"><a class="header" href="#user-guide">User Guide</a></h1>
+<h2 id="mail-server-settings"><a class="header" href="#mail-server-settings">Mail server settings</a></h2>
 <p>Assuming your administrator has not indicated otherwise:</p>
 <ul>
 <li>Protocol: IMAPS or IMAP (POP not supported)</li>
@@ -1042,12 +1208,12 @@ it is useful to disable the multi-core allocation strategies.</p>
 </ul>
 <p>Do not proceed if you receive certificate or security warnings.</p>
 <p>Mail submission settings must be provided by your administrator.</p>
-<h2><a class="header" href="#changing-your-password-or-settings" id="changing-your-password-or-settings">Changing your password or settings</a></h2>
+<h2 id="changing-your-password-or-settings"><a class="header" href="#changing-your-password-or-settings">Changing your password or settings</a></h2>
 <p>To change your Crymap password or Crymap settings, you currently need the
 <code>crymap</code> program. Your administrator should provide this; if not, refer to the
 <a href="installation-guide.html#installation">installation subsection</a> for ways to get
 <code>crymap</code>. (This is the same program used to run Crymap on the mail server.)</p>
-<h3><a class="header" href="#changing-your-password" id="changing-your-password">Changing your password</a></h3>
+<h3 id="changing-your-password"><a class="header" href="#changing-your-password">Changing your password</a></h3>
 <p>To change your IMAP password, run the below command, where <code>USER</code> is the
 username you use to log in to IMAP, and <code>HOST</code> is the host or domain you use to
 connect to IMAP:</p>
@@ -1056,35 +1222,66 @@ connect to IMAP:</p>
 <p>The password change takes effect immediately, but does not terminate existing
 IMAP sessions.</p>
 <p><strong>Note that your Crymap password is independent of your other email
-password(s).</strong> You need to change both. (It is possible to use different
-passwords for the separate systems too, if you prefer, though not all mail
-clients can work with such a configuration.)</p>
+password(s), if there are any.</strong> You need to change both. (It is possible to
+use different passwords for the separate systems too, if you prefer, though not
+all mail clients can work with such a configuration.)</p>
 <p>If you find you need to undo the password change, the administrator can help
 you with that.</p>
-<h3><a class="header" href="#changing-key-rotation-settings" id="changing-key-rotation-settings">Changing key rotation settings</a></h3>
+<h3 id="changing-key-rotation-settings"><a class="header" href="#changing-key-rotation-settings">Changing key rotation settings</a></h3>
 <p>By default, Crymap rotates your mail encryption keys once per month. Rotation
 is controlled by <em>key name templates</em>, which are filled in with the current
 time. Changing these templates to include more or less of the date will have
 the effect of changing the key rotation frequency.</p>
 <p>Below are some examples of setting the key rotation.</p>
 <pre><code class="language-sh"># Rotate once per day
-crymap remote config --external-key-pattern &quot;external-%Y-m-%d&quot; \
-    --internal-key-pattern &quot;internal-%Y-%m-%d&quot; --user=USER --host=HOST
+crymap remote config --external-key-pattern "external-%Y-m-%d" \
+    --internal-key-pattern "internal-%Y-%m-%d" --user=USER --host=HOST
 # Rotate once per year
-crymap remote config --external-key-pattern &quot;external-%Y&quot; \
-    --internal-key-pattern &quot;internal-%Y&quot; --user=USER --host=HOST
+crymap remote config --external-key-pattern "external-%Y" \
+    --internal-key-pattern "internal-%Y" --user=USER --host=HOST
 # Rotate once per week
-crymap remote config --external-key-pattern &quot;external-%Y-%W&quot; \
-    --internal-key-pattern &quot;internal-%Y-%W&quot; --user=USER --host=HOST
+crymap remote config --external-key-pattern "external-%Y-%W" \
+    --internal-key-pattern "internal-%Y-%W" --user=USER --host=HOST
 </code></pre>
-<h3><a class="header" href="#viewing-the-current-configuration" id="viewing-the-current-configuration">Viewing the current configuration</a></h3>
+<h3 id="outbound-mail-configuration"><a class="header" href="#outbound-mail-configuration">Outbound mail configuration</a></h3>
+<p>This section only applies if your site uses Crymap for outbound mail.</p>
+<p>Normally, your mail client needs to “send” a message twice: Once to request it
+to be sent to the recipients, and again to save it into your “Sent” folder.
+You can configure Crymap to implicitly save sent messages instead, which will
+make the send process faster and smoother:</p>
+<pre><code class="language-sh"># By default you have a "Sent" folder. If you renamed it to something else,
+# you need to use that name here. If the folder does not exist, your messages
+# will *NOT* be saved!
+crymap remote config --smtp-out-save=Sent --user=USER --host=HOST
+</code></pre>
+<p>If you do this, you’ll also need to configure your email client(s) to not also
+save a copy to the Sent folder themselves.</p>
+<p>Whenever Crymap sends email to another server, it generates a “receipt” which
+includes technical details of the mail transaction. By default, if the
+transaction succeeds, the receipt is discarded, and if it fails, it is
+delivered to you as a message in your inbox. Both of these are configurable. In
+the example below, we assume you’ve created “Success” and “Failure” sub-folders
+under your default “Sent” folder.</p>
+<pre><code class="language-sh"># Configuring this will cause you to also get messages about mail successfully
+# sent. If the folder you give here doesn't exist, they'll go to your inbox
+# instead. These messages will be delivered already marked as "read".
+# To disable, rerun with --smtp-out-success=''
+crymap remote config --smtp-out-success-receipts=Sent/Success --user=USER --host=HOST
+
+# Configuring this will change where failure receipts are sent. If the folder
+# you give here doesn't exist, they'll go to your inbox instead. You cannot
+# disable delivery of these notifications, as they are the only way to find out
+# that your mail cannot be sent.
+crymap remote config --smtp-out-failure-receipts=Sent/Failure --user=USER --host=HOST
+</code></pre>
+<h3 id="viewing-the-current-configuration"><a class="header" href="#viewing-the-current-configuration">Viewing the current configuration</a></h3>
 <p>To view the current configuration, simply run</p>
 <pre><code class="language-sh">crymap remote config --user=USER --host=HOST
 </code></pre>
-<h1><a class="header" href="#imap-characteristics" id="imap-characteristics">IMAP Characteristics</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="imap-characteristics"><a class="header" href="#imap-characteristics">IMAP Characteristics</a></h1>
 <p>This section is targeted at client developers or those with an interest in the
 lower-level IMAP details.</p>
-<h2><a class="header" href="#conformance" id="conformance">Conformance</a></h2>
+<h2 id="conformance"><a class="header" href="#conformance">Conformance</a></h2>
 <p>Crymap fully conforms to the IMAP4rev1 (RFC 3501) and IMAP4rev2 (RFC 9051)
 standards. It also conforms to a number of extensions detailed in later
 sections.</p>
@@ -1107,47 +1304,50 @@ sections where relevant.</p>
 <p>Notwithstanding the few exceptions discussed, Crymap’s IMAP implementation
 conforms to the following standards:</p>
 <ul>
-<li>RFC 2045 MIME Extensions: Format of Internet Message Bodies</li>
-<li>RFC 2046 MIME Extensions: Media types</li>
-<li>RFC 2047 MIME Extensions: Message Header Extensions for Non-ASCII Text</li>
-<li>RFC 2157 UTF-7</li>
-<li>RFC 2177 (IDLE)</li>
-<li>RFC 2183 The Content-Disposition Header Field</li>
-<li>RFC 2231 MIME Parameter Value and Encoded Word Extensions: Character Sets, Languages, and Continuations</li>
-<li>RFC 2342 (NAMESPACE)</li>
-<li>RFC 2557 (Content-Location header field)</li>
-<li>RFC 2595 (PLAIN authentication)</li>
-<li>RFC 2971 (ID)</li>
-<li>RFC 3066 Tags for the Identification of Languages</li>
-<li>RFC 3282 Content Language Headers</li>
-<li>RFC 3348 (CHILDREN)</li>
-<li>RFC 3501 (IMAP4rev1)</li>
-<li>RFC 3502 (MULTIAPPEND)</li>
-<li>RFC 3516 (BINARY)</li>
-<li>RFC 3691 (UNSELECT)</li>
-<li>RFC 4315 (UIDPLUS)</li>
-<li>RFC 4731 (ESEARCH)</li>
-<li>RFC 4959 (SASL-IR)</li>
-<li>RFC 4978 (COMPRESS=DEFLATE)</li>
-<li>RFC 5161 (ENABLE)</li>
-<li>RFC 5182 (SEARCHRES)</li>
-<li>RFC 5253 (LIST-EXTENDED)</li>
-<li>RFC 5322 (Internet Message Format)</li>
-<li>RFC 5530 IMAP Response Codes</li>
-<li>RFC 5819 (LIST-STATUS)</li>
-<li>RFC 5918 Unicode Format for Network Interchange</li>
-<li>RFC 6154 (CREATE-SPECIAL-USE and SPECIAL-USE)</li>
-<li>RFC 6532 Internationalized Email Headers</li>
-<li>RFC 6851 (MOVE)</li>
-<li>RFC 6855 (UTF8=ACCEPT)</li>
-<li>RFC 7162 (CONDSTORE and QRESYNC)</li>
-<li>RFC 7888 (LITERAL+)</li>
-<li>RFC 8438 (STATUS=SIZE)</li>
-<li>RFC 8457 IMAP “$Important” Keyword and “\Important” Special-Use Attribute</li>
-<li>RFC 8474 (OBJECTID)</li>
-<li>RFC 9051 (IMAP4rev2)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2045.html">RFC 2045</a> MIME Extensions: Format of Internet Message Bodies</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2046.html">RFC 2046</a> MIME Extensions: Media types</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2047.html">RFC 2047</a> MIME Extensions: Message Header Extensions for Non-ASCII Text</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2157.html">RFC 2157</a> UTF-7</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2177.html">RFC 2177</a> (IDLE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2183.html">RFC 2183</a> The Content-Disposition Header Field</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2231.html">RFC 2231</a> MIME Parameter Value and Encoded Word Extensions: Character Sets, Languages, and Continuations</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2342.html">RFC 2342</a> (NAMESPACE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2557.html">RFC 2557</a> (Content-Location header field)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2595.html">RFC 2595</a> (PLAIN authentication)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2971.html">RFC 2971</a> (ID)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3066.html">RFC 3066</a> Tags for the Identification of Languages</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3282.html">RFC 3282</a> Content Language Headers</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3348.html">RFC 3348</a> (CHILDREN)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3501.html">RFC 3501</a> (IMAP4rev1)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3502.html">RFC 3502</a> (MULTIAPPEND)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3516.html">RFC 3516</a> (BINARY)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3691.html">RFC 3691</a> (UNSELECT)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4315.html">RFC 4315</a> (UIDPLUS)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4731.html">RFC 4731</a> (ESEARCH)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4959.html">RFC 4959</a> (SASL-IR)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4978.html">RFC 4978</a> (COMPRESS=DEFLATE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5161.html">RFC 5161</a> (ENABLE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5182.html">RFC 5182</a> (SEARCHRES)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5253.html">RFC 5253</a> (LIST-EXTENDED)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5322.html">RFC 5322</a> (Internet Message Format)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5530.html">RFC 5530</a> IMAP Response Codes</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5819.html">RFC 5819</a> (LIST-STATUS)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5918.html">RFC 5918</a> Unicode Format for Network Interchange</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6154.html">RFC 6154</a> (CREATE-SPECIAL-USE and SPECIAL-USE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6532.html">RFC 6532</a> Internationalized Email Headers</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6851.html">RFC 6851</a> (MOVE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6855.html">RFC 6855</a> (UTF8=ACCEPT)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7162.html">RFC 7162</a> (CONDSTORE and QRESYNC)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7888.html">RFC 7888</a> (LITERAL+)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8438.html">RFC 8438</a> (STATUS=SIZE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8457.html">RFC 8457</a> IMAP “$Important” Keyword and “\Important” Special-Use Attribute</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8474.html">RFC 8474</a> (OBJECTID)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8514.html">RFC 8514</a> (SAVEDATE)
+since Crymap 2.0.0.</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc9051.html">RFC 9051</a> (IMAP4rev2)
+since Crymap 1.0.1.</li>
 </ul>
-<h2><a class="header" href="#unicode-support" id="unicode-support">Unicode support</a></h2>
+<h2 id="unicode-support"><a class="header" href="#unicode-support">Unicode support</a></h2>
 <p>Crymap is inherently a Unicode-aware, UTF-8-based application. All data which
 is returned to the client in a structured way (i.e., not as a raw byte stream)
 is internally managed as UTF-8.</p>
@@ -1175,23 +1375,17 @@ assumes the client will be able to deal with the parameters itself. This is
 likely to be a safe assumption, since this has always been an optional feature
 of IMAP servers, so clients need to be prepared to do it themselves either way.</p>
 <p>Search uses Unicode “simple” case folding.</p>
-<h2><a class="header" href="#limits" id="limits">Limits</a></h2>
+<h2 id="limits"><a class="header" href="#limits">Limits</a></h2>
 <p>The maximum message size for <code>APPEND</code> is hard-wired to 64MB.</p>
-<p>Batch insertions (through <code>COPY</code>, <code>MOVE</code>, or <code>APPEND</code>) are limited to 65536
-messages.</p>
 <p>Any operation that involves parsing message content will not process more than
 20 levels of multipart or <code>message/rfc822</code> nesting, nor will it process more
 than 1000 different body parts.</p>
 <p>Message header lines in excess of 64kB are not processed.</p>
 <p>Search operations will consider up to 128kB of text. Non-text body parts are
 ignored for search.</p>
-<p>A mailbox can have up to 2’305’843’008 message IDs allocated. Note however that
-inserting multiple messages into a mailbox at once can use up to 128 times as
-many IDs as the number of messages actually inserted. Up to 3’999’999’999
-change transactions can be performed on a mailbox. If either of these limits
-are reached, the mailbox will be “full” and further operations will fail. (Note
-that Crymap has not actually been tested in this condition.)</p>
-<h2><a class="header" href="#mailboxes-1" id="mailboxes-1">Mailboxes</a></h2>
+<p>A mailbox can have up to 4’294’967’294 message IDs allocated. Message IDs are
+allocated sequentially.</p>
+<h2 id="mailboxes"><a class="header" href="#mailboxes">Mailboxes</a></h2>
 <p>All mailboxes other than <code>INBOX</code> may have children. Nesting depth is dependent
 on the host operating system’s maximum path length.</p>
 <p>Mailbox names may not contain <code>%</code>, <code>*</code>, <code>\</code>, <code>/</code>, control characters or one of
@@ -1215,7 +1409,7 @@ recommendation.</p>
 will be terminated as soon as this occurrence is discovered.</p>
 <p>When an account is created, the following mailboxes are made, with the shown
 special-use attributes.</p>
-<table><thead><tr><th>Mailbox</th><th>Special-Use</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Mailbox</th><th>Special-Use</th></tr></thead><tbody>
 <tr><td><code>INBOX</code></td><td></td></tr>
 <tr><td>Archive</td><td><code>\Archive</code></td></tr>
 <tr><td>Drafts</td><td><code>\Drafts</code></td></tr>
@@ -1223,7 +1417,8 @@ special-use attributes.</p>
 <tr><td>Spam</td><td><code>\Junk</code></td></tr>
 <tr><td>Trash</td><td><code>\Trash</code></td></tr>
 </tbody></table>
-<h2><a class="header" href="#messages" id="messages">Messages</a></h2>
+</div>
+<h2 id="messages"><a class="header" href="#messages">Messages</a></h2>
 <p>Crymap tolerates and preserves messages with arbitrary binary content.</p>
 <p>Clients in sessions that have not yet observed the expungement of a message can
 continue to access it for 24hr after the expungement.</p>
@@ -1244,23 +1439,23 @@ convert line endings as they come in. This paragraph applies to messages that
 come in through IMAP or LMTP.)</p>
 <p>Unsolicited <code>FETCH</code> responses always include <code>UID</code> and <code>FLAGS</code>. If <code>CONDSTORE</code>
 has been enabled, they include <code>MODSEQ</code> as well.</p>
-<h2><a class="header" href="#flags" id="flags">Flags</a></h2>
+<h2 id="flags"><a class="header" href="#flags">Flags</a></h2>
 <p>All “system flags” are supported and permanent. <code>\Recent</code> is fully implemented
 and fully atomic. Arbitrary keywords can be created without limit.</p>
-<h2><a class="header" href="#authentication" id="authentication">Authentication</a></h2>
+<h2 id="authentication"><a class="header" href="#authentication">Authentication</a></h2>
 <p><code>LOGIN</code> and <code>AUTHENTICATE PLAIN</code> are both supported and have the same effect.
 <code>AUTHENTICATE</code> does not allow the authorisation and authentication usernames to
 differ.</p>
-<h2><a class="header" href="#extensions" id="extensions">Extensions</a></h2>
-<h3><a class="header" href="#rfc-8457" id="rfc-8457">RFC 8457</a></h3>
+<h2 id="extensions"><a class="header" href="#extensions">Extensions</a></h2>
+<h3 id="rfc-8457"><a class="header" href="#rfc-8457">RFC 8457</a></h3>
 <p>Crymap supports the <code>$Important</code> keyword and the <code>\Important</code> special-use
 attribute.</p>
-<h3><a class="header" href="#rfc-5530" id="rfc-5530">RFC 5530</a></h3>
+<h3 id="rfc-5530"><a class="header" href="#rfc-5530">RFC 5530</a></h3>
 <p>Extended status codes are used everywhere they make sense.</p>
-<h3><a class="header" href="#appendlimit" id="appendlimit">APPENDLIMIT</a></h3>
+<h3 id="appendlimit"><a class="header" href="#appendlimit">APPENDLIMIT</a></h3>
 <p>Crymap uses a fixed <code>APPENDLIMIT</code> value which is reported in the capabilities
 list.</p>
-<h3><a class="header" href="#binary" id="binary">BINARY</a></h3>
+<h3 id="binary"><a class="header" href="#binary">BINARY</a></h3>
 <p>Binary literals are understood, but are not handled any differently than
 non-binary literals. (That is, Crymap accepts and properly handles binary
 content in all contexts.)</p>
@@ -1280,60 +1475,56 @@ literals.</p>
 of a body part, and the server finds that the body part does not use DOS
 newlines, it should convert the newlines to DOS newlines. Crymap does not do
 this, since that constitutes data corruption.</p>
-<h3><a class="header" href="#children" id="children">CHILDREN</a></h3>
+<h3 id="children"><a class="header" href="#children">CHILDREN</a></h3>
 <p>If a client makes a non-extended <code>LIST</code> command, <code>\HasChildren</code> and
 <code>\HasNoChildren</code> mailbox attributes are returned implicitly.</p>
-<h3><a class="header" href="#compressdeflate" id="compressdeflate">COMPRESS=DEFLATE</a></h3>
+<h3 id="compressdeflate"><a class="header" href="#compressdeflate">COMPRESS=DEFLATE</a></h3>
 <p>Deflate-based compression may be enabled at any time.</p>
 <p>Crymap is not aware of whether TLS itself is using compression and so will not
 reject enabling compression even if TLS compression is active.</p>
-<h3><a class="header" href="#condstore" id="condstore">CONDSTORE</a></h3>
+<h3 id="condstore"><a class="header" href="#condstore">CONDSTORE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Atomic updates are performed with respect to all flags on a message and not
 just the flags being modified, since this is both simpler and more useful. (And
 seems like what clients expect — there has been some talk of using conditional
 store to maintain tri-state flags like Junk/NonJunk/(nothing) properly.)</p>
 <p>Modseqs are 63-bit integers as required by the later QRESYNC extension.</p>
-<p>Internally, Modseqs are a 2-element vector clock pairing the maximum known UID
-with a monotonic “Change ID” (CID) with additional bookkeeping to maintain the
-extension’s strict ordering requirements. This can be seen in returned Modseq
-values as the UID multiplied by 4 billion plus the CID.</p>
 <p>If multiple messages are changed at once, they all receive the same Modseq.</p>
 <p>Expunging a message increments the highest Modseq value.</p>
 <p>Crymap does not return <code>HIGHESTMODSEQ</code> response codes until <code>CONDSTORE</code> is
 enabled.</p>
-<h3><a class="header" href="#create-special-use" id="create-special-use">CREATE-SPECIAL-USE</a></h3>
+<h3 id="create-special-use"><a class="header" href="#create-special-use">CREATE-SPECIAL-USE</a></h3>
 <p>The following special-use attributes are allowed: <code>\Archive</code>, <code>\Drafts</code>,
 <code>\Flagged</code>, <code>\Junk</code>, <code>\Sent</code>, <code>\Trash</code>, <code>\Important</code>. <code>\All</code> is not allowed
 since Crymap does not support an “all mail” view.</p>
 <p>At most one special-use can be given to a mailbox. Crymap does not take action
 on special-use attributes except to return them, and does not prevent creating
 multiple mailboxes with the same special use.</p>
-<h3><a class="header" href="#enable" id="enable">ENABLE</a></h3>
+<h3 id="enable"><a class="header" href="#enable">ENABLE</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#esearch" id="esearch">ESEARCH</a></h3>
+<h3 id="esearch"><a class="header" href="#esearch">ESEARCH</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Crymap does not attempt to optimise searches for <code>MIN</code> or <code>MAX</code> alone.</p>
-<h3><a class="header" href="#id" id="id">ID</a></h3>
+<h3 id="id"><a class="header" href="#id">ID</a></h3>
 <p>This extension is fully implemented.</p>
 <p>The client-submitted identifying information is written into the server logs.</p>
 <p>The <code>[identification]</code> section of the server configuration can provide
 additional attributes to be returned here. By default, Crymap returns <code>name</code>
 and <code>version</code>.</p>
-<h3><a class="header" href="#idle" id="idle">IDLE</a></h3>
+<h3 id="idle"><a class="header" href="#idle">IDLE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Notifications about changes are typically delivered within a millisecond of
 when they occurred (modulo client-server latency of course). Message creation
 and expungement and flag operations are all monitored.</p>
 <p>Crymap does not strictly validate that the idle is terminated with “DONE”.</p>
-<h3><a class="header" href="#list-extended" id="list-extended">LIST-EXTENDED</a></h3>
+<h3 id="list-extended"><a class="header" href="#list-extended">LIST-EXTENDED</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#list-status" id="list-status">LIST-STATUS</a></h3>
+<h3 id="list-status"><a class="header" href="#list-status">LIST-STATUS</a></h3>
 <p>This extension is fully implemented, but only because IMAP4rev2 requires it. No
 optimisations are made over simply making separate <code>STATUS</code> calls.</p>
-<h3><a class="header" href="#literal" id="literal">LITERAL+</a></h3>
+<h3 id="literal"><a class="header" href="#literal">LITERAL+</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#move" id="move">MOVE</a></h3>
+<h3 id="move"><a class="header" href="#move">MOVE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Moves occur as three separate atomic steps:</p>
 <ul>
@@ -1341,48 +1532,48 @@ optimisations are made over simply making separate <code>STATUS</code> calls.</p
 <li>Flags are set on the destination messages.</li>
 <li>Messages are removed from the source.</li>
 </ul>
-<h3><a class="header" href="#multiappend" id="multiappend">MULTIAPPEND</a></h3>
+<h3 id="multiappend"><a class="header" href="#multiappend">MULTIAPPEND</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Setting flags on the messages occurs in a separate step message insertion.
 (This is allowed by the spec since even setting the flags at all is only a
 SHOULD.)</p>
-<h3><a class="header" href="#namespace" id="namespace">NAMESPACE</a></h3>
+<h3 id="namespace"><a class="header" href="#namespace">NAMESPACE</a></h3>
 <p>Crymap does not have namespaces. The extension is implemented in that it
 returns a canned “no namespaces” response.</p>
-<h3><a class="header" href="#objectid" id="objectid">OBJECTID</a></h3>
+<h3 id="objectid"><a class="header" href="#objectid">OBJECTID</a></h3>
 <p>This extension is fully implemented except for the optional <code>THREADID</code>
 attribute, since Crymap does not support message threads.</p>
 <p>Mailbox IDs always begin with <code>M</code>, except for <code>INBOX</code>s mailbox ID, which always
 begins with <code>I</code>. Email IDs always begin with <code>E</code>.</p>
 <p>All mailboxes support these attributes.</p>
-<h3><a class="header" href="#qresync" id="qresync">QRESYNC</a></h3>
+<h3 id="qresync"><a class="header" href="#qresync">QRESYNC</a></h3>
 <p>This extension is fully implemented.</p>
-<p>Crymap remembers the most recent 1024 expunge events.</p>
-<h3><a class="header" href="#sasl-ir" id="sasl-ir">SASL-IR</a></h3>
+<p>Crymap remembers all expunge events.</p>
+<h3 id="sasl-ir"><a class="header" href="#sasl-ir">SASL-IR</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#searchres" id="searchres">SEARCHRES</a></h3>
+<h3 id="savedate"><a class="header" href="#savedate">SAVEDATE</a></h3>
+<p>This extension is fully implemented as of Crymap 2.0.0.</p>
+<p>When migrating from the Crymap 1.x message store, the <code>SAVEDATE</code> of each
+message is initialised to the modified time of the file storing the message.</p>
+<h3 id="searchres"><a class="header" href="#searchres">SEARCHRES</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#special-use" id="special-use">SPECIAL-USE</a></h3>
+<h3 id="special-use"><a class="header" href="#special-use">SPECIAL-USE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>See <a href="imap.html#create-special-use">CREATE-SPECIAL-USE</a> for a reference on what
 attributes are supported.</p>
-<h3><a class="header" href="#statussize" id="statussize">STATUS=SIZE</a></h3>
-<p>This extension is fully implemented to the letter of the standard and not at
-all to the spirit. It is only implemented because IMAP4rev2 requires it.</p>
-<p>Returning the size of a mailbox sounds like a useful operation. However, the
-standard does not permit returning the <em>actual</em> size. Instead, it requires the
-returned size to be greater than or equal to the sum of the sizes of the
-messages as they would be fetched in full.</p>
-<p>Since determining the size of a message requires decrypting it, Crymap has no
-way to do this in a way that even resembles efficiency. Instead, it takes
-advantage of the fact that the returned size need only be an <em>upper bound</em> and
-determines the “size” by simply multiplying the message count by 4GB.</p>
-<h3><a class="header" href="#uidplus" id="uidplus">UIDPLUS</a></h3>
+<h3 id="statussize"><a class="header" href="#statussize">STATUS=SIZE</a></h3>
+<p>This extension is fully implemented.</p>
+<p>In versions of Crymap prior to 2.0.0, this was only implemented to the letter
+of the standard and not the spirit due to efficiency concerns: Each message was
+assumed to be 4GB in size and this size was simply multiplied by the message
+count. Crymap 2.0.0 is able to track message sizes efficiently, so this
+limitation no longer applies.</p>
+<h3 id="uidplus"><a class="header" href="#uidplus">UIDPLUS</a></h3>
 <p>This extension is fully supported.</p>
 <p>No mailboxes have the <code>UIDNOTSTICKY</code> attribute.</p>
-<h3><a class="header" href="#unselect" id="unselect">UNSELECT</a></h3>
+<h3 id="unselect"><a class="header" href="#unselect">UNSELECT</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#utf8accept" id="utf8accept">UTF8=ACCEPT</a></h3>
+<h3 id="utf8accept"><a class="header" href="#utf8accept">UTF8=ACCEPT</a></h3>
 <p>The useful part of this extension is implemented. Clients using the extension
 cannot observe aspects (arguably) unimplemented. To clients not using the
 extension, Crymap is the same as any IMAP implementation that does not support
@@ -1402,15 +1593,15 @@ message headers are rejected. Crymap also does not do this, since it is
 actively harmful, leaving users without the ability to copy their existing
 messages into Crymap, and as mentioned in the previous paragraph, clients are
 able to deal with such messages anyway.</p>
-<h3><a class="header" href="#xcry" id="xcry">XCRY</a></h3>
+<h3 id="xcry"><a class="header" href="#xcry">XCRY</a></h3>
 <p>Crymap-specific extension. This entails several commands:</p>
-<h4><a class="header" href="#xcry-purge" id="xcry-purge">XCRY PURGE</a></h4>
+<h4 id="xcry-purge"><a class="header" href="#xcry-purge">XCRY PURGE</a></h4>
 <p>No arguments.</p>
 <p>All expunged messages in the selected mailbox are removed from the host
 filesystem immediately, making them inaccessible to concurrent sessions that
 have not yet observed the expungement.</p>
 <p>This is mainly used as part of Crymap’s internal test suite.</p>
-<h4><a class="header" href="#xcry-get-user-config" id="xcry-get-user-config">XCRY GET-USER-CONFIG</a></h4>
+<h4 id="xcry-get-user-config"><a class="header" href="#xcry-get-user-config">XCRY GET-USER-CONFIG</a></h4>
 <p>No arguments.</p>
 <p>Retrieves the current user configuration.</p>
 <p>Response:</p>
@@ -1418,106 +1609,224 @@ have not yet observed the expungement.</p>
   internal-key-pattern
   external-key-pattern
   password-changed-datetime
-  [astring astring...]
+  key value key value [...]
 </code></pre>
+<p>The <code>GET-USER-CONFIG</code> subcommand was poorly designed in Crymap 1.x.</p>
+<p>The Crymap 1.x capabilities are <code>INTERNAL-KEY-PATTERN</code>, <code>EXTERNAL-KEY-PATTERN</code>,
+and <code>PASSWORD</code>, which correspond to the ability to pass each of those settings
+to <code>SET-USER-CONFIG</code>. Those three settings are guaranteed to be present, in
+that order, immediately after the capabilities in the <code>USER-CONFIG</code> response.
+Each is an <code>nstring</code>.</p>
+<p>Beyond the Crymap 1.x settings are other settings. Each <code>key</code> is an <code>atom</code>
+naming the setting, and the <code>value</code> is an <code>nstring</code> giving the current value of
+that setting. The presence of a setting in this list implies that it can be
+passed to <code>XRY SET-USER-CONFIG</code>.</p>
+<p>Crymap 2.0.0 adds the <code>SMTP-OUT</code> capability. This indicates the presence of the
+<code>XCRY SMTP-OUT</code> subcommand and the following new settings:</p>
+<ul>
+<li><code>SMTP-OUT-SAVE</code>, mailbox into which sent messages are implicitly saved
+(default <code>NIL</code>, meaning no implicit saving happens)</li>
+<li><code>SMTP-OUT-SUCCESS-RECEIPTS</code>, mailbox into which receipts for
+successfully-delivered messages are saved (default <code>NIL</code>, meaning no delivery
+of success receipts)</li>
+<li><code>SMTP-OUT-FAILURE-RECEIPTS</code>, mailbox into which receipts for
+unsuccessfully-delivered messages are saved (default <code>NIL</code>, which is the same
+as <code>"INBOX"</code>)</li>
+</ul>
 <p><code>capabilities</code> provides a list of valid tokens that can be passed to <code>XCRY SET-USER-CONFIG</code>.</p>
-<h4><a class="header" href="#xcry-set-user-config" id="xcry-set-user-config">XCRY SET-USER-CONFIG</a></h4>
+<h4 id="xcry-set-user-config"><a class="header" href="#xcry-set-user-config">XCRY SET-USER-CONFIG</a></h4>
 <p>Arguments: <code>key value [key value [...]]</code></p>
-<p>Updates the given key-value pairs in the configuration. Using this to
-“configure” <code>PASSWORD</code> is also how password changes are done.</p>
+<p>Updates the given key-value pairs in the configuration. Each <code>key</code> is an
+<code>atom</code>; each <code>value</code> is an <code>nstring</code>. Using this to “configure” <code>PASSWORD</code> is
+also how password changes are done.</p>
 <p>Response:</p>
-<pre><code class="language-text">* XCRY BACKUP-FILE &quot;filename&quot;
+<pre><code class="language-text">* XCRY BACKUP-FILE "filename"
 </code></pre>
 <p>The returned filename should be shown to the user to let them know what file to
 use to undo the change.</p>
-<h3><a class="header" href="#xlist" id="xlist">XLIST</a></h3>
+<h4 id="xcry-smtp-out-foreign-tls-list"><a class="header" href="#xcry-smtp-out-foreign-tls-list">XCRY SMTP-OUT FOREIGN-TLS LIST</a></h4>
+<p>No arguments.</p>
+<p>Produces a list of the TLS requirements imposed on outbound SMTP domains.</p>
+<p>Example responses:</p>
+<pre><code class="language-text">* XCRY SMTP-OUT FOREIGN-TLS secure.example.com STARTTLS VALID-CERTIFICATE "TLS 1.3"
+* XCRY SMTP-OUT FOREIGN-TLS insecure.example.com NIL
+</code></pre>
+<h4 id="xcry-smtp-out-foreign-tls-delete"><a class="header" href="#xcry-smtp-out-foreign-tls-delete">XCRY SMTP-OUT FOREIGN-TLS DELETE</a></h4>
+<p>Arguments: <code>domain [domain ...]</code></p>
+<p>Each <code>domain</code> is an <code>astring</code> naming a domain whose TLS requirements are to be
+forgotten. The next attempt to send mail to that domain will not require any
+particular TLS features to be present.</p>
+<h4 id="xcry-smtp-out-spool-execute"><a class="header" href="#xcry-smtp-out-spool-execute">XCRY SMTP-OUT SPOOL EXECUTE</a></h4>
+<p>Arguments: <code>message-id</code></p>
+<p><code>message-id</code> is an <code>astring</code> naming a spooled message ID which should be
+retried.</p>
+<p>Currently, spooled message IDs can only be found by the user in message failure
+receipts.</p>
+<h3 id="xlist"><a class="header" href="#xlist">XLIST</a></h3>
 <p>Implements the <code>XLIST</code> command, which was developed for GMail before
 <code>LIST-EXTENDED</code> was standardised. Some clients may still use this instead of
 the extended <code>LIST</code> command.</p>
-<h3><a class="header" href="#xvanquish" id="xvanquish">XVANQUISH</a></h3>
+<h3 id="xvanquish"><a class="header" href="#xvanquish">XVANQUISH</a></h3>
 <p>Crymap-specific extension.</p>
 <p>Adds the <code>XVANQUISH</code> command. This command takes one argument, a UID sequence
 set. The given messages are immediately expunged without having to go through
 the <code>\Deleted</code> dance first.</p>
 <p>This is not under the <code>XCRY</code> umbrella since it could be useful to others.</p>
-<h3><a class="header" href="#xyzzy" id="xyzzy">XYZZY</a></h3>
+<h3 id="xyzzy"><a class="header" href="#xyzzy">XYZZY</a></h3>
 <p>This is obviously a very important extension for GMail compatibility.</p>
-<h2><a class="header" href="#miscellaneous" id="miscellaneous">Miscellaneous</a></h2>
+<h2 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h2>
 <p>Crymap always returns <code>CAPABILITY</code> response codes to the <code>OK</code> used as a
 greeting upon connection and after successful authentication.</p>
 <p>Crymap accepts UNIX line endings in IMAP, but always outputs DOS line endings.</p>
-<h2><a class="header" href="#extensions-not-implemented" id="extensions-not-implemented">Extensions not implemented</a></h2>
+<h2 id="extensions-not-implemented"><a class="header" href="#extensions-not-implemented">Extensions not implemented</a></h2>
 <p>Extensions in this list were deliberately excluded because they were not
 useful or harmful.</p>
-<h3><a class="header" href="#acl-list-myrights-rights" id="acl-list-myrights-rights">ACL, LIST-MYRIGHTS, RIGHTS=</a></h3>
+<h3 id="acl-list-myrights-rights"><a class="header" href="#acl-list-myrights-rights">ACL, LIST-MYRIGHTS, RIGHTS=</a></h3>
 <p>Since users are strictly bound to their own mailboxes, permissions don’t make
 much sense for Crymap.</p>
-<h3><a class="header" href="#catenate-url-partial-urlauth-urlauthbinary" id="catenate-url-partial-urlauth-urlauthbinary">CATENATE, URL-PARTIAL, URLAUTH, URLAUTH=BINARY</a></h3>
+<h3 id="catenate-url-partial-urlauth-urlauthbinary"><a class="header" href="#catenate-url-partial-urlauth-urlauthbinary">CATENATE, URL-PARTIAL, URLAUTH, URLAUTH=BINARY</a></h3>
 <p>Not implemented due to higher complexity with low benefit.</p>
 <p>URLAUTH is feasible to implement, as it would work by encoding the session key
 of the message in question in the auth string. This would probably be
 sufficient to make it work with BURL. However, it’s not a feature that the
 author would get use of any time soon.</p>
-<h3><a class="header" href="#convert" id="convert">CONVERT</a></h3>
+<h3 id="convert"><a class="header" href="#convert">CONVERT</a></h3>
 <p>Insanity.</p>
 <p>It also looks like, quite possibly, literally nobody has ever implemented this
 for server <em>or</em> client.</p>
-<h3><a class="header" href="#i18nlevel" id="i18nlevel">I18NLEVEL=</a></h3>
+<h3 id="i18nlevel"><a class="header" href="#i18nlevel">I18NLEVEL=</a></h3>
 <p>Requires use of an out-dated, non-standard algorithm for Unicode collation and
 folding.</p>
-<h3><a class="header" href="#sort-esort-thread" id="sort-esort-thread">SORT, ESORT, THREAD</a></h3>
+<h3 id="sort-esort-thread"><a class="header" href="#sort-esort-thread">SORT, ESORT, THREAD</a></h3>
 <p>These concerns are much better handled by the client. Now that QRESYNC exists,
 clients can cheaply keep envelope data synchronised and not only do these
 operations themselves, but do them using up-to-date, standardised collation
 algorithms which take into account the user’s locale.</p>
 <p>Secondarily, these add a decent amount of memory overhead and aren’t something
 the author would ever get use of.</p>
-<h3><a class="header" href="#unauthenticate" id="unauthenticate">UNAUTHENTICATE</a></h3>
+<h3 id="unauthenticate"><a class="header" href="#unauthenticate">UNAUTHENTICATE</a></h3>
 <p>Incompatible with the way Crymap chroots into the user data directory in
 traditional UNIX-style deployments.</p>
-<h3><a class="header" href="#savedate" id="savedate">SAVEDATE</a></h3>
-<p>Incompatible with the way Crymap stores message data.</p>
-<h3><a class="header" href="#within" id="within">WITHIN</a></h3>
+<h3 id="within"><a class="header" href="#within">WITHIN</a></h3>
 <p>Should Crymap ever implement the CONTEXT extensions, this extension has a
 pathological interaction with them, and itself offers very little benefit.</p>
-<h3><a class="header" href="#quota" id="quota">QUOTA</a></h3>
+<h3 id="quota"><a class="header" href="#quota">QUOTA</a></h3>
 <p>Besides being useless to the author, it’s also unclear how this should really
 work, since mail delivery does not have access to the information it would need
 to maintain the quota.</p>
-<h1><a class="header" href="#lmtp-characteristics" id="lmtp-characteristics">LMTP Characteristics</a></h1>
-<h2><a class="header" href="#conformance-1" id="conformance-1">Conformance</a></h2>
-<p>Crymap’s LMTP implementation is believed to conform to:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="smtplmtp-characteristics"><a class="header" href="#smtplmtp-characteristics">SMTP/LMTP Characteristics</a></h1>
+<h2 id="conformance-1"><a class="header" href="#conformance-1">Conformance</a></h2>
+<p>Crymap’s SMTP/LMTP implementation is believed to conform to:</p>
 <ul>
-<li>RFC 1652 (8BITMIME)</li>
-<li>RFC 1830 (BINARY)</li>
-<li>RFC 1854 (PIPELINING)</li>
-<li>RFC 1870 (SIZE)</li>
-<li>RFC 1893 and RFC 2034 (ENHANCEDSTATUSCODES)</li>
-<li>RFC 2033 (LMTP)</li>
-<li>RFC 3207 (STARTTLS)</li>
-<li>RFC 5321 (SMTP)</li>
-<li>RFC 6531 (SMTPUTF8)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1652.html">RFC 1652</a> (8BITMIME)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1830.html">RFC 1830</a> (BINARY)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1854.html">RFC 1854</a> (PIPELINING)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1870.html">RFC 1870</a> (SIZE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1893.html">RFC 1893</a> and
+<a href="https://datatracker.ietf.org/doc/html/rfc2034.html">RFC 2034</a> (ENHANCEDSTATUSCODES)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2033.html">RFC 2033</a> (LMTP)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3207.html">RFC 3207</a> (STARTTLS)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4954.html">RFC 4954</a> (AUTH PLAIN)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5321.html">RFC 5321</a> (SMTP)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6531.html">RFC 6531</a> (SMTPUTF8)</li>
 </ul>
-<h2><a class="header" href="#security" id="security">Security</a></h2>
-<p>Crymap does not implement any authentication mechanism and does not require use
-of TLS. LMTP is not expected to be used with untrusted sources, as OS-level
-controls should be sufficient to prevent foreign access to LMTP.</p>
-<p>For similar reasons, Crymap LMTP makes no attempt to verify the host name
-presented to it in <code>LHLO</code> and simply records it as-is.</p>
-<h2><a class="header" href="#implementation-notes" id="implementation-notes">Implementation notes</a></h2>
-<p>DOS-style line endings are strictly enforced.</p>
-<p>Binary data is correctly processed even if sent through a <code>DATA</code> command.</p>
+<h2 id="inbound-variants"><a class="header" href="#inbound-variants">Inbound variants</a></h2>
+<h3 id="smtp-delivery"><a class="header" href="#smtp-delivery">SMTP delivery</a></h3>
+<p>STARTTLS is fully supported, but not required.</p>
+<p>Crymap will always evaluate DMARC/DKIM/SPF, but will not reject messages on
+that basis unless enabled in the configuration. If enabled, it rejects it in
+the SMTP transaction.</p>
+<p>Crymap does not generate any DMARC reports.</p>
+<p>Attempts to authenticate on the inbound SMTP port will always be rejected.</p>
+<p>Message delivery will always be rejected for any recipient domain which is not
+explicitly defined in the server configuration, even if the server is otherwise
+configured to not consider the domain during delivery, so that the Crymap
+server does not appear to be an open relay.</p>
+<h3 id="smtp-submission"><a class="header" href="#smtp-submission">SMTP submission</a></h3>
+<p>STARTTLS is fully supported for connections that start in cleartext and is
+required before any attempt to authenticate will be allowed.</p>
+<p>The <code>BINARYMIME</code> capability is not reported to the client in SMTP submission as
+Crymap is not able to downgrade binary messages for transmission to servers
+that do not support them.</p>
+<p>Messages cannot be submitted until the user has successfully authenticated.
+Crymap validates that the return path and the <code>From</code> header all reference the
+authenticated user and correspond to a domain which is explicitly defined in
+the server configuration.</p>
+<h3 id="lmtp-1"><a class="header" href="#lmtp-1">LMTP</a></h3>
+<p>STARTTLS is fully supported, but not required.</p>
+<p>DMARC/DKIM/SPF are not evaluated; that should be handled by whatever is
+fronting LMTP. If Crymap is configured to ignore the email domain when
+identifying users, delivery will be accepted for any domain.</p>
+<p>Attempts to authenticate over LMTP will always be rejected.</p>
+<h3 id="general-notes"><a class="header" href="#general-notes">General notes</a></h3>
+<p>DOS-style line endings are not required.</p>
+<p>The <code>DATA</code> command will perform line-ending conversion from UNIX to DOS
+newlines in two conditions:</p>
+<ul>
+<li>The client is using UNIX newlines at the SMTP level.</li>
+<li>The first line ending in the data is a UNIX newline.</li>
+</ul>
+<p>If neither of these conditions are met, binary data can be correctly sent even
+through a plain <code>DATA</code> command, as long as the other end uses the same very
+strict interpretation of dot-stuffing.</p>
+<p>Line ending conversion is never performed on messages sent through the
+<code>CHUNKING</code> extension.</p>
 <p>Maximum line length is 65534 bytes.</p>
+<p>For SMTP delivery and SMTP submission, which must inspect the header block, the
+message header block may not exceed 256kB or the message will be rejected. LMTP
+does not inspect the header block and so has no such limit.</p>
 <p><code>VRFY</code> and <code>EXPN</code> are not supported and return constant hardwired responses.</p>
-<p>The same limit used for IMAP APPEND is enforced for LMTP.</p>
+<p>The <code>BODY=</code> argument to <code>MAIL FROM</code> is entirely ignored. For SMTP submission,
+Crymap identifies the appropriate transfer type by inspecting the message
+itself.</p>
+<p>The same limit used for IMAP APPEND is enforced for SMTP and LMTP.</p>
+<h2 id="outbound-smtp-1"><a class="header" href="#outbound-smtp-1">Outbound SMTP</a></h2>
+<p>The outbound SMTP implementation is simplistic and only suitable for low-volume
+sites.</p>
+<p>A given SMTP session will only be used to send one message (but possibly to
+multiple recipients).</p>
+<p>Crymap remembers the best TLS characteristics it has seen for an email domain
+(not a particular SMTP server), and will abort the transaction if the
+connection it obtains cannot meet those same characteristics:</p>
+<ul>
+<li>Whether or not the server supports TLS at all;</li>
+<li>Whether the server provides a valid certificate;</li>
+<li>The TLS version.</li>
+</ul>
+<p>Crymap will include the exact size of the message in the <code>MAIL FROM</code> command if
+the server supports the <code>SIZE</code> extension. If the server supports the <code>SIZE</code>
+extension and indicates a definite size limit which is smaller than the size of
+the message, Crymap will fail the transaction without attempting it.</p>
+<p>Crymap is not capabable of performing any kind of “downgrading” of a message
+before sending it. In general, the assertion is that servers which do not
+support transport of 8-bit content simply <em>do not exist</em>.</p>
+<ul>
+<li>
+<p>If a binary message is to be sent (which can only occur if the user agent
+which submitted the message ignored the lack of the <code>BINARYMIME</code> capability),
+Crymap will report <code>BODY=BINARYMIME</code> if the remote server advertises
+<code>BINARYMIME</code>, <code>BODY=8BITMIME</code> if the remote server does not advertise
+<code>BINARYMIME</code> but does advertise <code>8BITMIME</code>, and no <code>BODY=</code> argument if the
+server supports neither extension.</p>
+</li>
+<li>
+<p>If an 8-bit message is to be sent, Crymap will report <code>BODY=8BITMIME</code> if the
+remote server advertises <code>8BITMIME</code>, and no <code>BODY=</code> argument otherwise.</p>
+</li>
+</ul>
+<p>The presence of the <code>SMTPUTF8</code> capability has no effect. For a message that
+nominally requires that capability, Crymap will attempt to send it anyway and
+allow the server to decide whether or not it understands the SMTP commands and
+the message itself.</p>
+<p>Crymap will always transfer the message with <code>BDAT</code> if the server supports the
+<code>CHUNKING</code> extension.</p>
+<p>Crymap never takes advantage of pipelining or enhanced status codes.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
 
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -1525,39 +1834,28 @@ presented to it in <code>LHLO</code> and simply records it as-is.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
 
-                
             </nav>
 
         </div>
 
-        
 
-        
 
-        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
 
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
 
-        
-        
         <script type="text/javascript">
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
-        
-        
 
     </body>
 </html>

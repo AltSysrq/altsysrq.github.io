@@ -24,9 +24,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
 
-        
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
@@ -70,14 +68,13 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html" class="active"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html" class="active"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
+                                <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
                         <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,11 +90,9 @@
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                             </ul>
-                            
                             <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                                 <i class="fa fa-search"></i>
                             </button>
-                            
                         </div>
 
                         <h1 class="menu-title">Crymap</h1>
@@ -110,7 +105,6 @@
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
@@ -121,7 +115,6 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
@@ -134,24 +127,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#installation-guide" id="installation-guide">Installation Guide</a></h1>
-<h2><a class="header" href="#system-requirements" id="system-requirements">System Requirements</a></h2>
+                        <h1 id="installation-guide"><a class="header" href="#installation-guide">Installation Guide</a></h1>
+<h2 id="system-requirements"><a class="header" href="#system-requirements">System Requirements</a></h2>
 <p>Crymap is designed to run on FreeBSD and Linux. It probably works on the other
 BSDs, but is not tested on them. Windows is not supported and most likely never
 will be since its filesystem is incompatible with Crymap’s requirements on many
 fronts.</p>
-<p>The host file system must support symlinks and hard links, be case-sensitive,
-and either be non-normalising or use NFC normalisation. There must not be mount
-points inside any user directory. Remote file systems like NFS are supported if
-they provide sufficient consistency guarantees, but Crymap is not specifically
-designed to work with them, and IDLE notifications will only work properly if
-all Crymap instances for a given user are run on the same host.</p>
+<p>The host file system must support symlinks and hard links. There must not be
+mount points inside any user directory. Remote file systems like NFS are
+supported if they provide sufficient consistency guarantees, but Crymap is not
+specifically designed to work with them, and IDLE notifications will only work
+properly if all Crymap instances for a given user are run on the same host.</p>
 <p>When run on a single-CPU host or with appropriate tuning on a multi-CPU host,
 each Crymap instance typically only consumes a few MB of RAM. However, do be
 aware that Crymap is a one-process-per-connection system.</p>
 <p>Crymap generally only holds at most a few dozen file handles open at any given
 time.</p>
-<h2><a class="header" href="#installation" id="installation">Installation</a></h2>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>Crymap requires having the OpenSSL libraries installed. On Debian/Ubuntu, you
 can get them with <code>apt install openssl</code>. FreeBSD has the required libraries in
 the base distribution. (There is a way to cause OpenSSL to be built along with
@@ -179,7 +171,7 @@ $ cd crymap
 $ cargo build --release
 # cp target/release/crymap /usr/local/bin/crymap
 </code></pre>
-<h2><a class="header" href="#initial-system-setup" id="initial-system-setup">Initial System Setup</a></h2>
+<h2 id="initial-system-setup"><a class="header" href="#initial-system-setup">Initial System Setup</a></h2>
 <p>First, make sure you have valid SSL certificates for your domain. A full
 explanation of how to do this is beyond the scope of this document, but
 <a href="https://letsencrypt.org/">Let’s Encrypt</a> is a good place to start if you are
@@ -202,9 +194,9 @@ below.</p>
 # The path to your X509 private key. The example here would be correct for
 # a FreeBSD system at `example.org` using Let's Encrypt with the default
 # configuration.
-private_key = &quot;/usr/local/etc/letsencrypt/live/example.org/privkey.pem&quot;
+private_key = "/usr/local/etc/letsencrypt/live/example.org/privkey.pem"
 # The path to the full X509 certificate chain.
-certificate_chain = &quot;/usr/local/etc/letsencrypt/live/example.org/fullchain.pem&quot;
+certificate_chain = "/usr/local/etc/letsencrypt/live/example.org/fullchain.pem"
 </code></pre>
 <p>(Yes, that’s all there is to the required configuration.)</p>
 <p>Before we go further, we need to decide what style of deployment we’re going to
@@ -251,7 +243,7 @@ deployment. If you get the message <code>stdin and stdout must not be a terminal
 it means the configuration is valid and Crymap was ready to serve network
 traffic.</p>
 <p>We won’t create any users just yet.</p>
-<h2><a class="header" href="#running-crymap-in-imaps-mode" id="running-crymap-in-imaps-mode">Running Crymap in IMAPS mode</a></h2>
+<h2 id="running-crymap-in-imaps-mode"><a class="header" href="#running-crymap-in-imaps-mode">Running Crymap in IMAPS mode</a></h2>
 <p>Crymap does not run as a daemon. Instead, it uses a one-process-per-connection
 model in which some other process listens for connections and spawns Crymap
 processes as connections arrive. There are a number of options here, including
@@ -275,7 +267,7 @@ pass the server’s host name to <code>--host</code>.) If successful, you should
 IMAP protocol traces and receive a prompt for a password. Of course, since no
 users have been created yet, it is not possible to log in, so simply cancel
 once it gets that far.</p>
-<h2><a class="header" href="#creating-a-user" id="creating-a-user">Creating a User</a></h2>
+<h2 id="creating-a-user"><a class="header" href="#creating-a-user">Creating a User</a></h2>
 <p>User creation is done with the <code>crymap server user add</code> command. By default, it
 generates a random password for the new user; <code>--prompt-password</code> can be given
 to input a password on the terminal instead. Refer to the <a href="user-guide.html">user
@@ -295,31 +287,81 @@ leave the user directory off to simply store the user data inside <code>users</c
 </code></pre>
 <p>It is also possible at this point to connect your favourite email application
 to Crymap, though you can’t receive email just yet.</p>
-<h2><a class="header" href="#configuring-mail-delivery" id="configuring-mail-delivery">Configuring Mail Delivery</a></h2>
-<p>Since Crymap does not provide an SMTP solution, it must be integrated with a
-third party application to accept incoming mail. Crymap currently offers two
-ways to do this integration:</p>
+<h2 id="configuring-inbound-mail-delivery"><a class="header" href="#configuring-inbound-mail-delivery">Configuring Inbound Mail Delivery</a></h2>
+<p>There are three ways to set up inbound mail delivery.</p>
 <ul>
 <li>
+<p>SMTP. In this setup, Crymap receives messages directly from external servers.
+Having Crymap handle SMTP directly is the simplest setup and ensures no
+message data is written to disk in the clear, but is also the least flexible
+option, as Crymap won’t do anything with inbound messages but deliver them to
+the INBOX without flags.</p>
+</li>
+<li>
 <p>LMTP. LMTP is a variant of SMTP which is suitable for the final step in the
-mail delivery process. LMTP is robust, can correctly handle binary payloads,
+mail delivery process. Compared to having Crymap serve SMTP directly, LMTP is
+more complicated to set up as you need a third-party SMTP solution and may be
+less secure since most SMTP servers spool messages to disk in cleartext, but
+will give you whatever flexibility the SMTP solution offers. Compared to the
+UNIX MDA option below, LMTP is robust, can correctly handle binary payloads,
 and can be more efficient, but is inflexible in that all messages are
 delivered to INBOX and without flags.</p>
 </li>
 <li>
-<p>UNIX MDA. This is more flexible than LMTP as it can be made to deliver to
-arbitrary mailboxes in a user’s account and to set flags on new messages. In
-traditional UNIX setups, users can also invoke Crymap in as an MDA from their
-<code>.forward</code> file. Its main disadvantages are that it is less robust against
-errors, and because UNIX MDAs are typically passed the message with all line
-endings converted to UNIX line endings, Crymap must convert the line endings
-back, which will destroy binary content.</p>
+<p>UNIX MDA. This is more flexible than SMTP LMTP as it can be made to deliver
+to arbitrary mailboxes in a user’s account and to set flags on new messages.
+In traditional UNIX setups, users can also invoke Crymap in as an MDA from
+their <code>.forward</code> file. Its main disadvantages are that it is less robust
+against errors, and because UNIX MDAs are typically passed the message with
+all line endings converted to UNIX line endings, Crymap must convert the line
+endings back, which will destroy binary content. Like LMTP, this also comes
+with the disadvantages of needing an external SMTP solution.</p>
 </li>
 </ul>
-<p>The instructions here are for LMTP. Refer to <code>crymap server deliver --help</code> for
-more information on using Crymap as an MDA. This section also contains concrete
-examples of using OpenSMTPD; if you are using a different SMTP daemon, you will
-need to refer to its documentation.</p>
+<h3 id="smtp"><a class="header" href="#smtp">SMTP</a></h3>
+<p>First, inbound SMTP requires a bit of extra configuration in <code>crymap.toml</code>.
+You’ll need to tell Crymap what its fully-qualified domain name is and what
+domains it is expecting to serve.</p>
+<p>The below example shows what you might add to a server that will be receiving
+email from <code>example.com</code> and <code>example.net</code>.</p>
+<pre><code class="language-toml">[smtp]
+# A DNS lookup for this name should return the IP address of the Crymap server.
+host_name = "mx.example.net"
+
+[smtp.domains."example.com"]
+# No configuration here for now, we just need to make sure the section for
+# "example.com" exists.
+
+[smtp.domains."example.net"]
+# No configuration here for now, we just need to make sure the section for
+# "example.com" exists.
+</code></pre>
+<p>Next, you just need to arrange for Crymap to handle inbound SMTP connections.
+Here is an example inetd configuration for a UNIX-style deployment:</p>
+<pre><code class="language-text">smtp    stream  tcp     nowait  root    /usr/local/bin/crymap   crymap server serve-smtpin
+smtp	stream  tcp6    nowait  root    /usr/local/bin/crymap   crymap server serve-smtpin
+</code></pre>
+<p>Notes:</p>
+<ul>
+<li>
+<p>Notice this uses <code>serve-smtpin</code> instead of <code>serve-imaps</code> at the end.</p>
+</li>
+<li>
+<p>As with IMAPS, for a simple black box deployment, you would configure it to
+run under the Crymap user and not <code>root</code>.</p>
+</li>
+</ul>
+<p>You can use <code>socat</code> to see if SMTP is working:</p>
+<pre><code class="language-text">$ socat STDIO TCP:localhost:25
+220 mx.example.net crymap 2.0.0 ESMTP ready
+^C
+</code></pre>
+<p>At this point, you should also be able to send email from external email
+providers to your server.</p>
+<h3 id="lmtp"><a class="header" href="#lmtp">LMTP</a></h3>
+<p>Besides setting up crymap, this section also contains concrete examples of
+using OpenSMTPD; if you are using a different SMTP daemon, you will need to
+refer to its documentation.</p>
 <p>First, we need to set something up to run Crymap in LMTP mode. This works
 essentially the same as how we set up IMAPS, except here we <em>don’t</em> want the
 server to be accessible to anyone in the world. There’s two ways to do that:</p>
@@ -359,18 +401,100 @@ simple installations, but you may want to have a look at the <a href="config-ref
 reference</a>.</p>
 <p>You can use <code>socat</code> to see if LMTP is working:</p>
 <pre><code class="language-text">$ socat STDIO UNIX:/var/run/lmtp.sock
-220 yourhostname crymap 1.0.0 LMTP ready
+220 yourhostname crymap 2.0.0 LMTP ready
 ^C
 </code></pre>
 <p>Finally, you need to configure your SMTP server to deliver mail through LMTP.
 For OpenSMTPD, your <code>smtpd.conf</code> file might contain something like this:</p>
-<pre><code class="language-text">action &quot;local_mail&quot; lmtp &quot;/var/run/lmtp.sock&quot;
-match from any for domain &quot;lin.gl&quot; action &quot;local_mail&quot;
-match for local action &quot;local_mail&quot;
+<pre><code class="language-text">action "local_mail" lmtp "/var/run/lmtp.sock"
+match from any for domain "lin.gl" action "local_mail"
+match for local action "local_mail"
 </code></pre>
 <p>After that, all that’s left to test is to send the user an email and see if it
 shows up!</p>
-<h2><a class="header" href="#troubleshooting" id="troubleshooting">Troubleshooting</a></h2>
+<h3 id="unix-mda"><a class="header" href="#unix-mda">Unix MDA</a></h3>
+<p>There isn’t anything Crymap-specific to set up for this use case. You will need
+to find out how to get your SMTP solution to run a UNIX MDA command line, which
+in most cases would simply be <code>crymap server deliver</code>. Refer to
+<code>crymap server deliver --help</code> for additional options.</p>
+<h2 id="outbound-smtp"><a class="header" href="#outbound-smtp">Outbound SMTP</a></h2>
+<p>If you want to use a third-party solution for outbound mail, there is nothing
+to configure which is Crymap-specific. Third-party solutions are generally more
+user-friendly, more battle-tested, and more flexible, but are less secure since
+they need to spool messages onto disk in cleartext or another way that allows
+passive recovery of the message content.</p>
+<p>Crymap does have outbound SMTP support. Its advantages are simple
+configuration, built-in DKIM support, unification of the authentication system
+with IMAP, and that messages do not get spooled to disk in the clear. However,
+it has a major downside: Retrying failed messages is <strong>manual</strong>, and currently
+can only be done with the Crymap <strong>command-line application</strong>.</p>
+<p>If you want to use Crymap’s outbound SMTP support, you will first need to add
+the SMTP configuration to <code>crymap.toml</code> if you haven’t done this already. Refer
+to the <a href="#SMTP">SMTP</a> section for an example.</p>
+<p>If you have existing DKIM keys you wish to continue using, you can add these to
+the domain-specific sections in <code>crymap.toml</code>. Search for “DKIM” in the
+<a href="admin-guide/config.html">Configuration Guide</a> for details on what to add there.
+You can use the <code>openssl</code> and <code>base64</code> command-line utilities to convert the
+private keys you already have into the required format.</p>
+<p>If you do not have existing DKIM keys, the next step will help you generate
+some.</p>
+<p>You can use <code>crymap server smtp-out-sanity-check</code> on your server to check your
+configuration, including external DNS. This tool will generate DKIM keys for
+you if you have none, and will provide additional suggestions to make it more
+likely that major email providers will accept your email.</p>
+<p>Finally, you need to arrange for Crymap to run SMTP submission to receive
+outbound mail from your users. There are two supported options here:</p>
+<ul>
+<li>
+<p>SMTP+TLS on port 465, called variously <code>submissions</code>, <code>smtps</code>, or <code>ssmtp</code> in
+<code>/etc/services</code>, is preferred. Use only this one if you can. This is the
+<code>serve-smtpssub</code> subcommand (note the double “s”).</p>
+</li>
+<li>
+<p>SMTP submission on port 587, usually called <code>submission</code> in <code>/etc/services</code>.
+This variant relies on the client performing <code>STARTTLS</code> and may be vulnerable
+to the “strip TLS” attack depending on the client. This is the
+<code>serve-smtpsub</code> (note no double “s”).</p>
+</li>
+</ul>
+<p>Here is an example inetd configuration for a UNIX-style deployment with both protocols:</p>
+<pre><code class="language-text"># The preferred "implicit TLS" variant
+submissions stream  tcp     nowait  root    /usr/local/bin/crymap   crymap server serve-smtpssub
+submissions stream  tcp6    nowait  root    /usr/local/bin/crymap   crymap server serve-smtpssub
+# The legacy STARTTLS variant
+submission  stream  tcp     nowait  root    /usr/local/bin/crymap   crymap server serve-smtpsub
+submission  stream  tcp6    nowait  root    /usr/local/bin/crymap   crymap server serve-smtpsub
+</code></pre>
+<p>Notes:</p>
+<ul>
+<li>
+<p>Sotice this uses <code>serve-smtpssub</code> and <code>serve-smtpsub</code> instead of
+<code>serve-imaps</code> at the end.</p>
+</li>
+<li>
+<p>As with IMAPS, for a simple black box deployment, you would configure it to
+run under the Crymap user and not <code>root</code>.</p>
+</li>
+</ul>
+<p>You can use <code>socat</code> to see if it is working:</p>
+<pre><code class="language-text"># Implicit TLS protocol
+# You could also use your server's fully-qualified domain name instead of
+# "localhost" and then exclude ",verify=0" instead.
+$ socat STDIO SSL:localhost:465,verify=0
+220 mx.example.net crymap 2.0.0 ESMTPS ready
+^C
+# Legacy STARTTLS protocol
+$ socat STDIO TCP:localhost:587
+220 mx.example.net crymap 2.0.0 ESMTP ready
+^C
+</code></pre>
+<p>You are now ready to test sending mail. You should start by emailing yourself
+so that bad configuration does not impact your reputation on the big providers,
+then move on to various third parties.</p>
+<p>If sending a message fails at the SMTP level, the failure receipt will be
+delivered to your account’s inbox, which you can use to debug why the remote
+server rejected your message.</p>
+<h2 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h2>
 <p>By default, Crymap logs to syslog under the “mail” utility. When Crymap is not
 run from a terminal, this means its logs should end up someplace like
 <code>/var/log/maillog</code> or <code>/var/log/mail.log</code>.</p>
@@ -385,17 +509,13 @@ run a command like <code>socat STDIO TCP:localhost:993</code> to see if anything
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="encryption.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="admin-guide/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -403,39 +523,29 @@ run a command like <code>socat STDIO TCP:localhost:993</code> to see if anything
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a href="encryption.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
                     <a href="admin-guide/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
 
-        
 
-        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
 
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
 
-        
 
     </body>
 </html>

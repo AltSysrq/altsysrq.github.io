@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Backups and Recovery - Crymap</title>
+        <title>Migration from Crymap 1.x - Crymap</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="Usage documentation for the Crymap IMAP server">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,7 +68,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html" class="active"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="../admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="../admin-guide/migration.html" class="active"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -127,52 +127,66 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="backups-and-recovery"><a class="header" href="#backups-and-recovery">Backups and Recovery</a></h1>
-<h2 id="backups"><a class="header" href="#backups">Backups</a></h2>
-<p>Starting with Crymap 2.0.0, each message and private key is stored in its own
-file, with all other data tracked in a couple SQLite databases.</p>
-<p>Backup tooling does not need to support any exotic filesystem features, and
-even Windows filesystems will be able to carry the backup in tact.</p>
-<h2 id="restoring-from-backup"><a class="header" href="#restoring-from-backup">Restoring from Backup</a></h2>
-<p>In most cases, simply restoring from backup should do the trick.</p>
-<p>There are a few cases where a backup could be torn across an update:</p>
+                        <h1 id="migration-from-crymap-1x"><a class="header" href="#migration-from-crymap-1x">Migration from Crymap 1.x</a></h1>
+<h2 id="system"><a class="header" href="#system">System</a></h2>
+<p>To upgrade from Crymap 1.x to 2.x, no configuration changes or user action is
+required. The recommended upgrade procedure is as follows:</p>
 <ol>
-<li>
-<p>Messages on the filesystem but not in the database. At least once a day,
-Crymap automatically checks for such messages. They will automatically
-appear in the user’s inbox.</p>
-</li>
-<li>
-<p>Messages in the database but not in the filesystem. These will appear to the
-user as stub messages indicating the problem. The user must delete the
-entries themselves.</p>
-</li>
-<li>
-<p>Corrupt SQLite database. You can remove <code>delivery.sqlite*</code> and
-<code>meta.sqlite.xex*</code> (<strong>important</strong>: ensure you remove the <code>-journal</code> file
-too!), then copy one of the <code>meta.sqlite.xex.*</code> backups from the user’s
-<code>backup</code> directory to <code>meta.sqlite.xex</code> in the user’s directory. In the
-worst case, if you can’t get anything to work, you can remove
-<code>meta.sqlite.xex*</code> entirely, which will result in all the user’s messages
-being in unread, in <code>INBOX</code>, and in no particular order, but at least their
-mail will be there.</p>
-</li>
+<li>Disable all ways for Crymap server processes to be created.</li>
+<li>Terminate any remaining Crymap server processes.</li>
+<li>Upgrade the Crymap binary to 2.x.</li>
+<li>Reenable Crymap.</li>
 </ol>
-<p>Objects from a user account are readable from only that user account. For
-example, in case of a system failure, you cannot set up a new system, create
-user accounts in it, and then expect to be able to drop data from the backups
-into those new user accounts. The user accounts themselves must be restored
-from backup.</p>
+<h2 id="user"><a class="header" href="#user">User</a></h2>
+<p>Crymap 2.x uses an entirely different data model than 1.x. When a user next
+logs in, they will automatically be migrated from the 1.x data model to the 2.x
+data model. This can take a few seconds to a few minutes, depending on the size
+of the account and the speed of the server.</p>
+<p>The data migration process preserves all messages, message flags, and the
+mailbox hierarchy. It does not preserve message IDs of any kind or
+synchronisation states. The user’s email client will thus effectively start
+from a blank slate once migration completes and will need to
+resynchronise/redownload everything it wants to keep local.</p>
+<p>There is no way to migrate users in advance, as the migration process requires
+the user’s credentials to proceed.</p>
+<p>A user whose account is still on the 1.x data model can still receive mail from
+Crymap 2.x, though this mail will be added to the account under the 2.x data
+model.</p>
+<h2 id="rollback"><a class="header" href="#rollback">Rollback</a></h2>
+<p>If you decide you need to roll back, the recommended procedure is as follows:</p>
+<ol>
+<li>Disable all ways for Crymap server processes to be created.</li>
+<li>Terminate any remaining Crymap server processes.</li>
+<li>Manually roll back any user accounts that had been upgraded.</li>
+<li>Downgrade the Crymap binary to 1.x.</li>
+<li>Reenable Crymap.</li>
+</ol>
+<p>A user account that was migrated from the 1.x data model to the 2.x data model
+can be identified by the presence of a <code>crymap-v1-files</code> directory under the
+user directory. A user can be rolled back to the 1.x model by running the
+following commands in the user directory:</p>
+<pre><code class="language-sh">mv crymap-v1-files/* .
+rmdir crymap-v1-files
+rm -rf messages delivery.sqlite* meta.sqlite.xex*
+</code></pre>
+<p>This will reset the account to the state it was in before the migration, except
+for changes to the <code>user.toml</code> file (which would include password changes). If
+the <code>user.toml</code> file now has an <code>[smtp_out]</code> section, you will need to remove
+that manually with a text editor, or restore the <code>user.toml</code> file from a backup
+in <code>tmp</code> if there is one or from another backup you had made.</p>
+<h2 id="finishing-touches"><a class="header" href="#finishing-touches">Finishing touches</a></h2>
+<p>Once you are sure you won’t need to roll back, you can entirely remove the
+<code>crymap-v1-files</code> within each user directory.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../admin-guide/users.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../admin-guide/tuning.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../admin-guide/filesystem.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../user-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -182,11 +196,11 @@ from backup.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a href="../admin-guide/users.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../admin-guide/tuning.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a href="../admin-guide/filesystem.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../user-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

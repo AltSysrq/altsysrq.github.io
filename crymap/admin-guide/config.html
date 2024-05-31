@@ -24,9 +24,7 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
 
-        
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
@@ -70,14 +68,13 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html" class="active"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html" class="active"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="../admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
+                                <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
                         <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,11 +90,9 @@
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                             </ul>
-                            
                             <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                                 <i class="fa fa-search"></i>
                             </button>
-                            
                         </div>
 
                         <h1 class="menu-title">Crymap</h1>
@@ -110,7 +105,6 @@
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
@@ -121,7 +115,6 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
@@ -134,15 +127,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#configuration-reference" id="configuration-reference">Configuration Reference</a></h1>
-<h2><a class="header" href="#crymaptoml" id="crymaptoml">crymap.toml</a></h2>
+                        <h1 id="configuration-reference"><a class="header" href="#configuration-reference">Configuration Reference</a></h1>
+<h2 id="crymaptoml"><a class="header" href="#crymaptoml">crymap.toml</a></h2>
 <p>Below is an example <code>crymap.toml</code> with every option explicitly set to the
-default and comments explaining what each one does.</p>
+default (or an example value if there is no default) and comments explaining
+what each one does.</p>
 <pre><code class="language-toml">[tls]
 # The path to your X509 private key.
-private_key = &quot;&lt;no default&gt;&quot;
+private_key = "&lt;no default&gt;"
 # The path to the full X509 certificate chain.
-certificate_chain = &quot;&lt;no default&gt;&quot;
+certificate_chain = "&lt;no default&gt;"
 
 # Additional identification information to send to clients.
 # This is a free-form map. Refer to RFC 2971 § 3.3 to see what standard
@@ -150,10 +144,12 @@ certificate_chain = &quot;&lt;no default&gt;&quot;
 # `support_url` is probably the most important one since some mail clients
 # can use it to help the user get assistance.
 # Underscores in key names are replaced with hyphens.
+# The contents of this section is examples and not defaults, as the default
+# configuration is empty.
 [identification]
-vendor = &quot;Example Company&quot;
-support_url = &quot;mailto:it@example.com&quot;
-address = &quot;1313 Dead End Dr&quot;
+vendor = "Example Company"
+support_url = "mailto:it@example.com"
+address = "1313 Dead End Dr"
 
 # The [security] section applies any time any of the `crymap server ...`
 # commands is run.
@@ -174,21 +170,28 @@ chroot_system = false
 # configuration where it does not normally have access to SSL certificates, for
 # example.
 #
-# This setting is the main difference between a &quot;simple&quot; black box deployment,
-# where Crymap is started as the desired non-root user, and a &quot;two-step&quot; black
+# This setting is the main difference between a "simple" black box deployment,
+# where Crymap is started as the desired non-root user, and a "two-step" black
 # box deployment, where Crymap is started as root and then drops to the user
 # given here.
-system_user = &quot;&quot;
+system_user = ""
 
-# The [lmtp] section applies when Crymap is run with `crymap server serve-lmtp`.
-[lmtp]
+# The [smtp] section applies when Crymap is run with `crymap server serve-lmtp`,
+# `crymap server serve-smtpin`, `crymap server serve-smtpsub`, and
+# `crymap server serve-smtpssub`.
+#
+# In Crymap 1.x, this section was called `[lmtp]`, and that name is still
+# supported for backwards-compatibility.
+[smtp]
 # If non-empty, Crymap will report this value as its hostname.
 # By default, Crymap reports the system host name.
-host_name = &quot;&quot;
+# Explicit configuration of this value is required for outbound SMTP support
+# as a fully-qualified domain is required in that case.
+host_name = ""
 
 # By default, Crymap will strip everything after the `@` in destination
 # addresses to determine the name of the Crymap user (so an email addressed
-# to &quot;foo@bar.com&quot; gets delivered to Crymap user &quot;foo&quot;). Setting this to true
+# to "foo@bar.com" gets delivered to Crymap user "foo"). Setting this to true
 # suppresses this behaviour. Note that your SMTP daemon may also do this
 # stripping, in which case you must configure both Crymap and the SMTP daemon
 # to retain the domain.
@@ -204,7 +207,46 @@ keep_recipient_domain = false
 # happen. Note that this means that your SMTP daemon must make the
 # normalisations you want. Most importantly, enabling this option will make
 # Crymap mail delivery CASE SENSITIVE TO USER NAMES.
+#
+# You probably shouldn't set this to true if Crymap is fronting SMTP itself.
 verbatim_user_names = false
+
+# By default, Crymap evaluates DMARC for inbound SMTP but does not take any
+# action on DMARC failures.
+# If set to true, Crymap will reject inbound SMTP transactions if the DMARC
+# evaluation fails and the DMARC record requests to reject such failures.
+#
+# This has no effect on LMTP or SMTP submission.
+reject_dmarc_failures = false
+
+# If enabled, receipts produced for outbound SMTP transactions will include
+# very verbose details about TLS handshakes.
+verbose_outbound_tls = false
+
+# Each entry under `smtp.domains` describes an SMTP domain the Crymap server
+# will support. You only need to configure this if Crymap is handling SMTP
+# itself.
+# Simply defining a table, even if empty, is sufficient to make Crymap consider
+# the domain usable.
+[smtp.domains."example.com"]
+# Each value under `dkim` defines a DKIM key which will be used to sign
+# messages originating from this domain. They have no effect on inbound
+# messages.
+#
+# The part after `dkim.` is the DKIM selector. The value is either `rsa:DATA`,
+# where DATA is a base64-encoded RSA private key in DER format, or
+# `ed25519:DATA`, where DATA is a base64-encoded ED25519 private key in raw
+# format.
+#
+# If there are multiple keys for one domain, they will all be used to sign the
+# message, in lexicographical order. Note that Microsoft Exchange only examines
+# the first DKIM header on a message, and fails the message if it does not know
+# about the signature algorithm. As of 2024-05, it does not understand ED25519,
+# so you should ensure that the first key (in lexicographical order, not
+# necessarily the written in the configuration) is a reasonably-sized RSA key
+# if you care about talking to people on Exchange/Outlook.com/Hotmail/etc.
+dkim.selector1 = "rsa:MIQU2whmZwg&lt;VERY LONG STRING...&gt;"
+dkim.selector2 = "ed25519:13SSM&lt;LONG STRING...&gt;"
 
 [diagnostic]
 # If set, redirect standard error to this file on startup.
@@ -218,7 +260,7 @@ verbatim_user_names = false
 # Crymap, as actual errors should go through the logging system.
 stderr = null
 </code></pre>
-<h2><a class="header" href="#logging" id="logging">Logging</a></h2>
+<h2 id="logging"><a class="header" href="#logging">Logging</a></h2>
 <p>By default, Crymap logs to syslog under the “mail” facility.</p>
 <p>If you want to do something else, you can create a file named <code>logging.toml</code>
 next to <code>crymap.toml</code>. This file is a <a href="https://docs.rs/log4rs">log4rs</a>
@@ -228,41 +270,37 @@ now. Note that there is not currently a way to log to syslog <em>and</em> a sepa
 logging system simultaneously at this time.</p>
 <p>Here is a basic example of a <code>logging.toml</code> file:</p>
 <pre><code class="language-toml">[appenders.file]
-kind = &quot;rolling_file&quot;
-path = &quot;/var/log/crymap/crymap.log&quot;
+kind = "rolling_file"
+path = "/var/log/crymap/crymap.log"
 append = true
 
 [appenders.file.policy.trigger]
-kind = &quot;size&quot;
-limit = &quot;10 MB&quot;
+kind = "size"
+limit = "10 MB"
 
 [appenders.file.policy.roller]
-kind = &quot;delete&quot;
+kind = "delete"
 
 [appenders.file.encoder]
-kind = &quot;pattern&quot;
-pattern = &quot;{d(%Y-%m-%dT%H:%M:%S)} [{l}][{t}] {m}{n}&quot;
+kind = "pattern"
+pattern = "{d(%Y-%m-%dT%H:%M:%S)} [{l}][{t}] {m}{n}"
 
 [root]
-level = &quot;info&quot;
-appenders = [&quot;file&quot;]
+level = "info"
+appenders = ["file"]
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../admin-guide/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="../admin-guide/users.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -270,39 +308,29 @@ appenders = [&quot;file&quot;]
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a href="../admin-guide/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
                     <a href="../admin-guide/users.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
 
-        
 
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
 
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
 
-        
 
     </body>
 </html>

@@ -24,9 +24,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
 
-        
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
@@ -70,14 +68,13 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html" class="active"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html" class="active"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
+                                <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
                         <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,11 +90,9 @@
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                             </ul>
-                            
                             <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                                 <i class="fa fa-search"></i>
                             </button>
-                            
                         </div>
 
                         <h1 class="menu-title">Crymap</h1>
@@ -110,7 +105,6 @@
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
@@ -121,7 +115,6 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
@@ -134,10 +127,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#imap-characteristics" id="imap-characteristics">IMAP Characteristics</a></h1>
+                        <h1 id="imap-characteristics"><a class="header" href="#imap-characteristics">IMAP Characteristics</a></h1>
 <p>This section is targeted at client developers or those with an interest in the
 lower-level IMAP details.</p>
-<h2><a class="header" href="#conformance" id="conformance">Conformance</a></h2>
+<h2 id="conformance"><a class="header" href="#conformance">Conformance</a></h2>
 <p>Crymap fully conforms to the IMAP4rev1 (RFC 3501) and IMAP4rev2 (RFC 9051)
 standards. It also conforms to a number of extensions detailed in later
 sections.</p>
@@ -160,47 +153,50 @@ sections where relevant.</p>
 <p>Notwithstanding the few exceptions discussed, Crymap’s IMAP implementation
 conforms to the following standards:</p>
 <ul>
-<li>RFC 2045 MIME Extensions: Format of Internet Message Bodies</li>
-<li>RFC 2046 MIME Extensions: Media types</li>
-<li>RFC 2047 MIME Extensions: Message Header Extensions for Non-ASCII Text</li>
-<li>RFC 2157 UTF-7</li>
-<li>RFC 2177 (IDLE)</li>
-<li>RFC 2183 The Content-Disposition Header Field</li>
-<li>RFC 2231 MIME Parameter Value and Encoded Word Extensions: Character Sets, Languages, and Continuations</li>
-<li>RFC 2342 (NAMESPACE)</li>
-<li>RFC 2557 (Content-Location header field)</li>
-<li>RFC 2595 (PLAIN authentication)</li>
-<li>RFC 2971 (ID)</li>
-<li>RFC 3066 Tags for the Identification of Languages</li>
-<li>RFC 3282 Content Language Headers</li>
-<li>RFC 3348 (CHILDREN)</li>
-<li>RFC 3501 (IMAP4rev1)</li>
-<li>RFC 3502 (MULTIAPPEND)</li>
-<li>RFC 3516 (BINARY)</li>
-<li>RFC 3691 (UNSELECT)</li>
-<li>RFC 4315 (UIDPLUS)</li>
-<li>RFC 4731 (ESEARCH)</li>
-<li>RFC 4959 (SASL-IR)</li>
-<li>RFC 4978 (COMPRESS=DEFLATE)</li>
-<li>RFC 5161 (ENABLE)</li>
-<li>RFC 5182 (SEARCHRES)</li>
-<li>RFC 5253 (LIST-EXTENDED)</li>
-<li>RFC 5322 (Internet Message Format)</li>
-<li>RFC 5530 IMAP Response Codes</li>
-<li>RFC 5819 (LIST-STATUS)</li>
-<li>RFC 5918 Unicode Format for Network Interchange</li>
-<li>RFC 6154 (CREATE-SPECIAL-USE and SPECIAL-USE)</li>
-<li>RFC 6532 Internationalized Email Headers</li>
-<li>RFC 6851 (MOVE)</li>
-<li>RFC 6855 (UTF8=ACCEPT)</li>
-<li>RFC 7162 (CONDSTORE and QRESYNC)</li>
-<li>RFC 7888 (LITERAL+)</li>
-<li>RFC 8438 (STATUS=SIZE)</li>
-<li>RFC 8457 IMAP “$Important” Keyword and “\Important” Special-Use Attribute</li>
-<li>RFC 8474 (OBJECTID)</li>
-<li>RFC 9051 (IMAP4rev2)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2045.html">RFC 2045</a> MIME Extensions: Format of Internet Message Bodies</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2046.html">RFC 2046</a> MIME Extensions: Media types</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2047.html">RFC 2047</a> MIME Extensions: Message Header Extensions for Non-ASCII Text</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2157.html">RFC 2157</a> UTF-7</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2177.html">RFC 2177</a> (IDLE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2183.html">RFC 2183</a> The Content-Disposition Header Field</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2231.html">RFC 2231</a> MIME Parameter Value and Encoded Word Extensions: Character Sets, Languages, and Continuations</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2342.html">RFC 2342</a> (NAMESPACE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2557.html">RFC 2557</a> (Content-Location header field)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2595.html">RFC 2595</a> (PLAIN authentication)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2971.html">RFC 2971</a> (ID)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3066.html">RFC 3066</a> Tags for the Identification of Languages</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3282.html">RFC 3282</a> Content Language Headers</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3348.html">RFC 3348</a> (CHILDREN)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3501.html">RFC 3501</a> (IMAP4rev1)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3502.html">RFC 3502</a> (MULTIAPPEND)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3516.html">RFC 3516</a> (BINARY)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3691.html">RFC 3691</a> (UNSELECT)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4315.html">RFC 4315</a> (UIDPLUS)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4731.html">RFC 4731</a> (ESEARCH)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4959.html">RFC 4959</a> (SASL-IR)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4978.html">RFC 4978</a> (COMPRESS=DEFLATE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5161.html">RFC 5161</a> (ENABLE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5182.html">RFC 5182</a> (SEARCHRES)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5253.html">RFC 5253</a> (LIST-EXTENDED)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5322.html">RFC 5322</a> (Internet Message Format)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5530.html">RFC 5530</a> IMAP Response Codes</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5819.html">RFC 5819</a> (LIST-STATUS)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5918.html">RFC 5918</a> Unicode Format for Network Interchange</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6154.html">RFC 6154</a> (CREATE-SPECIAL-USE and SPECIAL-USE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6532.html">RFC 6532</a> Internationalized Email Headers</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6851.html">RFC 6851</a> (MOVE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6855.html">RFC 6855</a> (UTF8=ACCEPT)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7162.html">RFC 7162</a> (CONDSTORE and QRESYNC)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7888.html">RFC 7888</a> (LITERAL+)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8438.html">RFC 8438</a> (STATUS=SIZE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8457.html">RFC 8457</a> IMAP “$Important” Keyword and “\Important” Special-Use Attribute</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8474.html">RFC 8474</a> (OBJECTID)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8514.html">RFC 8514</a> (SAVEDATE)
+since Crymap 2.0.0.</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc9051.html">RFC 9051</a> (IMAP4rev2)
+since Crymap 1.0.1.</li>
 </ul>
-<h2><a class="header" href="#unicode-support" id="unicode-support">Unicode support</a></h2>
+<h2 id="unicode-support"><a class="header" href="#unicode-support">Unicode support</a></h2>
 <p>Crymap is inherently a Unicode-aware, UTF-8-based application. All data which
 is returned to the client in a structured way (i.e., not as a raw byte stream)
 is internally managed as UTF-8.</p>
@@ -228,23 +224,17 @@ assumes the client will be able to deal with the parameters itself. This is
 likely to be a safe assumption, since this has always been an optional feature
 of IMAP servers, so clients need to be prepared to do it themselves either way.</p>
 <p>Search uses Unicode “simple” case folding.</p>
-<h2><a class="header" href="#limits" id="limits">Limits</a></h2>
+<h2 id="limits"><a class="header" href="#limits">Limits</a></h2>
 <p>The maximum message size for <code>APPEND</code> is hard-wired to 64MB.</p>
-<p>Batch insertions (through <code>COPY</code>, <code>MOVE</code>, or <code>APPEND</code>) are limited to 65536
-messages.</p>
 <p>Any operation that involves parsing message content will not process more than
 20 levels of multipart or <code>message/rfc822</code> nesting, nor will it process more
 than 1000 different body parts.</p>
 <p>Message header lines in excess of 64kB are not processed.</p>
 <p>Search operations will consider up to 128kB of text. Non-text body parts are
 ignored for search.</p>
-<p>A mailbox can have up to 2’305’843’008 message IDs allocated. Note however that
-inserting multiple messages into a mailbox at once can use up to 128 times as
-many IDs as the number of messages actually inserted. Up to 3’999’999’999
-change transactions can be performed on a mailbox. If either of these limits
-are reached, the mailbox will be “full” and further operations will fail. (Note
-that Crymap has not actually been tested in this condition.)</p>
-<h2><a class="header" href="#mailboxes" id="mailboxes">Mailboxes</a></h2>
+<p>A mailbox can have up to 4’294’967’294 message IDs allocated. Message IDs are
+allocated sequentially.</p>
+<h2 id="mailboxes"><a class="header" href="#mailboxes">Mailboxes</a></h2>
 <p>All mailboxes other than <code>INBOX</code> may have children. Nesting depth is dependent
 on the host operating system’s maximum path length.</p>
 <p>Mailbox names may not contain <code>%</code>, <code>*</code>, <code>\</code>, <code>/</code>, control characters or one of
@@ -268,7 +258,7 @@ recommendation.</p>
 will be terminated as soon as this occurrence is discovered.</p>
 <p>When an account is created, the following mailboxes are made, with the shown
 special-use attributes.</p>
-<table><thead><tr><th>Mailbox</th><th>Special-Use</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Mailbox</th><th>Special-Use</th></tr></thead><tbody>
 <tr><td><code>INBOX</code></td><td></td></tr>
 <tr><td>Archive</td><td><code>\Archive</code></td></tr>
 <tr><td>Drafts</td><td><code>\Drafts</code></td></tr>
@@ -276,7 +266,8 @@ special-use attributes.</p>
 <tr><td>Spam</td><td><code>\Junk</code></td></tr>
 <tr><td>Trash</td><td><code>\Trash</code></td></tr>
 </tbody></table>
-<h2><a class="header" href="#messages" id="messages">Messages</a></h2>
+</div>
+<h2 id="messages"><a class="header" href="#messages">Messages</a></h2>
 <p>Crymap tolerates and preserves messages with arbitrary binary content.</p>
 <p>Clients in sessions that have not yet observed the expungement of a message can
 continue to access it for 24hr after the expungement.</p>
@@ -297,23 +288,23 @@ convert line endings as they come in. This paragraph applies to messages that
 come in through IMAP or LMTP.)</p>
 <p>Unsolicited <code>FETCH</code> responses always include <code>UID</code> and <code>FLAGS</code>. If <code>CONDSTORE</code>
 has been enabled, they include <code>MODSEQ</code> as well.</p>
-<h2><a class="header" href="#flags" id="flags">Flags</a></h2>
+<h2 id="flags"><a class="header" href="#flags">Flags</a></h2>
 <p>All “system flags” are supported and permanent. <code>\Recent</code> is fully implemented
 and fully atomic. Arbitrary keywords can be created without limit.</p>
-<h2><a class="header" href="#authentication" id="authentication">Authentication</a></h2>
+<h2 id="authentication"><a class="header" href="#authentication">Authentication</a></h2>
 <p><code>LOGIN</code> and <code>AUTHENTICATE PLAIN</code> are both supported and have the same effect.
 <code>AUTHENTICATE</code> does not allow the authorisation and authentication usernames to
 differ.</p>
-<h2><a class="header" href="#extensions" id="extensions">Extensions</a></h2>
-<h3><a class="header" href="#rfc-8457" id="rfc-8457">RFC 8457</a></h3>
+<h2 id="extensions"><a class="header" href="#extensions">Extensions</a></h2>
+<h3 id="rfc-8457"><a class="header" href="#rfc-8457">RFC 8457</a></h3>
 <p>Crymap supports the <code>$Important</code> keyword and the <code>\Important</code> special-use
 attribute.</p>
-<h3><a class="header" href="#rfc-5530" id="rfc-5530">RFC 5530</a></h3>
+<h3 id="rfc-5530"><a class="header" href="#rfc-5530">RFC 5530</a></h3>
 <p>Extended status codes are used everywhere they make sense.</p>
-<h3><a class="header" href="#appendlimit" id="appendlimit">APPENDLIMIT</a></h3>
+<h3 id="appendlimit"><a class="header" href="#appendlimit">APPENDLIMIT</a></h3>
 <p>Crymap uses a fixed <code>APPENDLIMIT</code> value which is reported in the capabilities
 list.</p>
-<h3><a class="header" href="#binary" id="binary">BINARY</a></h3>
+<h3 id="binary"><a class="header" href="#binary">BINARY</a></h3>
 <p>Binary literals are understood, but are not handled any differently than
 non-binary literals. (That is, Crymap accepts and properly handles binary
 content in all contexts.)</p>
@@ -333,60 +324,56 @@ literals.</p>
 of a body part, and the server finds that the body part does not use DOS
 newlines, it should convert the newlines to DOS newlines. Crymap does not do
 this, since that constitutes data corruption.</p>
-<h3><a class="header" href="#children" id="children">CHILDREN</a></h3>
+<h3 id="children"><a class="header" href="#children">CHILDREN</a></h3>
 <p>If a client makes a non-extended <code>LIST</code> command, <code>\HasChildren</code> and
 <code>\HasNoChildren</code> mailbox attributes are returned implicitly.</p>
-<h3><a class="header" href="#compressdeflate" id="compressdeflate">COMPRESS=DEFLATE</a></h3>
+<h3 id="compressdeflate"><a class="header" href="#compressdeflate">COMPRESS=DEFLATE</a></h3>
 <p>Deflate-based compression may be enabled at any time.</p>
 <p>Crymap is not aware of whether TLS itself is using compression and so will not
 reject enabling compression even if TLS compression is active.</p>
-<h3><a class="header" href="#condstore" id="condstore">CONDSTORE</a></h3>
+<h3 id="condstore"><a class="header" href="#condstore">CONDSTORE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Atomic updates are performed with respect to all flags on a message and not
 just the flags being modified, since this is both simpler and more useful. (And
 seems like what clients expect — there has been some talk of using conditional
 store to maintain tri-state flags like Junk/NonJunk/(nothing) properly.)</p>
 <p>Modseqs are 63-bit integers as required by the later QRESYNC extension.</p>
-<p>Internally, Modseqs are a 2-element vector clock pairing the maximum known UID
-with a monotonic “Change ID” (CID) with additional bookkeeping to maintain the
-extension’s strict ordering requirements. This can be seen in returned Modseq
-values as the UID multiplied by 4 billion plus the CID.</p>
 <p>If multiple messages are changed at once, they all receive the same Modseq.</p>
 <p>Expunging a message increments the highest Modseq value.</p>
 <p>Crymap does not return <code>HIGHESTMODSEQ</code> response codes until <code>CONDSTORE</code> is
 enabled.</p>
-<h3><a class="header" href="#create-special-use" id="create-special-use">CREATE-SPECIAL-USE</a></h3>
+<h3 id="create-special-use"><a class="header" href="#create-special-use">CREATE-SPECIAL-USE</a></h3>
 <p>The following special-use attributes are allowed: <code>\Archive</code>, <code>\Drafts</code>,
 <code>\Flagged</code>, <code>\Junk</code>, <code>\Sent</code>, <code>\Trash</code>, <code>\Important</code>. <code>\All</code> is not allowed
 since Crymap does not support an “all mail” view.</p>
 <p>At most one special-use can be given to a mailbox. Crymap does not take action
 on special-use attributes except to return them, and does not prevent creating
 multiple mailboxes with the same special use.</p>
-<h3><a class="header" href="#enable" id="enable">ENABLE</a></h3>
+<h3 id="enable"><a class="header" href="#enable">ENABLE</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#esearch" id="esearch">ESEARCH</a></h3>
+<h3 id="esearch"><a class="header" href="#esearch">ESEARCH</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Crymap does not attempt to optimise searches for <code>MIN</code> or <code>MAX</code> alone.</p>
-<h3><a class="header" href="#id" id="id">ID</a></h3>
+<h3 id="id"><a class="header" href="#id">ID</a></h3>
 <p>This extension is fully implemented.</p>
 <p>The client-submitted identifying information is written into the server logs.</p>
 <p>The <code>[identification]</code> section of the server configuration can provide
 additional attributes to be returned here. By default, Crymap returns <code>name</code>
 and <code>version</code>.</p>
-<h3><a class="header" href="#idle" id="idle">IDLE</a></h3>
+<h3 id="idle"><a class="header" href="#idle">IDLE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Notifications about changes are typically delivered within a millisecond of
 when they occurred (modulo client-server latency of course). Message creation
 and expungement and flag operations are all monitored.</p>
 <p>Crymap does not strictly validate that the idle is terminated with “DONE”.</p>
-<h3><a class="header" href="#list-extended" id="list-extended">LIST-EXTENDED</a></h3>
+<h3 id="list-extended"><a class="header" href="#list-extended">LIST-EXTENDED</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#list-status" id="list-status">LIST-STATUS</a></h3>
+<h3 id="list-status"><a class="header" href="#list-status">LIST-STATUS</a></h3>
 <p>This extension is fully implemented, but only because IMAP4rev2 requires it. No
 optimisations are made over simply making separate <code>STATUS</code> calls.</p>
-<h3><a class="header" href="#literal" id="literal">LITERAL+</a></h3>
+<h3 id="literal"><a class="header" href="#literal">LITERAL+</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#move" id="move">MOVE</a></h3>
+<h3 id="move"><a class="header" href="#move">MOVE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Moves occur as three separate atomic steps:</p>
 <ul>
@@ -394,48 +381,48 @@ optimisations are made over simply making separate <code>STATUS</code> calls.</p
 <li>Flags are set on the destination messages.</li>
 <li>Messages are removed from the source.</li>
 </ul>
-<h3><a class="header" href="#multiappend" id="multiappend">MULTIAPPEND</a></h3>
+<h3 id="multiappend"><a class="header" href="#multiappend">MULTIAPPEND</a></h3>
 <p>This extension is fully implemented.</p>
 <p>Setting flags on the messages occurs in a separate step message insertion.
 (This is allowed by the spec since even setting the flags at all is only a
 SHOULD.)</p>
-<h3><a class="header" href="#namespace" id="namespace">NAMESPACE</a></h3>
+<h3 id="namespace"><a class="header" href="#namespace">NAMESPACE</a></h3>
 <p>Crymap does not have namespaces. The extension is implemented in that it
 returns a canned “no namespaces” response.</p>
-<h3><a class="header" href="#objectid" id="objectid">OBJECTID</a></h3>
+<h3 id="objectid"><a class="header" href="#objectid">OBJECTID</a></h3>
 <p>This extension is fully implemented except for the optional <code>THREADID</code>
 attribute, since Crymap does not support message threads.</p>
 <p>Mailbox IDs always begin with <code>M</code>, except for <code>INBOX</code>s mailbox ID, which always
 begins with <code>I</code>. Email IDs always begin with <code>E</code>.</p>
 <p>All mailboxes support these attributes.</p>
-<h3><a class="header" href="#qresync" id="qresync">QRESYNC</a></h3>
+<h3 id="qresync"><a class="header" href="#qresync">QRESYNC</a></h3>
 <p>This extension is fully implemented.</p>
-<p>Crymap remembers the most recent 1024 expunge events.</p>
-<h3><a class="header" href="#sasl-ir" id="sasl-ir">SASL-IR</a></h3>
+<p>Crymap remembers all expunge events.</p>
+<h3 id="sasl-ir"><a class="header" href="#sasl-ir">SASL-IR</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#searchres" id="searchres">SEARCHRES</a></h3>
+<h3 id="savedate"><a class="header" href="#savedate">SAVEDATE</a></h3>
+<p>This extension is fully implemented as of Crymap 2.0.0.</p>
+<p>When migrating from the Crymap 1.x message store, the <code>SAVEDATE</code> of each
+message is initialised to the modified time of the file storing the message.</p>
+<h3 id="searchres"><a class="header" href="#searchres">SEARCHRES</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#special-use" id="special-use">SPECIAL-USE</a></h3>
+<h3 id="special-use"><a class="header" href="#special-use">SPECIAL-USE</a></h3>
 <p>This extension is fully implemented.</p>
 <p>See <a href="#create-special-use">CREATE-SPECIAL-USE</a> for a reference on what
 attributes are supported.</p>
-<h3><a class="header" href="#statussize" id="statussize">STATUS=SIZE</a></h3>
-<p>This extension is fully implemented to the letter of the standard and not at
-all to the spirit. It is only implemented because IMAP4rev2 requires it.</p>
-<p>Returning the size of a mailbox sounds like a useful operation. However, the
-standard does not permit returning the <em>actual</em> size. Instead, it requires the
-returned size to be greater than or equal to the sum of the sizes of the
-messages as they would be fetched in full.</p>
-<p>Since determining the size of a message requires decrypting it, Crymap has no
-way to do this in a way that even resembles efficiency. Instead, it takes
-advantage of the fact that the returned size need only be an <em>upper bound</em> and
-determines the “size” by simply multiplying the message count by 4GB.</p>
-<h3><a class="header" href="#uidplus" id="uidplus">UIDPLUS</a></h3>
+<h3 id="statussize"><a class="header" href="#statussize">STATUS=SIZE</a></h3>
+<p>This extension is fully implemented.</p>
+<p>In versions of Crymap prior to 2.0.0, this was only implemented to the letter
+of the standard and not the spirit due to efficiency concerns: Each message was
+assumed to be 4GB in size and this size was simply multiplied by the message
+count. Crymap 2.0.0 is able to track message sizes efficiently, so this
+limitation no longer applies.</p>
+<h3 id="uidplus"><a class="header" href="#uidplus">UIDPLUS</a></h3>
 <p>This extension is fully supported.</p>
 <p>No mailboxes have the <code>UIDNOTSTICKY</code> attribute.</p>
-<h3><a class="header" href="#unselect" id="unselect">UNSELECT</a></h3>
+<h3 id="unselect"><a class="header" href="#unselect">UNSELECT</a></h3>
 <p>This extension is fully implemented.</p>
-<h3><a class="header" href="#utf8accept" id="utf8accept">UTF8=ACCEPT</a></h3>
+<h3 id="utf8accept"><a class="header" href="#utf8accept">UTF8=ACCEPT</a></h3>
 <p>The useful part of this extension is implemented. Clients using the extension
 cannot observe aspects (arguably) unimplemented. To clients not using the
 extension, Crymap is the same as any IMAP implementation that does not support
@@ -455,15 +442,15 @@ message headers are rejected. Crymap also does not do this, since it is
 actively harmful, leaving users without the ability to copy their existing
 messages into Crymap, and as mentioned in the previous paragraph, clients are
 able to deal with such messages anyway.</p>
-<h3><a class="header" href="#xcry" id="xcry">XCRY</a></h3>
+<h3 id="xcry"><a class="header" href="#xcry">XCRY</a></h3>
 <p>Crymap-specific extension. This entails several commands:</p>
-<h4><a class="header" href="#xcry-purge" id="xcry-purge">XCRY PURGE</a></h4>
+<h4 id="xcry-purge"><a class="header" href="#xcry-purge">XCRY PURGE</a></h4>
 <p>No arguments.</p>
 <p>All expunged messages in the selected mailbox are removed from the host
 filesystem immediately, making them inaccessible to concurrent sessions that
 have not yet observed the expungement.</p>
 <p>This is mainly used as part of Crymap’s internal test suite.</p>
-<h4><a class="header" href="#xcry-get-user-config" id="xcry-get-user-config">XCRY GET-USER-CONFIG</a></h4>
+<h4 id="xcry-get-user-config"><a class="header" href="#xcry-get-user-config">XCRY GET-USER-CONFIG</a></h4>
 <p>No arguments.</p>
 <p>Retrieves the current user configuration.</p>
 <p>Response:</p>
@@ -471,69 +458,108 @@ have not yet observed the expungement.</p>
   internal-key-pattern
   external-key-pattern
   password-changed-datetime
-  [astring astring...]
+  key value key value [...]
 </code></pre>
+<p>The <code>GET-USER-CONFIG</code> subcommand was poorly designed in Crymap 1.x.</p>
+<p>The Crymap 1.x capabilities are <code>INTERNAL-KEY-PATTERN</code>, <code>EXTERNAL-KEY-PATTERN</code>,
+and <code>PASSWORD</code>, which correspond to the ability to pass each of those settings
+to <code>SET-USER-CONFIG</code>. Those three settings are guaranteed to be present, in
+that order, immediately after the capabilities in the <code>USER-CONFIG</code> response.
+Each is an <code>nstring</code>.</p>
+<p>Beyond the Crymap 1.x settings are other settings. Each <code>key</code> is an <code>atom</code>
+naming the setting, and the <code>value</code> is an <code>nstring</code> giving the current value of
+that setting. The presence of a setting in this list implies that it can be
+passed to <code>XRY SET-USER-CONFIG</code>.</p>
+<p>Crymap 2.0.0 adds the <code>SMTP-OUT</code> capability. This indicates the presence of the
+<code>XCRY SMTP-OUT</code> subcommand and the following new settings:</p>
+<ul>
+<li><code>SMTP-OUT-SAVE</code>, mailbox into which sent messages are implicitly saved
+(default <code>NIL</code>, meaning no implicit saving happens)</li>
+<li><code>SMTP-OUT-SUCCESS-RECEIPTS</code>, mailbox into which receipts for
+successfully-delivered messages are saved (default <code>NIL</code>, meaning no delivery
+of success receipts)</li>
+<li><code>SMTP-OUT-FAILURE-RECEIPTS</code>, mailbox into which receipts for
+unsuccessfully-delivered messages are saved (default <code>NIL</code>, which is the same
+as <code>"INBOX"</code>)</li>
+</ul>
 <p><code>capabilities</code> provides a list of valid tokens that can be passed to <code>XCRY SET-USER-CONFIG</code>.</p>
-<h4><a class="header" href="#xcry-set-user-config" id="xcry-set-user-config">XCRY SET-USER-CONFIG</a></h4>
+<h4 id="xcry-set-user-config"><a class="header" href="#xcry-set-user-config">XCRY SET-USER-CONFIG</a></h4>
 <p>Arguments: <code>key value [key value [...]]</code></p>
-<p>Updates the given key-value pairs in the configuration. Using this to
-“configure” <code>PASSWORD</code> is also how password changes are done.</p>
+<p>Updates the given key-value pairs in the configuration. Each <code>key</code> is an
+<code>atom</code>; each <code>value</code> is an <code>nstring</code>. Using this to “configure” <code>PASSWORD</code> is
+also how password changes are done.</p>
 <p>Response:</p>
-<pre><code class="language-text">* XCRY BACKUP-FILE &quot;filename&quot;
+<pre><code class="language-text">* XCRY BACKUP-FILE "filename"
 </code></pre>
 <p>The returned filename should be shown to the user to let them know what file to
 use to undo the change.</p>
-<h3><a class="header" href="#xlist" id="xlist">XLIST</a></h3>
+<h4 id="xcry-smtp-out-foreign-tls-list"><a class="header" href="#xcry-smtp-out-foreign-tls-list">XCRY SMTP-OUT FOREIGN-TLS LIST</a></h4>
+<p>No arguments.</p>
+<p>Produces a list of the TLS requirements imposed on outbound SMTP domains.</p>
+<p>Example responses:</p>
+<pre><code class="language-text">* XCRY SMTP-OUT FOREIGN-TLS secure.example.com STARTTLS VALID-CERTIFICATE "TLS 1.3"
+* XCRY SMTP-OUT FOREIGN-TLS insecure.example.com NIL
+</code></pre>
+<h4 id="xcry-smtp-out-foreign-tls-delete"><a class="header" href="#xcry-smtp-out-foreign-tls-delete">XCRY SMTP-OUT FOREIGN-TLS DELETE</a></h4>
+<p>Arguments: <code>domain [domain ...]</code></p>
+<p>Each <code>domain</code> is an <code>astring</code> naming a domain whose TLS requirements are to be
+forgotten. The next attempt to send mail to that domain will not require any
+particular TLS features to be present.</p>
+<h4 id="xcry-smtp-out-spool-execute"><a class="header" href="#xcry-smtp-out-spool-execute">XCRY SMTP-OUT SPOOL EXECUTE</a></h4>
+<p>Arguments: <code>message-id</code></p>
+<p><code>message-id</code> is an <code>astring</code> naming a spooled message ID which should be
+retried.</p>
+<p>Currently, spooled message IDs can only be found by the user in message failure
+receipts.</p>
+<h3 id="xlist"><a class="header" href="#xlist">XLIST</a></h3>
 <p>Implements the <code>XLIST</code> command, which was developed for GMail before
 <code>LIST-EXTENDED</code> was standardised. Some clients may still use this instead of
 the extended <code>LIST</code> command.</p>
-<h3><a class="header" href="#xvanquish" id="xvanquish">XVANQUISH</a></h3>
+<h3 id="xvanquish"><a class="header" href="#xvanquish">XVANQUISH</a></h3>
 <p>Crymap-specific extension.</p>
 <p>Adds the <code>XVANQUISH</code> command. This command takes one argument, a UID sequence
 set. The given messages are immediately expunged without having to go through
 the <code>\Deleted</code> dance first.</p>
 <p>This is not under the <code>XCRY</code> umbrella since it could be useful to others.</p>
-<h3><a class="header" href="#xyzzy" id="xyzzy">XYZZY</a></h3>
+<h3 id="xyzzy"><a class="header" href="#xyzzy">XYZZY</a></h3>
 <p>This is obviously a very important extension for GMail compatibility.</p>
-<h2><a class="header" href="#miscellaneous" id="miscellaneous">Miscellaneous</a></h2>
+<h2 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h2>
 <p>Crymap always returns <code>CAPABILITY</code> response codes to the <code>OK</code> used as a
 greeting upon connection and after successful authentication.</p>
 <p>Crymap accepts UNIX line endings in IMAP, but always outputs DOS line endings.</p>
-<h2><a class="header" href="#extensions-not-implemented" id="extensions-not-implemented">Extensions not implemented</a></h2>
+<h2 id="extensions-not-implemented"><a class="header" href="#extensions-not-implemented">Extensions not implemented</a></h2>
 <p>Extensions in this list were deliberately excluded because they were not
 useful or harmful.</p>
-<h3><a class="header" href="#acl-list-myrights-rights" id="acl-list-myrights-rights">ACL, LIST-MYRIGHTS, RIGHTS=</a></h3>
+<h3 id="acl-list-myrights-rights"><a class="header" href="#acl-list-myrights-rights">ACL, LIST-MYRIGHTS, RIGHTS=</a></h3>
 <p>Since users are strictly bound to their own mailboxes, permissions don’t make
 much sense for Crymap.</p>
-<h3><a class="header" href="#catenate-url-partial-urlauth-urlauthbinary" id="catenate-url-partial-urlauth-urlauthbinary">CATENATE, URL-PARTIAL, URLAUTH, URLAUTH=BINARY</a></h3>
+<h3 id="catenate-url-partial-urlauth-urlauthbinary"><a class="header" href="#catenate-url-partial-urlauth-urlauthbinary">CATENATE, URL-PARTIAL, URLAUTH, URLAUTH=BINARY</a></h3>
 <p>Not implemented due to higher complexity with low benefit.</p>
 <p>URLAUTH is feasible to implement, as it would work by encoding the session key
 of the message in question in the auth string. This would probably be
 sufficient to make it work with BURL. However, it’s not a feature that the
 author would get use of any time soon.</p>
-<h3><a class="header" href="#convert" id="convert">CONVERT</a></h3>
+<h3 id="convert"><a class="header" href="#convert">CONVERT</a></h3>
 <p>Insanity.</p>
 <p>It also looks like, quite possibly, literally nobody has ever implemented this
 for server <em>or</em> client.</p>
-<h3><a class="header" href="#i18nlevel" id="i18nlevel">I18NLEVEL=</a></h3>
+<h3 id="i18nlevel"><a class="header" href="#i18nlevel">I18NLEVEL=</a></h3>
 <p>Requires use of an out-dated, non-standard algorithm for Unicode collation and
 folding.</p>
-<h3><a class="header" href="#sort-esort-thread" id="sort-esort-thread">SORT, ESORT, THREAD</a></h3>
+<h3 id="sort-esort-thread"><a class="header" href="#sort-esort-thread">SORT, ESORT, THREAD</a></h3>
 <p>These concerns are much better handled by the client. Now that QRESYNC exists,
 clients can cheaply keep envelope data synchronised and not only do these
 operations themselves, but do them using up-to-date, standardised collation
 algorithms which take into account the user’s locale.</p>
 <p>Secondarily, these add a decent amount of memory overhead and aren’t something
 the author would ever get use of.</p>
-<h3><a class="header" href="#unauthenticate" id="unauthenticate">UNAUTHENTICATE</a></h3>
+<h3 id="unauthenticate"><a class="header" href="#unauthenticate">UNAUTHENTICATE</a></h3>
 <p>Incompatible with the way Crymap chroots into the user data directory in
 traditional UNIX-style deployments.</p>
-<h3><a class="header" href="#savedate" id="savedate">SAVEDATE</a></h3>
-<p>Incompatible with the way Crymap stores message data.</p>
-<h3><a class="header" href="#within" id="within">WITHIN</a></h3>
+<h3 id="within"><a class="header" href="#within">WITHIN</a></h3>
 <p>Should Crymap ever implement the CONTEXT extensions, this extension has a
 pathological interaction with them, and itself offers very little benefit.</p>
-<h3><a class="header" href="#quota" id="quota">QUOTA</a></h3>
+<h3 id="quota"><a class="header" href="#quota">QUOTA</a></h3>
 <p>Besides being useless to the author, it’s also unclear how this should really
 work, since mail delivery does not have access to the information it would need
 to maintain the quota.</p>
@@ -542,17 +568,13 @@ to maintain the quota.</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="user-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
-                            <a rel="next" href="lmtp.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="smtp.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -560,39 +582,29 @@ to maintain the quota.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a href="user-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="lmtp.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="smtp.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
 
-        
 
-        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
 
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
 
-        
 
     </body>
 </html>

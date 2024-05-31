@@ -24,9 +24,7 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
 
-        
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
@@ -70,14 +68,13 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html" class="active"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../lmtp.html"><strong aria-hidden="true">6.</strong> LMTP Characteristics</a></li></ol>
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="../installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="../admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="../admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="../admin-guide/filesystem.html" class="active"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="../admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="../admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="../imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="../smtp.html"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
+                                <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
                         <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,11 +90,9 @@
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                             </ul>
-                            
                             <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                                 <i class="fa fa-search"></i>
                             </button>
-                            
                         </div>
 
                         <h1 class="menu-title">Crymap</h1>
@@ -110,7 +105,6 @@
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
@@ -121,7 +115,6 @@
                         </ul>
                     </div>
                 </div>
-                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
@@ -134,11 +127,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#understanding-the-filesystem" id="understanding-the-filesystem">Understanding the Filesystem</a></h1>
+                        <h1 id="understanding-the-filesystem"><a class="header" href="#understanding-the-filesystem">Understanding the Filesystem</a></h1>
 <p>This section only covers what is useful to know when inspecting a Crymap
 installation with regular shell tools. For the nitty-gritty details, you’ll
 need to look at the Crymap source code’s internal documentation.</p>
-<h2><a class="header" href="#crymap-root" id="crymap-root">Crymap root</a></h2>
+<h2 id="crymap-root"><a class="header" href="#crymap-root">Crymap root</a></h2>
 <p>There are three files of significance at the <em>Crymap root</em>:</p>
 <ul>
 <li>
@@ -157,21 +150,37 @@ entry for each Crymap user.</p>
 </ul>
 <p>Refer to the <a href="config.html">configuration reference</a> for the two configuration
 files, and <a href="users.html">user management</a> for the <code>users</code> directory.</p>
-<h2><a class="header" href="#user-data-directory" id="user-data-directory">User data directory</a></h2>
+<h2 id="user-data-directory"><a class="header" href="#user-data-directory">User data directory</a></h2>
 <p>The user data directory contains the following files:</p>
 <ul>
 <li>
-<p><code>garbage</code>. This is used internally for deleting directories. It is safe to
-fully delete all its contents at any time. Crymap itself aggressively cleans
-it.</p>
+<p><code>backups</code>. This contains routine database backups produced atomically by
+Crymap.</p>
+</li>
+<li>
+<p><code>crymap-v1-files</code>. This contains the file trees that were present when the
+user was migrated from Crymap 1.x to Crymap 2.x. It will not be present for
+users that were created on Crymap 2.x, nor will it be recreated if removed.
+It is safe to remove entirely once you are sure you don’t need to roll back
+to Crymap 1.x.</p>
+</li>
+<li>
+<p><code>delivery.sqlite</code> and <code>delivery.sqlite-journal</code>. This is a cleartext SQLite
+database used for message delivery. Message delivery occurs without the user
+being logged in, and information about how such messages are to be added to
+the user’s account are written here. When the user is logged in, the database
+is processed and the messages are deposited into their final positions. If
+this database is removed, and pending messages will eventually show up in the
+inbox once Crymap determines that they have been orphaned.</p>
+</li>
+<li>
+<p><code>garbage</code>. This is a holdover from Crymap 1.x, and was used internally for
+deleting directories. It is safe to fully delete all its contents at any
+time. Crymap itself aggressively cleans it.</p>
 </li>
 <li>
 <p><code>keys</code>. A directory containing the user’s RSA keys. It is a critical part the
 user data needed for accessing the user’s mail.</p>
-</li>
-<li>
-<p><code>mail</code>. The root of the user’s mailbox hierarchy. All the user’s mail is
-stored inside this directory. Each directory inside is a single mailbox.</p>
 </li>
 <li>
 <p><code>maintenance-run</code>. This is a marker file used to track the last time that a
@@ -179,9 +188,14 @@ full maintenance pass was run on the account. This can be deleted safely,
 which will cause the next login to trigger a full maintenance pass.</p>
 </li>
 <li>
-<p><code>shadow</code>. This is a “shadow” of the <code>mail</code> hierarchy used to track mailbox
-attributes that operate independently of the mailboxes themselves. Currently,
-this is only for IMAP subscriptions.</p>
+<p><code>messages</code>. This contains the user’s actual email, one file per message.</p>
+</li>
+<li>
+<p><code>meta.sqlite.xex</code> and <code>meta.sqlite.xex-journal</code>. This is an encrypted SQLite
+database containing all information about the user’s messages and mailboxes.
+Atomic backups of <code>meta.sqlite.xex</code> are routinely created under <code>backups</code>. If
+you restore <code>meta.sqlite.xex</code> from backup, you <strong>MUST</strong> also remove
+<code>meta.sqlite.xex-journal</code> at the same time.</p>
 </li>
 <li>
 <p><code>tmp</code>. Used for temporary files and temporary markers. Crymap will
@@ -197,71 +211,28 @@ with an earlier backup version (either a backup created under <code>tmp</code> o
 some external backup system) to revert a password change.</p>
 </li>
 </ul>
-<h2><a class="header" href="#mailboxes" id="mailboxes">Mailboxes</a></h2>
-<p>A mailbox is a directory named after the IMAP mailbox of the same name. The
-<code>INBOX</code> mailbox is quite special (and must be all upper case); other mailboxes
-can be named freely.</p>
-<p>Inside a mailbox, all subdirectories not prefixed with <code>%</code> are child mailboxes.</p>
-<p>Normally, each mailbox will have a directory named <code>%$hexcode</code> and a symlink
-pointing to it named <code>%</code>. If neither exists, it means the user at some point
-attempted to delete the mailbox while it had child mailboxes. This manifests as
-a “non selectable” mailbox in IMAP. The <code>%$hexcode</code> directory contains the
-actual mailbox data.</p>
-<p>A mailbox data directory may contain the following:</p>
-<ul>
-<li>
-<p><code>c0</code>, <code>c1</code>, <code>c2</code>, <code>c3</code>. These contain metadata transactions for the mailbox,
-such as changing flags on messages.</p>
-</li>
-<li>
-<p><code>c-guess</code>. Used in the metadata transaction process. Safe to delete or
-corrupt.</p>
-</li>
-<li>
-<p><code>mailbox.toml</code>. Contains immutable metadata about the mailbox.</p>
-</li>
-<li>
-<p><code>recent</code>. Contains a marker file used to track the “recent” IMAP flag. Safe
-to delete.</p>
-</li>
-<li>
-<p><code>rollups</code>. Contains rollups of the mailbox state.</p>
-</li>
-<li>
-<p><code>socks</code>. Contains marker symlinks used to locate sockets used to notify
-idling Crymap processes of changes. Safe to delete.</p>
-</li>
-<li>
-<p><code>u0</code>, <code>u1</code>, <code>u2</code>, <code>u3</code>. These contain the actual messages in the mailbox.</p>
-</li>
-<li>
-<p><code>u-guess</code>. Used to accelerate working with the <code>u*</code> directories. Safe to
-delete or corrupt.</p>
-</li>
-</ul>
-<p>It is normal for the <code>c*</code> and <code>u*</code> directory trees to contain broken or cyclic
-symlinks. These symlinks play an important role in how Crymap manages its data.</p>
-<p>If you think a mailbox has been corrupted somehow, it is a reasonable
-last-resort step to remove the <code>c*</code> and <code>rollups</code> directories. <strong>This will
-destroy all the user’s message metadata</strong> and may undelete some messages. The
-next time the mailbox is opened, it may take a very long time. However, Crymap
-should be able to recover the messages themselves.</p>
+<h2 id="openssl-mirrors"><a class="header" href="#openssl-mirrors">OpenSSL mirrors</a></h2>
+<p>If Crymap is set up in a way that causes it to chroot, it will maintain a copy
+of the system OpenSSL certificate store within each chroot. This will usually
+manifest as an <code>etc</code> or <code>usr</code> directory within the <code>users</code> directory or within
+each user directory. This is needed so that certificates of external servers
+can be validated when using outbound SMTP, as they must access these files
+after Crymap has moved into the chroot and rendered the normal location of
+these files inaccessible.</p>
+<p>If possible, Crymap will create hard links, but will copy the files if the
+destination directory is on a different file system.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../admin-guide/backups.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="../admin-guide/tuning.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -269,39 +240,29 @@ should be able to recover the messages themselves.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a href="../admin-guide/backups.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
                     <a href="../admin-guide/tuning.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
 
-        
 
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
 
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
 
-        
 
     </body>
 </html>

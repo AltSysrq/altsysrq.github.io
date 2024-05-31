@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SMTP/LMTP Characteristics - Crymap</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Usage documentation for the Crymap IMAP server">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'visible';
+            if (document.body.clientWidth < 500) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="encryption.html"><strong aria-hidden="true">1.</strong> How Crymap's Encryption Works</a></li><li class="chapter-item expanded "><a href="installation-guide.html"><strong aria-hidden="true">2.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="admin-guide/index.html"><strong aria-hidden="true">3.</strong> Administration Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="admin-guide/config.html"><strong aria-hidden="true">3.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="admin-guide/users.html"><strong aria-hidden="true">3.2.</strong> Managing Users</a></li><li class="chapter-item expanded "><a href="admin-guide/backups.html"><strong aria-hidden="true">3.3.</strong> Backups and Recovery</a></li><li class="chapter-item expanded "><a href="admin-guide/filesystem.html"><strong aria-hidden="true">3.4.</strong> Understanding the Filesystem</a></li><li class="chapter-item expanded "><a href="admin-guide/tuning.html"><strong aria-hidden="true">3.5.</strong> Tuning</a></li><li class="chapter-item expanded "><a href="admin-guide/migration.html"><strong aria-hidden="true">3.6.</strong> Migration from Crymap 1.x</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide.html"><strong aria-hidden="true">4.</strong> User Guide</a></li><li class="chapter-item expanded "><a href="imap.html"><strong aria-hidden="true">5.</strong> IMAP Characteristics</a></li><li class="chapter-item expanded "><a href="smtp.html" class="active"><strong aria-hidden="true">6.</strong> SMTP/LMTP Characteristics</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+
+                        <h1 class="menu-title">Crymap</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="smtplmtp-characteristics"><a class="header" href="#smtplmtp-characteristics">SMTP/LMTP Characteristics</a></h1>
+<h2 id="conformance"><a class="header" href="#conformance">Conformance</a></h2>
+<p>Crymap’s SMTP/LMTP implementation is believed to conform to:</p>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1652.html">RFC 1652</a> (8BITMIME)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1830.html">RFC 1830</a> (BINARY)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1854.html">RFC 1854</a> (PIPELINING)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1870.html">RFC 1870</a> (SIZE)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1893.html">RFC 1893</a> and
+<a href="https://datatracker.ietf.org/doc/html/rfc2034.html">RFC 2034</a> (ENHANCEDSTATUSCODES)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc2033.html">RFC 2033</a> (LMTP)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3207.html">RFC 3207</a> (STARTTLS)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc4954.html">RFC 4954</a> (AUTH PLAIN)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5321.html">RFC 5321</a> (SMTP)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6531.html">RFC 6531</a> (SMTPUTF8)</li>
+</ul>
+<h2 id="inbound-variants"><a class="header" href="#inbound-variants">Inbound variants</a></h2>
+<h3 id="smtp-delivery"><a class="header" href="#smtp-delivery">SMTP delivery</a></h3>
+<p>STARTTLS is fully supported, but not required.</p>
+<p>Crymap will always evaluate DMARC/DKIM/SPF, but will not reject messages on
+that basis unless enabled in the configuration. If enabled, it rejects it in
+the SMTP transaction.</p>
+<p>Crymap does not generate any DMARC reports.</p>
+<p>Attempts to authenticate on the inbound SMTP port will always be rejected.</p>
+<p>Message delivery will always be rejected for any recipient domain which is not
+explicitly defined in the server configuration, even if the server is otherwise
+configured to not consider the domain during delivery, so that the Crymap
+server does not appear to be an open relay.</p>
+<h3 id="smtp-submission"><a class="header" href="#smtp-submission">SMTP submission</a></h3>
+<p>STARTTLS is fully supported for connections that start in cleartext and is
+required before any attempt to authenticate will be allowed.</p>
+<p>The <code>BINARYMIME</code> capability is not reported to the client in SMTP submission as
+Crymap is not able to downgrade binary messages for transmission to servers
+that do not support them.</p>
+<p>Messages cannot be submitted until the user has successfully authenticated.
+Crymap validates that the return path and the <code>From</code> header all reference the
+authenticated user and correspond to a domain which is explicitly defined in
+the server configuration.</p>
+<h3 id="lmtp"><a class="header" href="#lmtp">LMTP</a></h3>
+<p>STARTTLS is fully supported, but not required.</p>
+<p>DMARC/DKIM/SPF are not evaluated; that should be handled by whatever is
+fronting LMTP. If Crymap is configured to ignore the email domain when
+identifying users, delivery will be accepted for any domain.</p>
+<p>Attempts to authenticate over LMTP will always be rejected.</p>
+<h3 id="general-notes"><a class="header" href="#general-notes">General notes</a></h3>
+<p>DOS-style line endings are not required.</p>
+<p>The <code>DATA</code> command will perform line-ending conversion from UNIX to DOS
+newlines in two conditions:</p>
+<ul>
+<li>The client is using UNIX newlines at the SMTP level.</li>
+<li>The first line ending in the data is a UNIX newline.</li>
+</ul>
+<p>If neither of these conditions are met, binary data can be correctly sent even
+through a plain <code>DATA</code> command, as long as the other end uses the same very
+strict interpretation of dot-stuffing.</p>
+<p>Line ending conversion is never performed on messages sent through the
+<code>CHUNKING</code> extension.</p>
+<p>Maximum line length is 65534 bytes.</p>
+<p>For SMTP delivery and SMTP submission, which must inspect the header block, the
+message header block may not exceed 256kB or the message will be rejected. LMTP
+does not inspect the header block and so has no such limit.</p>
+<p><code>VRFY</code> and <code>EXPN</code> are not supported and return constant hardwired responses.</p>
+<p>The <code>BODY=</code> argument to <code>MAIL FROM</code> is entirely ignored. For SMTP submission,
+Crymap identifies the appropriate transfer type by inspecting the message
+itself.</p>
+<p>The same limit used for IMAP APPEND is enforced for SMTP and LMTP.</p>
+<h2 id="outbound-smtp"><a class="header" href="#outbound-smtp">Outbound SMTP</a></h2>
+<p>The outbound SMTP implementation is simplistic and only suitable for low-volume
+sites.</p>
+<p>A given SMTP session will only be used to send one message (but possibly to
+multiple recipients).</p>
+<p>Crymap remembers the best TLS characteristics it has seen for an email domain
+(not a particular SMTP server), and will abort the transaction if the
+connection it obtains cannot meet those same characteristics:</p>
+<ul>
+<li>Whether or not the server supports TLS at all;</li>
+<li>Whether the server provides a valid certificate;</li>
+<li>The TLS version.</li>
+</ul>
+<p>Crymap will include the exact size of the message in the <code>MAIL FROM</code> command if
+the server supports the <code>SIZE</code> extension. If the server supports the <code>SIZE</code>
+extension and indicates a definite size limit which is smaller than the size of
+the message, Crymap will fail the transaction without attempting it.</p>
+<p>Crymap is not capabable of performing any kind of “downgrading” of a message
+before sending it. In general, the assertion is that servers which do not
+support transport of 8-bit content simply <em>do not exist</em>.</p>
+<ul>
+<li>
+<p>If a binary message is to be sent (which can only occur if the user agent
+which submitted the message ignored the lack of the <code>BINARYMIME</code> capability),
+Crymap will report <code>BODY=BINARYMIME</code> if the remote server advertises
+<code>BINARYMIME</code>, <code>BODY=8BITMIME</code> if the remote server does not advertise
+<code>BINARYMIME</code> but does advertise <code>8BITMIME</code>, and no <code>BODY=</code> argument if the
+server supports neither extension.</p>
+</li>
+<li>
+<p>If an 8-bit message is to be sent, Crymap will report <code>BODY=8BITMIME</code> if the
+remote server advertises <code>8BITMIME</code>, and no <code>BODY=</code> argument otherwise.</p>
+</li>
+</ul>
+<p>The presence of the <code>SMTPUTF8</code> capability has no effect. For a message that
+nominally requires that capability, Crymap will attempt to send it anyway and
+allow the server to decide whether or not it understands the SMTP commands and
+the message itself.</p>
+<p>Crymap will always transfer the message with <code>BDAT</code> if the server supports the
+<code>CHUNKING</code> extension.</p>
+<p>Crymap never takes advantage of pipelining or enhanced status codes.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="imap.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a href="imap.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
